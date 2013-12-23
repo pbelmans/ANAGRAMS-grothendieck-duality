@@ -5,10 +5,15 @@
 
 \usepackage{amsfonts}
 \usepackage{amsmath}
+\usepackage{amsthm}
 \usepackage{biblatex}
 \usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{thmtools}
 \usepackage{tikz-cd}
 \usepackage[colorinlistoftodos]{todonotes}
+\usepackage{xparse}
+\usepackage{xspace}
 
 \usepackage[T1]{fontenc}
 \usepackage[charter]{mathdesign}
@@ -26,8 +31,33 @@
 \relpenalty=10000
 \binoppenalty=10000
 
+% todonotes configuration
+\newcounter{todocounter}
+\DeclareDocumentCommand\addreference{g}{\stepcounter{todocounter}\todo[color = blue!30, fancyline]{\thetodocounter. Add reference\IfNoValueF{#1}{: #1}}\xspace}
+\DeclareDocumentCommand\checkthis{g}{\stepcounter{todocounter}\todo[color = red!50, fancyline]{\thetodocounter. Check this\IfNoValueF{#1}{: #1}}\xspace}
+\DeclareDocumentCommand\fixthis{g}{\stepcounter{todocounter}\todo[color = orange!50, fancyline]{\thetodocounter. Fix this\IfNoValueF{#1}{: #1}}\xspace}
+\DeclareDocumentCommand\expand{g}{\stepcounter{todocounter}\todo[color = green!50, fancyline]{\thetodocounter. Expand\IfNoValueF{#1}{: #1}}\xspace}
+\newcommand\removethis{\stepcounter{todocounter}\todo[color=yellow!50]{\thetodocounter. Remove this?}}
+
+\declaretheoremstyle[
+  spaceabove = 3pt,
+  spacebelow = 3pt,
+]{lecture}
+\theoremstyle{lecture}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+
 \mathchardef\mhyphen="2D
 \newcommand\dash{\nobreakdash-\hspace{0pt}}
+
+\DeclareMathOperator\hh{h}
+\DeclareMathOperator\HH{H}
+\DeclareMathOperator\Spec{Spec}
 
 \title{Grothendieck duality: lecture 1 \\[.2em] \Large Riemann--Roch theorem and Serre duality}
 \author{Pieter Belmans}
@@ -46,10 +76,42 @@
 \subsection{History}
 \label{section:riemann-roch-history}
 
-\subsection{Statement}
-\label{subsection:riemann-roch-statement}
-% curves
-% surfaces
+\subsection{Statement: curves}
+\label{subsection:statement-curves}
+From now on I will use Ravi Vakil's notes on Riemann--Roch and Serre duality \cite{vakil-proof-riemann-roch}. These are by now probably subsumed in his excellent notes \cite{vakil-math216}.
+
+We first need to figure out what~$\HH^0$ and~$\HH^1$ are, in as concrete terms as possible. From now on we take~$C$ a nonsingular projective algebraic curve over an algebraically closed field~$k$.
+\paragraph{Global sections}
+\begin{definition}
+  Let~$\mathcal{F}$ be a sheaf on~$C$. Then~$\HH^0(C,\mathcal{F})$ are the \emph{global sections} of~$\mathcal{F}$ over~$C$.
+\end{definition}
+\begin{example}
+  Let~$C=\mathbb{P}_k^1$. Then the global sections of~$\mathcal{O}_{\mathbb{P}_k^1}$ on~$\mathbb{P}_k^1$ are the constant functions, i.e.
+  \begin{equation}
+    \HH^0(\mathbb{P}_k^1,\mathcal{O}_{\mathcal{P}_k^1})=k.
+  \end{equation}
+  To see this, observe that~$\mathbb{P}_k^1$ is a gluing of two~$\mathbb{A}_k^1$'s. Regular functions on~$\mathbb{A}_k^1=\Spec k[x]$ are polynomials. But if we take a polynomial~$f(x)$, the gluing procedure tells us that~$f(1/x)$ should be a polynomial on the other~$\mathbb{A}_k^1$, which is only possible if it is a constant.
+\end{example}
+We observe that the global sections have the structure of a~$k$\dash vectorspace. This is the case for all~$\mathcal{O}_C$\dash modules. In this case we define
+\begin{equation}
+  \hh^0(C,\mathcal{F})\coloneqq\dim_k\HH^0(C,\mathcal{F}).
+\end{equation}
+\begin{example}
+  Let~$C$ be an elliptic curve\expand.
+\end{example}
+
+\paragraph{$\HH^1$ of a sheaf}
+\begin{definition}
+  Let~$\mathcal{F}$ be an~$\mathcal{O}_C$\dash module. Let~$\mathfrak{U}=\{U_1,\dotsc,U_n\}$ be an open cover of~$C$. Denote~$U_{i,j}=U_i\cap U_j$ and~$U_{i,j,k}=U_i\cap U_j\cap U_k$. Then~$\HH^1(C,\mathcal{F})$ \emph{as a set} consists of those tuples~$(f_{i,j})_{i,j}$ where~$f_{i,j}\in\HH^0(U_{i,j},\mathcal{F})$ such that~$f_{i,j}-f_{j,k}+f_{i,k}=0$ in~$\HH^0(U_{i,j,k},\mathcal{F})$. We will call these \emph{cocycles}.
+
+  We consider~$\HH^1(C,\mathcal{F})$ \emph{as an abelian group} by declaring a tuple~$(f_{i,j})_{i,j}$ zero if there are sections~$g_i\in\HH^0(U_i,\mathcal{F})$ such that~$f_{i,j}=g_i-g_j$ in~$\HH^0(U_{i,j},\mathcal{F})$. And we get~$\HH^1(C,\mathcal{F})$ \emph{as a~$k$\dash vectorspace} by the~$k$\dash vectorspace structure on~$\HH^0(C,\mathcal{F})$.
+\end{definition}
+The definition of the zero in this vectorspace explains what~$\HH^1$ is about: it measures to which extent we cannot glue global sections.
+
+
+
+\subsection{Statement: surfaces}
+\label{subsection:statement-surfaces}
 
 \subsection{Reduction to Serre duality}
 \label{subsection:reduction}
