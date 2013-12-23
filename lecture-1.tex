@@ -107,14 +107,21 @@ We observe that the global sections have the structure of a~$k$\dash vectorspace
   We consider~$\HH^1(C,\mathcal{F})$ \emph{as an abelian group} by declaring a tuple~$(f_{i,j})_{i,j}$ zero if there are sections~$g_i\in\HH^0(U_i,\mathcal{F})$ such that~$f_{i,j}=g_i-g_j$ in~$\HH^0(U_{i,j},\mathcal{F})$. And we get~$\HH^1(C,\mathcal{F})$ \emph{as a~$k$\dash vectorspace} by the~$k$\dash vectorspace structure on~$\HH^0(C,\mathcal{F})$.
 \end{definition}
 The definition of the zero in this vectorspace explains what~$\HH^1$ is about: it measures to which extent we cannot glue global sections.
+% finer coverings
+% Leray result
 
+\begin{theorem}[Riemann--Roch]
+  \label{theorem:riemann-roch}
+  Let~$\mathcal{L}$ be an invertible sheaf of degree~$d$. Then\fixthis{nice definition of $\Omega^1$}
+  \begin{equation}
+    \hh^0(C,\mathcal{L})-\hh^0(C,\Omega_C^1\otimes\mathcal{L}^\vee)=d-g+1.
+  \end{equation}
+\end{theorem}
+Hence Riemann--Roch is a relationship between two numbers: the easy~$\hh^0(C,\mathcal{L})$ and the difficult~$\hh^1(C,\Omega_C^1\otimes\mathcal{L}^\vee)$.
 
 
 \subsection{Statement: surfaces}
 \label{subsection:statement-surfaces}
-
-\subsection{Reduction to Serre duality}
-\label{subsection:reduction}
 
 
 \section{Serre duality}
@@ -127,6 +134,32 @@ The definition of the zero in this vectorspace explains what~$\HH^1$ is about: i
 
 \subsection{Proof of the curve case}
 \label{subsection:serre-duality-curves}
+The curve case of Serre duality is the following.
+\begin{theorem}
+  \label{theorem:serre-duality-curves}
+  There is a natural perfect pairing
+  \begin{equation}
+    \HH^0(C,\Omega_C^1(-D))\times\HH^1(C,\mathcal{O}_C(D))\to k.
+  \end{equation}
+\end{theorem}
+
+\begin{proof}[Proof of Riemann--Roch using Serre duality]
+  We have that\fixthis{motivation for some steps}
+  \begin{equation}
+    \begin{aligned}
+      &\hh^0(C,\mathcal{L})-\hh^0(C,\Omega^1\otimes\mathcal{L}^\vee) \\
+      &\quad=\hh^0(C,\mathcal{L})-\hh^1(C,\mathcal{L}) & \text{Riemann--Roch} \\
+      &\quad=\chi(C,\mathcal{L}) & \text{definition of~$\chi$} \\
+      &\quad=d+\chi(C,\mathcal{O}_C) & \text{\dots} \\
+      &\quad=d+\hh^0(C,\mathcal{O}_C)-\hh^1(C,\mathcal{O}_C) & \text{definition of~$\chi$} \\
+      &\quad=d+1-\hh^1(C,\mathcal{O}_C) & \text{global sections are constants} \\
+      &\quad=d+1-\hh^0(C,\Omega_C^1) & \text{Serre duality} \\
+      &\quad=d+1-g & \text{definition of $g$}.
+    \end{aligned}
+  \end{equation}
+\end{proof}
+
+The rest of this section is dedicated to the proof of Serre duality in the curve case. It is taken from Vakil's notes, which are based on \cite{serre-groupes-algebriques-et-corps-de-classes} and originate from a proof by Weil.
 
 \subsection{Remarks on the general case}
 \label{subsection:remarks}
