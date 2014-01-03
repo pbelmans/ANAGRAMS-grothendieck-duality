@@ -57,7 +57,9 @@
 
 \DeclareMathOperator\hh{h}
 \DeclareMathOperator\HH{H}
+\DeclareMathOperator\res{res}
 \DeclareMathOperator\Spec{Spec}
+\DeclareMathOperator\supp{supp}
 
 \title{Grothendieck duality: lecture 1 \\[.2em] \Large Riemann--Roch theorem and Serre duality}
 \author{Pieter Belmans}
@@ -74,10 +76,10 @@
 \section{Riemann--Roch}
 \label{section:riemann-roch}
 \subsection{History}
-\label{section:riemann-roch-history}
+\label{subsection:riemann-roch-history}
 
-\subsection{Statement: curves}
-\label{subsection:statement-curves}
+\subsection{Preliminaries}
+\label{subsection:preliminaries}
 From now on I will use Ravi Vakil's notes on Riemann--Roch and Serre duality \cite{vakil-proof-riemann-roch}. These are by now probably subsumed in his excellent notes \cite{vakil-math216}.
 
 We first need to figure out what~$\HH^0$ and~$\HH^1$ are, in as concrete terms as possible. From now on we take~$C$ a nonsingular projective algebraic curve over an algebraically closed field~$k$.
@@ -110,6 +112,9 @@ The definition of the zero in this vectorspace explains what~$\HH^1$ is about: i
 % finer coverings
 % Leray result
 
+\subsection{Statement: curves}
+\label{subsection:statement-curves}
+We can now give a first version of the Riemann--Roch theorem.
 \begin{theorem}[Riemann--Roch]
   \label{theorem:riemann-roch}
   Let~$\mathcal{L}$ be an invertible sheaf of degree~$d$. Then\fixthis{nice definition of $\Omega^1$}
@@ -160,6 +165,131 @@ The curve case of Serre duality is the following.
 \end{proof}
 
 The rest of this section is dedicated to the proof of Serre duality in the curve case. It is taken from Vakil's notes, which are based on \cite{serre-groupes-algebriques-et-corps-de-classes} and originate from a proof by Weil.
+
+\paragraph{Ad\`eles}
+When I was preparing these notes this part scared me, because ``ad\`ele'' is a scary word I knew from people who know something about class field theory\footnote{It is also the street in which the math department of Universit\'e Paris-Sud is located.}. The approach of the proof of Riemann--Roch taken by Vakil, Serre and Weil is by considering ``pre-ad\`eles'' or repartitions. This avoids the technical machinery of class field theory (it would be insane to use it to prove something as down-to-earth as Riemann--Roch) and has a nice interpretation in terms of the geometry. By preparing these notes I finally got myself familiar with ad\`eles, so I hope other people will benefit too from advertising this approach.
+
+Before we start by building things from the ground up, remark that the occurence of techniques from class field theory is not too far-fetched. It deals with fields, there is a bijection between curves and their function fields\addreference, and the ring of ad\`eles of the function field of a curve satisfies a certain duality\addreference. This duality implies Riemann--Roch, and we will develop as much of class field theory as required for the proof. So let's get started.
+
+\paragraph{The part on $\mathrm{I}(D)$}
+\begin{definition}
+  A \emph{repartition} is an indexed set~$(f_P)_{p\in C}$ with~$f_P\in k(C)$ such that~$f_P\in\mathcal{O}_{C,P}$ for finitely many points~$p$. The set~$R$ of repartitions comes equipped with a ring structure (pointwise addition and multiplication), with~$k(C)$ being a subring of this (if~$f\in k(C)$ we take~$f_P=f$, which is regular at all but finitely many points of~$C$), and~$R$ being a~$k(C)$\dash algebra.
+\end{definition}
+Hence a repartition is a collection of rational functions, indexed by the points of the curve, such that at most finitely many rational functions have a pole in the point at which they are associated. This ring contains tons of potential information (recall that~$\HH^1$ was about gluing local sections to a global section, and the obstructions in doing so), and we wish to put it to good use.
+\begin{definition}
+  Let~$D$ be a divisor on~$C$. We set
+  \begin{equation}
+    R(D)\coloneqq\{(f_P)_{P\in C}\mid v_P(f_P)+v_P(D)\geq 0\},
+  \end{equation}
+  an additive subgroup of~$R$.
+\end{definition}
+This is analogous to~$\mathcal{O}_C(D)$\fixthis{we should have a reminder on the definition somewhere}, but taken for each point separately. We can now interpret~$\HH^1$ in terms of these objects.
+\begin{proposition}
+  \label{proposition:HH1}
+  We have
+  \begin{equation}
+    \HH^1(C,\mathcal{O}_C(D))\cong R/(R(D)+k(C)).
+  \end{equation}
+
+  \begin{proof}
+    Associated to the field~$k(C)$ we have the constant sheaf~$\underline{k(C)}$ on~$C$. We have a natural injection of~$\mathcal{O}_C(D)$ into this constant sheaf, and we define~$S$ to be the cokernel of this injection, i.e.\ we have the short exact sequence
+    \begin{equation}
+      0\to\mathcal{O}_C(D)\to\underline{k(C)}\to S\to 0.
+    \end{equation}
+    Taking global sections we get
+    \begin{equation}
+      k(C)\to\HH^0(C,S)\to\HH^1(C,\mathcal{O}_C(D))\to\HH^1(C,\underline{k(C)})=0
+    \end{equation}
+    because constant sheaves don't have higher cohomology groups. Hence we have to prove that
+    \begin{equation}
+      \HH^0(C,S)=R/R(D).
+    \end{equation}
+    To prove this, we have to interpret~$S$ as the quotient sheaf of~$\underline{k(C)}$, which we do by looking at its stalks. If~$P$ is again a point of~$C$, we have
+    \begin{equation}
+      S_P=k(C)/\mathcal{O}_C(D)=\{f\in k(C)\mid v_P(F)\geq -v_P(D)\}.
+    \end{equation}
+    Hence\expand{a few more words on motivating this}
+    \begin{equation}
+      R/R(D)=\bigoplus_{P\in C}S_P.
+    \end{equation}
+
+    We wish to show that~$S$ equals this same direct sum of skyscraper sheaves, i.e.\ that sections of~$S$ consist of a selection of values of~$S_P$ for all~$P$, almost all of which are zero. To do so, let~$P$ be a point of~$C$, and let~$s\in S(U)$ be a section defined on an open neighbourhood~$U$ of~$P$. Then there exists a (smaller) neighbourhood~$U'$ such that~$s|_{U'\setminus P}=0$, which means that it has a lift to a section~$s'$ of~$\underline{k(C)}$. It suffices to take an open neighbourhood of~$P$, disjoint of~$(\supp D\setminus\{P\})\cup s^{-1}(\infty)$.
+  \end{proof}
+\end{proposition}
+
+\paragraph{The part on $\mathrm{J}(D)$}
+
+\paragraph{The part on differentials}
+
+\paragraph{The setup for the final proof}
+We wish to show that two vectorspaces are dual to eachother, and we will explicitly construct a linear functional for this. To do so, take~$\omega\in M$\fixthis{notation} a meromorphic differential. We define the divisor
+\begin{equation}
+  (\omega)\coloneqq\sum_{p\in C}v_P(\omega)P
+\end{equation}
+hence the sheaf~$\Omega^1(-D)$ is the sheaf of differentials such that~$(\omega)\leq D$.
+
+Then we define the pairing\checkthis{notation?}
+\begin{equation}
+  \langle-,-\rangle\colon M\times R\to k(C):(\omega,r)\mapsto\langle\omega,r\rangle=\sum_{p\in C}\res_p(r_p\omega).
+\end{equation}
+It has the following properties.
+\begin{lemma}
+  \label{lemma:pairing-properties}
+  The pairing~$\langle-,-\rangle$ satisfies
+  \begin{enumerate}
+    \item\label{enumerate:pairing-properties-1} $\langle\omega,r\rangle=0$ if~$r\in k(C)$;
+    \item\label{enumerate:pairing-properties-2} $\langle\omega,r\rangle=0$ if~$r\in R(D)$ and~$\omega\in\HH^0(C,\Omega^1(-D))$;
+    \item\label{enumerate:pairing-properties-3} $\langle f\omega,r\rangle=\langle\omega,fr\rangle$ if~$f\in k(C)$.
+  \end{enumerate}
+
+  \begin{proof}
+    \begin{enumerate}
+      \item This is the residue theorem, as known from complex analysis. It is also valid in this algebraic setting.
+      \item The product~$r_p\omega$ cannot have a pole, for any~$p\in C$, because the zeroes must at least cancel the poles by the assumptions on~$r$ and~$\omega$.
+      \item Both pairings evaluate to a sum of residues over~$f\omega r$.
+    \end{enumerate}
+  \end{proof}
+\end{lemma}
+For each meromorphic differential~$\omega$ in~$\HH^0(C,\Omega^1(-D))$ we have a linear functional~$\theta(\omega)$ on~$R$, and by \cref{enumerate:pairing-properties-1,enumerate:pairing-properties-2} it is also a linear functional on~$R/(R(D)+k(C))$. Hence we get a map
+\begin{equation}
+  \theta\colon\HH^0(C,\Omega^1(-D))\to J(D)
+\end{equation}
+as~$\mathrm{J}(D)$ is shorthand for the dual of~$R/(R(D)+k(C))$\checkthis{or is this a result?}. This~$\theta$ is moreover defined as a map~$M\to J$ in general. But we have the following nice property, that relates the more general map to the specific map.
+\begin{lemma}
+  \label{lemma:TODO}
+  Let~$\omega$ be a meromorphic differential such that~$\theta(\omega)\in\mathrm{J}(D)$. Then~$\omega\in\Omega^1(-D)$\checkthis{shouldn't this be global sections?}.
+
+  \begin{proof}
+    Assume on the contrary that~$\omega\notin\Omega^1(-D)$. This means that there is a point~$p\in C$ such that~$\omega$ has a pole in~$p$ that is bigger than allowed by~$D$, or symbolically
+    \begin{equation}
+      v_p(\omega)<v_p(-D).
+    \end{equation}
+    Then we take a repartition~$r\in R(D)$ by setting
+    \begin{equation}
+      r_q=
+      \begin{cases}
+        0 & q\neq p \\
+        1/t^{v_p(\omega)+1}.
+      \end{cases}
+    \end{equation}
+    Because
+    \begin{equation}
+      v_p(r_p\omega)=-1
+    \end{equation}
+    we get\checkthis{is this last motivation correct?}
+    \begin{equation}
+      \langle\omega,r\rangle=\sum_{q\in C}\res(r_q\omega)=\res(r_p\omega)\neq 0.
+    \end{equation}
+    But this means~$\theta(\omega)$ is not zero on~$R(D)$, but this is required by the definition of~$\theta$, hence we obtain a contradiction.
+  \end{proof}
+\end{lemma}
+
+Recall that we wish to prove that~$\theta$ induces an isomorphism from~$\HH^0(C,\Omega^1(-D))$ to~$\HH^1(C,\mathcal{O}_C(D))^\vee$, and this last object is also denoted~$\mathrm{J}(D)$.
+\begin{proof}[Proof of Serre duality]
+  To see that~$\theta$ is \emph{injective}, take~$\omega\in\HH^0(C,\Omega^1(-D))$ such that~$\theta(\omega)=0$. Then by \cref{lemma:theta-J(D)} we have that~$\Omega(-\Delta)$ for every divisor~$\Delta$, which implies~$\omega=0$\expand.
+
+  To see that~$\theta$ is \emph{surjective}, observe that by \cref{TODO} we have that~$\theta$ is~$k(C)$\dash linear, from~$M$ to~$J$\fixthis{notation?}. By \cref{lemma:dim(M)=1} we have~$\dim_{k(C)}M=1$, by \cref{proposition:dim(J)<=1} we have~$\dim_{k(C)}J\leq 1$.
+\end{proof}
 
 \subsection{Remarks on the general case}
 \label{subsection:remarks}
