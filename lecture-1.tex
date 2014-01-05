@@ -54,6 +54,7 @@
 
 \mathchardef\mhyphen="2D
 \newcommand\dash{\nobreakdash-\hspace{0pt}}
+\newcommand\dd{\mathrm{d}}
 
 \DeclareMathOperator\hh{h}
 \DeclareMathOperator\HH{H}
@@ -68,7 +69,7 @@
 \maketitle
 
 \begin{abstract}
-  
+  These are the notes for my first lecture on Grothendieck duality in the ANAGRAMS seminar. They discuss the Riemann--Roch theorem and Serre duality. A nice proof of Riemann--Roch is discussed, together with applications of both Riemann--Roch for curves and higher-dimensional varieties.
 \end{abstract}
 
 \tableofcontents
@@ -111,6 +112,49 @@ We observe that the global sections have the structure of a~$k$\dash vectorspace
 The definition of the zero in this vectorspace explains what~$\HH^1$ is about: it measures to which extent we cannot glue global sections.
 % finer coverings
 % Leray result
+\begin{example}
+  Let~$G$ be an abelian group, and denote~$\underline{G}$ the associated constant sheaf on~$C$. Then~$\HH^1(C,\underline{G})=0$, as there are no obstructions whatsoever to glue sections.
+\end{example}
+\begin{example}
+  Take~$p\in C$ and define a \emph{skyscraper sheaf}~$k_p$ on~$C$ by
+  \begin{equation}
+    \Gamma(U,k_p)=
+    \begin{cases}
+      k & p\in U \\
+      0 & p\notin U
+    \end{cases}
+  \end{equation}
+  for~$U\subseteq C$ open, which is an~$\mathcal{O}_C$\dash module by the obvious multiplication. Again~$\HH^1(C,k_p)=0$.
+\end{example}
+These are both examples of \emph{flasque sheaves}, and these never have higher cohomology.
+
+\paragraph{The Euler characteristic}
+By a nice result of Grothendieck we know that sheaf cohomology vanishes above the dimension of the variety \cite[theorem III.2.7]{hartshorne}. Hence in the case of a curve there is only a~$\HH^0$ and a~$\HH^1$. We then define the \emph{Euler characteristic}
+\begin{equation}
+  \chi(C,\mathcal{F})\coloneqq\hh^0(C,\mathcal{F})-\hh^1(C,\mathcal{F}).
+\end{equation}
+In general this will be an alternating sum over more terms. We will use this definition later on, the philosophy of ``taking together all the cohomology groups'' proves to be very fruitful.
+
+\paragraph{A short exact sequence of sheaves}
+Take~$p\in C$. Then~$\mathcal{O}_C(-p)$ is the sheaf of regular functions with a zero in~$p$. Then we have a short exact sequence
+\begin{equation}
+  0\to\mathcal{O}_C(-p)\to\mathcal{O}_C\to k_p\to 0
+\end{equation}
+where the first morphism is the obvious inclusion, and the second morphism is taking the value at~$p$. Moreover, for any invertible sheaf~$\mathcal{L}$ we have a short exact sequence
+\begin{equation}
+  0\to\mathcal{L}(-p)\to\mathcal{L}\to k_p\to 0
+\end{equation}
+by taking the sections of~$\mathcal{L}$ which vanish at~$p$.
+
+The associated long exact sequence in cohomology yields
+\begin{equation}
+  0\to\HH^0(C,\mathcal{L}(-p))\to\HH^0(C,\mathcal{L})\to\HH^0(C,k_p)\to\HH^1(C,\mathcal{L}(-p))\to\HH^1(C,\mathcal{L})\to 0
+\end{equation}
+hence the Euler characteristic is additive:
+\begin{equation}
+  \chi(C,\mathcal{L}(-p))=\chi(C,\mathcal{L})-\chi(C,k_p)=\chi(C,\mathcal{L})-1.
+\end{equation}
+This will be used in the proof of (cheap) Riemann--Roch, see \cref{lemma:cheap-riemann-roch}.
 
 \subsection{Statement: curves}
 \label{subsection:statement-curves}
@@ -122,7 +166,13 @@ We can now give a first version of the Riemann--Roch theorem.
     \hh^0(C,\mathcal{L})-\hh^0(C,\Omega_C^1\otimes\mathcal{L}^\vee)=d-g+1.
   \end{equation}
 \end{theorem}
-Hence Riemann--Roch is a relationship between two numbers: the easy~$\hh^0(C,\mathcal{L})$ and the difficult~$\hh^1(C,\Omega_C^1\otimes\mathcal{L}^\vee)$.
+Hence Riemann--Roch is a relationship between some numbers: if we know all but one of them we know all of them. The number we care most about is~$\hh^0(C,\mathcal{L})$. When we take~$\mathcal{L}=\mathcal{O}_C(D)$ we are interested in the dimension of the space of functions with ``prescribed behaviour at~$D$'': we require the poles to be no worse than what is allowed by~$D$. As for most points the coefficient of~$p\in C$ will be zero, a section of~$\mathcal{O}_C(D)$ has (possibly) some poles in the points of~$D$ and (possibly) zeroes of at least a certain order.
+
+As hinted at in the introduction, we consider the second term of the left-hand side as a ``correction term''. So in general we get
+\begin{equation}
+  \hh^0(C,\mathcal{L})\geq d-g+1
+\end{equation}
+which is called \emph{Riemann's equality}, and an important question is whether we have equality in certain cases\expand{in the applications we should discuss this!}
 
 The following is dubbed ``cheap Riemann--Roch'' by Ravi Vakil: it is a first step in proving Riemann--Roch and Serre duality for curves. Because it uses both~$\HH^0$ and~$\HH^1$ it is ``cheap'': $\HH^1$ is hard to understand. But it shows that
 \begin{enumerate}
@@ -139,8 +189,9 @@ The following is dubbed ``cheap Riemann--Roch'' by Ravi Vakil: it is a first ste
   \begin{equation}
     \hh^0(C,\mathcal{O}_C(D))-\hh^1(C,\mathcal{O}_C(D))=d+1-\hh^1(C,\mathcal{O}_C).
   \end{equation}
+
   \begin{proof}
-    \expand
+    An invertible sheaf on~$C$ can always be written as\expand{why?}~$\mathcal{O}_C(p_1+\dotso+p_a-q_1-\dotso-q_b)$ for~$p_i$ and~$q_j$ points on~$C$. We get~$a-b=\deg(\mathcal{L})$. Then we can set up an induction on~$a+b$: for~$\mathcal{O}_C$ it is obvious, and adding a point uses the additivity of the Euler characteristic on short exact sequences.
   \end{proof}
 \end{lemma}
 
@@ -265,23 +316,26 @@ Moreover, whereas it is a horribly big~$k$\dash vectorspace, it is well-behaved 
 
     Assume that~$D_n$ is any divisor such that~$\deg(D_n)=n$. Then for each~$f,g\in\HH^0(C,\mathcal{O}_C(D_n))$ we get~$f\alpha\in J(D-D_n)$ by the previous argument, and similarly~$g\beta\in J(D-D_n)$. Because~$\alpha$ and~$\beta$ are linearly independent we know that
     \begin{equation}
-      \HH^0(C,\mathcal{O}_C(D_n))\oplus\HH^0(C,\mathcal{O}_C(D_n))\to J(D-D_n)\colon(f,g)\mapsto f\alpha+g\beta
+      \begin{aligned}
+        \HH^0(C,\mathcal{O}_C(D_n))\oplus\HH^0(C,\mathcal{O}_C(D_n))&\to J(D-D_n) \\
+        (f,g)&\mapsto f\alpha+g\beta
+      \end{aligned}
     \end{equation}
     is an injection, hence
     \begin{equation}
       \dim_k\mathrm{J}(D-D_n)\geq 2\hh^0(C,\mathcal{O}_C(D_n)).
     \end{equation}
 
-    On the left-hand side we have\checkthis{last step?!}
+    On the left-hand side we have
     \begin{equation}
       \begin{aligned}
         \dim_k\mathrm{J}(D-D_n)&=\dim_k\mathrm{I}(D-D_n) & \text{definition} \\
         &=\hh^1(C,\mathcal{O}_C(D-D_n)) & \text{\cref{proposition:HH1}} \\
-        &=\hh^0(C,\mathcal{O}_C(D-D_n))-(d-n)+\text{constant} & \text{cheap Riemann--Roch, \cref{lemma:cheap-riemann-roch}} \\
-        &=n+\text{constant}'
+        &=\hh^0(C,\mathcal{O}_C(D-D_n))-(d-n)+\text{constant} & \text{\cref{lemma:cheap-riemann-roch}} \\
+        &=n+\text{constant}' & n\gg 0
       \end{aligned}
     \end{equation}
-    if~$d-n<0$, where the first constant will turn out to be the genus\checkthis. In this case, constant means independent of~$n$ or~$D_n$.
+    if~$d-n<0$, where the first constant will turn out to be the genus. In this case, constant means independent of~$n$ or~$D_n$.
 
     On the right-hand side we get by cheap Riemann--Roch (\cref{lemma:cheap-riemann-roch}) that
     \begin{equation}
@@ -292,6 +346,23 @@ Moreover, whereas it is a horribly big~$k$\dash vectorspace, it is well-behaved 
 \end{lemma}
 
 \paragraph{The part on differentials}
+\expand{some context}
+
+Let~$M$ be the set of meromorphic differentials, which is a one-dimensional~$k(C)$\dash vectorspace\expand{why?}. For every point~$p\in C$ there is a \emph{residue map}
+\begin{equation}
+  \res_p\colon M\to k,
+\end{equation}
+analogous to the case of complex analysis. To define this map we can write a meromorphic differential locally around~$p$ as
+\begin{equation}
+  (a_{-n}/t^n+\dotso+a_{-1}/t)\dd t+\text{regular part}
+\end{equation}
+where~$t$ is a uniformising parameter, and set the residue equal to~$a_{-1}$. It requires some work to prove that this is independent of the choice of local parameter (especially in the case of positive characteristic) \addreference\footnote{As suggested in Ravi Vakil's notes, if one assumes the complex analytic case, there is a nice proof for the general case, as suggested by Kiran Kedlaya. Uniformising parameters~$t$ and~$u$ are related by~$t=u+\sum_{k=2}^{+\infty}c_ku^k$, so if~$\sum_{i=-n}^{-1}a_it^i\dd t$ and~$\sum_{i=-n}^{-1}b_iu^i\dd u$ are two local expressions, we get a polynomial identity in the~$a_i$'s and~$b_i$'s whose coefficients are integers. But over~$\mathbb{C}$ we have an equality, hence the polynomial identity reduces to an identity over every field.}.
+
+We moreover have the \emph{residue theorem}, which says that for a meromorphic differential~$\omega\in M$ we have
+\begin{equation}
+  \sum_{p\in C}\res_p(\omega)=0.
+\end{equation}
+The complex analytic case can be done by Stokes' theorem, for the general case we refer to \addreference.
 
 \paragraph{The setup for the final proof}
 We wish to show that two vectorspaces are dual to eachother, and we will explicitly construct a linear functional for this. To do so, take~$\omega\in M$\fixthis{notation} a meromorphic differential. We define the divisor
@@ -316,7 +387,7 @@ It has the following properties.
 
   \begin{proof}
     \begin{enumerate}
-      \item This is the residue theorem, as known from complex analysis. It is also valid in this algebraic setting.
+      \item This is the residue theorem.
       \item The product~$r_p\omega$ cannot have a pole, for any~$p\in C$, because the zeroes must at least cancel the poles by the assumptions on~$r$ and~$\omega$.
       \item Both pairings evaluate to a sum of residues over~$f\omega r$.
     \end{enumerate}
@@ -326,7 +397,7 @@ For each meromorphic differential~$\omega$ in~$\HH^0(C,\Omega^1(-D))$ we have a 
 \begin{equation}
   \theta\colon\HH^0(C,\Omega^1(-D))\to J(D)
 \end{equation}
-as~$\mathrm{J}(D)$ is shorthand for the dual of~$R/(R(D)+k(C))$\checkthis{or is this a result?}. This~$\theta$ is moreover defined as a map~$M\to J$ in general. But we have the following nice property, that relates the more general map to the specific map.
+as~$\mathrm{J}(D)$ is shorthand for the dual of~$R/(R(D)+k(C))$ by \cref{proposition:HH1}. This~$\theta$ is moreover defined as a map~$M\to J$ in general. But we have the following nice property, that relates the more general map to the specific map.
 \begin{lemma}
   \label{lemma:TODO}
   Let~$\omega$ be a meromorphic differential such that~$\theta(\omega)\in\mathrm{J}(D)$. Then~$\omega\in\Omega^1(-D)$\checkthis{shouldn't this be global sections?}.
