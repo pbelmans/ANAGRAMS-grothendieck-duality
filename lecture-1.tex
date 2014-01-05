@@ -92,7 +92,7 @@ We first need to figure out what~$\HH^0$ and~$\HH^1$ are, in as concrete terms a
   \begin{equation}
     \HH^0(\mathbb{P}_k^1,\mathcal{O}_{\mathcal{P}_k^1})=k.
   \end{equation}
-  To see this, observe that~$\mathbb{P}_k^1$ is a gluing of two~$\mathbb{A}_k^1$'s. Regular functions on~$\mathbb{A}_k^1=\Spec k[x]$ are polynomials. But if we take a polynomial~$f(x)$, the gluing procedure tells us that~$f(1/x)$ should be a polynomial on the other~$\mathbb{A}_k^1$, which is only possible if it is a constant.
+  To see this, observe that~$\mathbb{P}_k^1$ is a gluing of two~$\mathbb{A}_k^1$'s. Regular functions on~$\mathbb{A}_k^1=\Spec k[x]$ are polynomials. But if we take a polynomial~$f(x)$, the gluing procedure tells us that~$f(1/x)$ should be a polynomial on the other~$\mathbb{A}_k^1$, which is only possible if it is a constant. This is an algebraic analogue of \emph{Liouville's theorem}.
 \end{example}
 We observe that the global sections have the structure of a~$k$\dash vectorspace. This is the case for all~$\mathcal{O}_C$\dash modules. In this case we define
 \begin{equation}
@@ -124,6 +124,25 @@ We can now give a first version of the Riemann--Roch theorem.
 \end{theorem}
 Hence Riemann--Roch is a relationship between two numbers: the easy~$\hh^0(C,\mathcal{L})$ and the difficult~$\hh^1(C,\Omega_C^1\otimes\mathcal{L}^\vee)$.
 
+The following is dubbed ``cheap Riemann--Roch'' by Ravi Vakil: it is a first step in proving Riemann--Roch and Serre duality for curves. Because it uses both~$\HH^0$ and~$\HH^1$ it is ``cheap'': $\HH^1$ is hard to understand. But it shows that
+\begin{enumerate}
+  \item Riemann--Roch is about giving a numerical relationship: if~$D$ and~$D'$ are divisors such that~$\deg(D)=\deg(D')$ they behave similarly;
+  \item one should consider all the sheaf cohomology groups together: the Euler characteristic is well-behaved, separate dimensions are not.
+\end{enumerate}
+\begin{lemma}
+  \label{lemma:cheap-riemann-roch}
+  We have
+  \begin{equation}
+    \chi(C,\mathcal{L})=\deg(\mathcal{L})+\chi(C,\mathcal{O}_C),
+  \end{equation}
+  hence for~$\mathcal{L}=\mathcal{O}_C(D)$ we get
+  \begin{equation}
+    \hh^0(C,\mathcal{O}_C(D))-\hh^1(C,\mathcal{O}_C(D))=d+1-\hh^1(C,\mathcal{O}_C).
+  \end{equation}
+  \begin{proof}
+    \expand
+  \end{proof}
+\end{lemma}
 
 \subsection{Statement: surfaces}
 \label{subsection:statement-surfaces}
@@ -217,7 +236,60 @@ This is analogous to~$\mathcal{O}_C(D)$\fixthis{we should have a reminder on the
   \end{proof}
 \end{proposition}
 
-\paragraph{The part on $\mathrm{J}(D)$}
+\paragraph{The part on $\mathrm{J}(D)$ and $J$}
+We now set
+\begin{equation}
+  \mathrm{J}(D)\coloneqq\mathrm{I}(D)^\vee=(R/(R(D)+k(C)))^\vee.
+\end{equation}
+Hence an element of~$\mathrm{J}(D)$ is a~$k$\dash linear form on~$R$ (our huge ring of repartitions) which vanishes on~$R(D)$ and~$k(C)$. Because~$D\leq D'$ implies~$R(D)\subseteq R(D')$, hence~$\mathrm{J}(D')\subseteq\mathrm{J}(D)$ we can define
+\begin{equation}
+  J\coloneqq\bigcup_{D}\mathrm{J}(D).
+\end{equation}
+\begin{lemma}
+  \label{lemma:J-k(C)-vectorspace}
+  $J$ is a~$k(C)$\dash vectorspace.
+  \begin{proof}
+    Take~$f\in k(C)$ and~$\alpha\in J$. We consider
+    \begin{equation}
+      f\alpha\colon R\to k:r\mapsto\langle\alpha,fr\rangle
+    \end{equation}
+    which is a linear functional on~$R$, which vanishes on~$k(C)$. This assignment gives~$J$ the structure of a~$k(C)$\dash vectorspace: take~$\alpha\in\mathrm{J}(D)$ and~$(f)=D'$. Then the linear form~$f\alpha$ vanishes on~$R(D-D')$, because if~$r\in R(D-D')$ then~$fr\in R(D)$, hence~$\langle\alpha,fr\rangle=0$. So~$f\alpha$ belongs to~$J(D-D')$, and therefore to~$J$.
+  \end{proof}
+\end{lemma}
+Moreover, whereas it is a horribly big~$k$\dash vectorspace, it is well-behaved as a~$k(C)$\dash vectorspace.
+\begin{lemma}
+  \label{lemma:dim-J-1}
+  We have~$\dim_{k(C)}J\leq 1$.
+  \begin{proof}
+    Take~$\alpha,\beta$ linearly independent over~$k(C)$. We can find a~$D$ such that~$\alpha,\beta\in J(D)$, and denote~$d=\deg(D)$.
+
+    Assume that~$D_n$ is any divisor such that~$\deg(D_n)=n$. Then for each~$f,g\in\HH^0(C,\mathcal{O}_C(D_n))$ we get~$f\alpha\in J(D-D_n)$ by the previous argument, and similarly~$g\beta\in J(D-D_n)$. Because~$\alpha$ and~$\beta$ are linearly independent we know that
+    \begin{equation}
+      \HH^0(C,\mathcal{O}_C(D_n))\oplus\HH^0(C,\mathcal{O}_C(D_n))\to J(D-D_n)\colon(f,g)\mapsto f\alpha+g\beta
+    \end{equation}
+    is an injection, hence
+    \begin{equation}
+      \dim_k\mathrm{J}(D-D_n)\geq 2\hh^0(C,\mathcal{O}_C(D_n)).
+    \end{equation}
+
+    On the left-hand side we have\checkthis{last step?!}
+    \begin{equation}
+      \begin{aligned}
+        \dim_k\mathrm{J}(D-D_n)&=\dim_k\mathrm{I}(D-D_n) & \text{definition} \\
+        &=\hh^1(C,\mathcal{O}_C(D-D_n)) & \text{\cref{proposition:HH1}} \\
+        &=\hh^0(C,\mathcal{O}_C(D-D_n))-(d-n)+\text{constant} & \text{cheap Riemann--Roch, \cref{lemma:cheap-riemann-roch}} \\
+        &=n+\text{constant}'
+      \end{aligned}
+    \end{equation}
+    if~$d-n<0$, where the first constant will turn out to be the genus\checkthis. In this case, constant means independent of~$n$ or~$D_n$.
+
+    On the right-hand side we get by cheap Riemann--Roch (\cref{lemma:cheap-riemann-roch}) that
+    \begin{equation}
+      2\hh^0(C,\mathcal{O}_C(D_n))\geq 2\deg(D_n)+\text{constant}''
+    \end{equation}
+    so if~$n\gg 0$ we get a contradiction as two sides cannot be equal. This dimension count over~$k$ proves that~$\alpha$ and~$\beta$ cannot be linearly independent, which proves that~$\dim_{k(C)}J\leq 1$.
+  \end{proof}
+\end{lemma}
 
 \paragraph{The part on differentials}
 
@@ -269,7 +341,7 @@ as~$\mathrm{J}(D)$ is shorthand for the dual of~$R/(R(D)+k(C))$\checkthis{or is 
       r_q=
       \begin{cases}
         0 & q\neq p \\
-        1/t^{v_p(\omega)+1}.
+        1/t^{v_p(\omega)+1} & q=p.
       \end{cases}
     \end{equation}
     Because
