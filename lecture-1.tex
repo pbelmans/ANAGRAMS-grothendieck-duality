@@ -129,7 +129,7 @@ The definition of the zero in this vectorspace explains what~$\HH^1$ is about: i
 These are both examples of \emph{flasque sheaves}, and these never have higher cohomology.
 
 \paragraph{The Euler characteristic}
-By a nice result of Grothendieck we know that sheaf cohomology vanishes above the dimension of the variety \cite[theorem III.2.7]{hartshorne}. Hence in the case of a curve there is only a~$\HH^0$ and a~$\HH^1$. We then define the \emph{Euler characteristic}
+By a nice result of Grothendieck we know that sheaf cohomology vanishes above the dimension of the variety \cite[theorem III.2.7]{hartshorne-algebraic-geometry}. Hence in the case of a curve there is only a~$\HH^0$ and a~$\HH^1$. We then define the \emph{Euler characteristic}
 \begin{equation}
   \chi(C,\mathcal{F})\coloneqq\hh^0(C,\mathcal{F})-\hh^1(C,\mathcal{F}).
 \end{equation}
@@ -161,7 +161,7 @@ This will be used in the proof of (cheap) Riemann--Roch, see \cref{lemma:cheap-r
 We can now give a first version of the Riemann--Roch theorem.
 \begin{theorem}[Riemann--Roch]
   \label{theorem:riemann-roch}
-  Let~$\mathcal{L}$ be an invertible sheaf of degree~$d$. Then\fixthis{nice definition of $\Omega^1$}
+  Let~$\mathcal{L}$ be an invertible sheaf of degree~$d$ on~$C$. Then\fixthis{nice definition of $\Omega^1$}
   \begin{equation}
     \hh^0(C,\mathcal{L})-\hh^0(C,\Omega_C^1\otimes\mathcal{L}^\vee)=d-g+1.
   \end{equation}
@@ -179,7 +179,7 @@ The following is dubbed ``cheap Riemann--Roch'' by Ravi Vakil: it is a first ste
   \item Riemann--Roch is about giving a numerical relationship: if~$D$ and~$D'$ are divisors such that~$\deg(D)=\deg(D')$ they behave similarly;
   \item one should consider all the sheaf cohomology groups together: the Euler characteristic is well-behaved, separate dimensions are not.
 \end{enumerate}
-\begin{lemma}
+\begin{lemma}[Cheap Riemann--Roch]
   \label{lemma:cheap-riemann-roch}
   We have
   \begin{equation}
@@ -187,16 +187,36 @@ The following is dubbed ``cheap Riemann--Roch'' by Ravi Vakil: it is a first ste
   \end{equation}
   hence for~$\mathcal{L}=\mathcal{O}_C(D)$ we get
   \begin{equation}
-    \hh^0(C,\mathcal{O}_C(D))-\hh^1(C,\mathcal{O}_C(D))=d+1-\hh^1(C,\mathcal{O}_C).
+    \chi(C,\mathcal{O}_C(D))=\hh^0(C,\mathcal{O}_C(D))-\hh^1(C,\mathcal{O}_C(D))=d+1-\hh^1(C,\mathcal{O}_C).
   \end{equation}
 
   \begin{proof}
-    An invertible sheaf on~$C$ can always be written as\expand{why?}~$\mathcal{O}_C(p_1+\dotso+p_a-q_1-\dotso-q_b)$ for~$p_i$ and~$q_j$ points on~$C$. We get~$a-b=\deg(\mathcal{L})$. Then we can set up an induction on~$a+b$: for~$\mathcal{O}_C$ it is obvious, and adding a point uses the additivity of the Euler characteristic on short exact sequences.
+    An invertible sheaf on~$C$ can always be written as\expand{why?}~$\mathcal{O}_C(p_1+\dotso+p_a-q_1-\dotso-q_b)$ for~$p_i$ and~$q_j$ points on~$C$. We get~$a-b=\deg(\mathcal{L})$. Then we can set up an induction on the number of points~$a+b$: for~$\mathcal{O}_C$ it is obvious, and adding a point uses the additivity of the Euler characteristic on short exact sequences.
   \end{proof}
 \end{lemma}
 
 \subsection{Statement: surfaces}
 \label{subsection:statement-surfaces}
+\begin{theorem}[Riemann--Roch for surfaces]
+  \label{theorem:riemann-roch-surfaces}
+  Let~$\mathcal{L}$ be an invertible sheaf on a smooth projective algebraic surface~$S$. Then
+  \begin{equation}
+    \begin{aligned}
+    \chi(S,\mathcal{L})&=\hh^0(S,\mathcal{L})-\hh^1(S,\mathcal{L})+\hh^2(S,\mathcal{L}) \\
+    &=\chi(S,\mathcal{O}_S)+\frac{1}{2}(\mathcal{L}^2-\mathcal{L}\cdot\omega_S) \\
+    &=\hh^0(S,\mathcal{O}_S)-\hh^1(S,\mathcal{O}_S)+\hh^2(S,\mathcal{O_S})+\frac{1}{2}(\mathcal{L}^2-\mathcal{L}\cdot\omega_S)
+    \end{aligned}
+  \end{equation}
+  where we take the intersection numbers of the divisors associated to~$\mathcal{L}$ and~$\omega_S$. Moreover we have \emph{Noether's formula}
+  \begin{equation}
+    \chi(S,\mathcal{O}_S)=\frac{\omega_S\cdot\omega_S+\chi_{\mathrm{top}}(S)}{12}
+  \end{equation}
+  and if~$C$ is a curve on~$S$ we have the \emph{genus formula}
+  \begin{equation}
+    2\mathrm{p}_{\mathrm{a}}(C)-2=C^2+C\cdot\mathrm{K}_X.
+  \end{equation}
+\end{theorem}
+Again this is a (or rather, its different manifestations are) numerical relation(s) on numbers associated to the surface and an invertible sheaf (or divisor) on it. We have a~$\HH^2$ popping up, which we don't understand at the moment. But once we've seen Serre duality we'll know how to reduce this~$\HH^2$ to a~$\HH^0$. Then we get a formula containing~$\HH^0$ and~$\HH^1$, the~$\HH^1$-term wasn't known at first and hence we only had an inequality. The failure of this equality was called the \emph{superabundance}. In \cref{section:applications} we will discuss some other interesting facts about this.
 
 
 \section{Serre duality}
@@ -217,15 +237,15 @@ The curve case of Serre duality is the following.
     \HH^0(C,\Omega_C^1(-D))\times\HH^1(C,\mathcal{O}_C(D))\to k.
   \end{equation}
 \end{theorem}
-
+If we assume this theorem for now, the proof of the Riemann--Roch theorem becomes an easy consequence.
 \begin{proof}[Proof of Riemann--Roch using Serre duality]
-  We have that\fixthis{motivation for some steps}
+  We have that
   \begin{equation}
     \begin{aligned}
       &\hh^0(C,\mathcal{L})-\hh^0(C,\Omega^1\otimes\mathcal{L}^\vee) \\
       &\quad=\hh^0(C,\mathcal{L})-\hh^1(C,\mathcal{L}) & \text{Riemann--Roch} \\
       &\quad=\chi(C,\mathcal{L}) & \text{definition of~$\chi$} \\
-      &\quad=d+\chi(C,\mathcal{O}_C) & \text{\dots} \\
+      &\quad=d+\chi(C,\mathcal{O}_C) & \text{\cref{proposition:cheap-riemann-roch}} \\
       &\quad=d+\hh^0(C,\mathcal{O}_C)-\hh^1(C,\mathcal{O}_C) & \text{definition of~$\chi$} \\
       &\quad=d+1-\hh^1(C,\mathcal{O}_C) & \text{global sections are constants} \\
       &\quad=d+1-\hh^0(C,\Omega_C^1) & \text{Serre duality} \\
@@ -239,7 +259,7 @@ The rest of this section is dedicated to the proof of Serre duality in the curve
 \paragraph{Ad\`eles}
 When I was preparing these notes this part scared me, because ``ad\`ele'' is a scary word I knew from people who know something about class field theory\footnote{It is also the street in which the math department of Universit\'e Paris-Sud is located.}. The approach of the proof of Riemann--Roch taken by Vakil, Serre and Weil is by considering ``pre-ad\`eles'' or repartitions. This avoids the technical machinery of class field theory (it would be insane to use it to prove something as down-to-earth as Riemann--Roch) and has a nice interpretation in terms of the geometry. By preparing these notes I finally got myself familiar with ad\`eles, so I hope other people will benefit too from advertising this approach.
 
-Before we start by building things from the ground up, remark that the occurence of techniques from class field theory is not too far-fetched. It deals with fields, there is a bijection between curves and their function fields\addreference, and the ring of ad\`eles of the function field of a curve satisfies a certain duality\addreference. This duality implies Riemann--Roch, and we will develop as much of class field theory as required for the proof. So let's get started.
+Before we start by building things from the ground up, remark that the occurence of techniques from class field theory is not too far-fetched. It deals with fields, there is a bijection between curves and their function fields \cite[\S I.6]{hartshorne-algebraic-geometry}, and the ring of ad\`eles of the function field of a curve satisfies a certain duality\addreference. This duality implies Riemann--Roch, and we will develop as much of class field theory as required for the proof. So let's get started.
 
 \paragraph{The part on $\mathrm{I}(D)$}
 \begin{definition}
@@ -443,6 +463,14 @@ Recall that we wish to prove that~$\theta$ induces an isomorphism from~$\HH^0(C,
 
 \subsection{Facts about curves}
 \label{subsection:facts-curves}
+
+\subsection{Facts about surfaces}
+\label{subsection:facts-surfaces}
+As in the case of curves we have a criterion for the vanishing of a cohomology group if a certain numerical criterion is satisfied \cite[lemma V.1.7]{hartshorne-algebraic-geometry}.
+\begin{proposition}
+  Let~$H$ be an ample divisor on a surface~$S$. Then there exists an integer~$n_0$ (in fact, it is~$\mathrm{K}_S\cdot H$) such that, if~$D$ is a divisor for which~$D\cdot H>0$, then~$\HH^2(S,\mathcal{L}(D))=0$.
+\end{proposition}
+Recall that the situation for curves asks~$\deg D>n_0=2\mathrm{g}_C-2$ for~$\HH^1(C,\mathcal{L}(D))$ to be zero.
 
 \subsection{Serre functors}
 \label{subsection:serre-functors}
