@@ -263,13 +263,13 @@ Before we start by building things from the ground up, remark that the occurence
 
 \paragraph{The part on $\mathrm{I}(D)$}
 \begin{definition}
-  A \emph{repartition} is an indexed set~$(f_P)_{p\in C}$ with~$f_P\in k(C)$ such that~$f_P\in\mathcal{O}_{C,P}$ for finitely many points~$p$. The set~$R$ of repartitions comes equipped with a ring structure (pointwise addition and multiplication), with~$k(C)$ being a subring of this (if~$f\in k(C)$ we take~$f_P=f$, which is regular at all but finitely many points of~$C$), and~$R$ being a~$k(C)$\dash algebra.
+  A \emph{repartition} is an indexed set~$(f_p)_{p\in C}$ with~$f_p\in k(C)$ such that~$f_p\in\mathcal{O}_{C,p}$ for finitely many points~$p$. The set~$R$ of repartitions comes equipped with a ring structure (pointwise addition and multiplication), with~$k(C)$ being a subring of this (if~$f\in k(C)$ we take~$f_p=f$, which is regular at all but finitely many points of~$C$), and~$R$ being a~$k(C)$\dash algebra.
 \end{definition}
 Hence a repartition is a collection of rational functions, indexed by the points of the curve, such that at most finitely many rational functions have a pole in the point at which they are associated. This ring contains tons of potential information (recall that~$\HH^1$ was about gluing local sections to a global section, and the obstructions in doing so), and we wish to put it to good use.
 \begin{definition}
   Let~$D$ be a divisor on~$C$. We set
   \begin{equation}
-    R(D)\coloneqq\{(f_P)_{P\in C}\mid v_P(f_P)+v_P(D)\geq 0\},
+    R(D)\coloneqq\{(f_p)_{p\in C}\mid \mathrm{v}_p(f_p)+\mathrm{v}_p(D)\geq 0\},
   \end{equation}
   an additive subgroup of~$R$.
 \end{definition}
@@ -294,16 +294,16 @@ This is analogous to~$\mathcal{O}_C(D)$\fixthis{we should have a reminder on the
     \begin{equation}
       \HH^0(C,S)=R/R(D).
     \end{equation}
-    To prove this, we have to interpret~$S$ as the quotient sheaf of~$\underline{k(C)}$, which we do by looking at its stalks. If~$P$ is again a point of~$C$, we have
+    To prove this, we have to interpret~$S$ as the quotient sheaf of~$\underline{k(C)}$, which we do by looking at its stalks. If~$p$ is again a point of~$C$, we have
     \begin{equation}
-      S_P=k(C)/\mathcal{O}_C(D)=\{f\in k(C)\mid v_P(F)\geq -v_P(D)\}.
+      S_p=k(C)/\mathcal{O}_C(D)=\{f\in k(C)\mid \mathrm{v}_p(F)\geq -\mathrm{v}_p(D)\}.
     \end{equation}
     Hence\expand{a few more words on motivating this}
     \begin{equation}
-      R/R(D)=\bigoplus_{P\in C}S_P.
+      R/R(D)=\bigoplus_{p\in C}S_p.
     \end{equation}
 
-    We wish to show that~$S$ equals this same direct sum of skyscraper sheaves, i.e.\ that sections of~$S$ consist of a selection of values of~$S_P$ for all~$P$, almost all of which are zero. To do so, let~$P$ be a point of~$C$, and let~$s\in S(U)$ be a section defined on an open neighbourhood~$U$ of~$P$. Then there exists a (smaller) neighbourhood~$U'$ such that~$s|_{U'\setminus P}=0$, which means that it has a lift to a section~$s'$ of~$\underline{k(C)}$. It suffices to take an open neighbourhood of~$P$, disjoint of~$(\supp D\setminus\{P\})\cup s^{-1}(\infty)$.
+    We wish to show that~$S$ equals this same direct sum of skyscraper sheaves, i.e.\ that sections of~$S$ consist of a selection of values of~$S_p$ for all~$p$, almost all of which are zero. To do so, let~$p$ be a point of~$C$, and let~$s\in S(U)$ be a section defined on an open neighbourhood~$U$ of~$p$. Then there exists a (smaller) neighbourhood~$U'$ such that~$s|_{U'\setminus p}=0$, which means that it has a lift to a section~$s'$ of~$\underline{k(C)}$. It suffices to take an open neighbourhood of~$p$, disjoint of~$(\supp D\setminus\{p\})\cup s^{-1}(\infty)$.
   \end{proof}
 \end{proposition}
 
@@ -329,7 +329,7 @@ Hence an element of~$\mathrm{J}(D)$ is a~$k$\dash linear form on~$R$ (our huge r
 \end{lemma}
 Moreover, whereas it is a horribly big~$k$\dash vectorspace, it is well-behaved as a~$k(C)$\dash vectorspace.
 \begin{lemma}
-  \label{lemma:dim-J-1}
+  \label{lemma:dim(J)<=1}
   We have~$\dim_{k(C)}J\leq 1$.
   \begin{proof}
     Take~$\alpha,\beta$ linearly independent over~$k(C)$. We can find a~$D$ such that~$\alpha,\beta\in J(D)$, and denote~$d=\deg(D)$.
@@ -368,7 +368,7 @@ Moreover, whereas it is a horribly big~$k$\dash vectorspace, it is well-behaved 
 \paragraph{The part on differentials}
 \expand{some context}
 
-Let~$M$ be the set of meromorphic differentials, which is a one-dimensional~$k(C)$\dash vectorspace\expand{why?}. For every point~$p\in C$ there is a \emph{residue map}
+Let~$M$ be the set of meromorphic differentials, which is a one-dimensional~$k(C)$\dash vectorspace as these are exactly the objects that (locally) look like~$f(z)\dd z$, with~$f\in k(C)$. For every point~$p\in C$ there is a \emph{residue map}
 \begin{equation}
   \res_p\colon M\to k,
 \end{equation}
@@ -376,24 +376,24 @@ analogous to the case of complex analysis. To define this map we can write a mer
 \begin{equation}
   (a_{-n}/t^n+\dotso+a_{-1}/t)\dd t+\text{regular part}
 \end{equation}
-where~$t$ is a uniformising parameter, and set the residue equal to~$a_{-1}$. It requires some work to prove that this is independent of the choice of local parameter (especially in the case of positive characteristic) \addreference\footnote{As suggested in Ravi Vakil's notes, if one assumes the complex analytic case, there is a nice proof for the general case, as suggested by Kiran Kedlaya. Uniformising parameters~$t$ and~$u$ are related by~$t=u+\sum_{k=2}^{+\infty}c_ku^k$, so if~$\sum_{i=-n}^{-1}a_it^i\dd t$ and~$\sum_{i=-n}^{-1}b_iu^i\dd u$ are two local expressions, we get a polynomial identity in the~$a_i$'s and~$b_i$'s whose coefficients are integers. But over~$\mathbb{C}$ we have an equality, hence the polynomial identity reduces to an identity over every field.}.
+where~$t$ is a uniformising parameter, and set the residue equal to~$a_{-1}$. It requires some work to prove that this is independent of the choice of local parameter (especially in the case of positive characteristic) \cite{serre-groupes-algebriques}\footnote{As suggested in Ravi Vakil's notes, if one assumes the complex analytic case, there is a nice proof for the general case, as suggested by Kiran Kedlaya. Uniformising parameters~$t$ and~$u$ are related by~$t=u+\sum_{k=2}^{+\infty}c_ku^k$, so if~$\sum_{i=-n}^{-1}a_it^i\dd t$ and~$\sum_{i=-n}^{-1}b_iu^i\dd u$ are two local expressions, we get a polynomial identity in the~$a_i$'s and~$b_i$'s whose coefficients are integers. But over~$\mathbb{C}$ we have an equality, hence the polynomial identity reduces to an identity over every field.}.
 
 We moreover have the \emph{residue theorem}, which says that for a meromorphic differential~$\omega\in M$ we have
 \begin{equation}
   \sum_{p\in C}\res_p(\omega)=0.
 \end{equation}
-The complex analytic case can be done by Stokes' theorem, for the general case we refer to \addreference.
+The complex analytic case can be done by Stokes' theorem, for the general case we refer to \cite{serre-groupes-algebriques}.
 
 \paragraph{The setup for the final proof}
-We wish to show that two vectorspaces are dual to eachother, and we will explicitly construct a linear functional for this. To do so, take~$\omega\in M$\fixthis{notation} a meromorphic differential. We define the divisor
+We wish to show that two vectorspaces are dual to eachother, and we will explicitly construct a linear functional for this. To do so, take~$\omega\in M$ a meromorphic differential on~$C$. We define the divisor
 \begin{equation}
-  (\omega)\coloneqq\sum_{p\in C}v_P(\omega)P
+  (\omega)\coloneqq\sum_{p\in C}\mathrm{v}_p(\omega)p
 \end{equation}
 hence the sheaf~$\Omega^1(-D)$ is the sheaf of differentials such that~$(\omega)\leq D$.
 
-Then we define the pairing\checkthis{notation?}
+Then we define the pairing
 \begin{equation}
-  \langle-,-\rangle\colon M\times R\to k(C):(\omega,r)\mapsto\langle\omega,r\rangle=\sum_{p\in C}\res_p(r_p\omega).
+  \langle-,-\rangle\colon M\times R\to k:(\omega,r)\mapsto\langle\omega,r\rangle=\sum_{p\in C}\res_p(r_p\omega).
 \end{equation}
 It has the following properties.
 \begin{lemma}
@@ -419,27 +419,27 @@ For each meromorphic differential~$\omega$ in~$\HH^0(C,\Omega^1(-D))$ we have a 
 \end{equation}
 as~$\mathrm{J}(D)$ is shorthand for the dual of~$R/(R(D)+k(C))$ by \cref{proposition:HH1}. This~$\theta$ is moreover defined as a map~$M\to J$ in general. But we have the following nice property, that relates the more general map to the specific map.
 \begin{lemma}
-  \label{lemma:TODO}
-  Let~$\omega$ be a meromorphic differential such that~$\theta(\omega)\in\mathrm{J}(D)$. Then~$\omega\in\Omega^1(-D)$\checkthis{shouldn't this be global sections?}.
+  \label{lemma:theta-J(D)}
+  Let~$\omega$ be a meromorphic differential such that~$\theta(\omega)\in\mathrm{J}(D)$. Then we have that~$\omega\in\HH^0(C,\Omega_C^1(-D))$.
 
   \begin{proof}
     Assume on the contrary that~$\omega\notin\Omega^1(-D)$. This means that there is a point~$p\in C$ such that~$\omega$ has a pole in~$p$ that is bigger than allowed by~$D$, or symbolically
     \begin{equation}
-      v_p(\omega)<v_p(-D).
+      \mathrm{v}_p(\omega)<\mathrm{v}_p(-D).
     \end{equation}
     Then we take a repartition~$r\in R(D)$ by setting
     \begin{equation}
       r_q=
       \begin{cases}
         0 & q\neq p \\
-        1/t^{v_p(\omega)+1} & q=p.
+        1/t^{\mathrm{v}_p(\omega)+1} & q=p.
       \end{cases}
     \end{equation}
     Because
     \begin{equation}
-      v_p(r_p\omega)=-1
+      \mathrm{v}_p(r_p\omega)=-1
     \end{equation}
-    we get\checkthis{is this last motivation correct?}
+    we get
     \begin{equation}
       \langle\omega,r\rangle=\sum_{q\in C}\res(r_q\omega)=\res(r_p\omega)\neq 0.
     \end{equation}
@@ -451,7 +451,7 @@ Recall that we wish to prove that~$\theta$ induces an isomorphism from~$\HH^0(C,
 \begin{proof}[Proof of Serre duality]
   To see that~$\theta$ is \emph{injective}, take~$\omega\in\HH^0(C,\Omega^1(-D))$ such that~$\theta(\omega)=0$. Then by \cref{lemma:theta-J(D)} we have that~$\Omega(-\Delta)$ for every divisor~$\Delta$, which implies~$\omega=0$\expand.
 
-  To see that~$\theta$ is \emph{surjective}, observe that by \cref{TODO} we have that~$\theta$ is~$k(C)$\dash linear, from~$M$ to~$J$\fixthis{notation?}. By \cref{lemma:dim(M)=1} we have~$\dim_{k(C)}M=1$, by \cref{proposition:dim(J)<=1} we have~$\dim_{k(C)}J\leq 1$.
+  To see that~$\theta$ is \emph{surjective}, observe that by \cref{TODO} we have that~$\theta$ is~$k(C)$\dash linear, from~$M$ to~$J$. By definition we have~$\dim_{k(C)}M=1$, by \cref{lemma:dim(J)<=1} we have~$\dim_{k(C)}J\leq 1$.
 \end{proof}
 
 \subsection{Remarks on the general case}
@@ -468,7 +468,7 @@ Recall that we wish to prove that~$\theta$ induces an isomorphism from~$\HH^0(C,
 \label{subsection:facts-surfaces}
 As in the case of curves we have a criterion for the vanishing of a cohomology group if a certain numerical criterion is satisfied \cite[lemma V.1.7]{hartshorne-algebraic-geometry}.
 \begin{proposition}
-  Let~$H$ be an ample divisor on a surface~$S$. Then there exists an integer~$n_0$ (in fact, it is~$\mathrm{K}_S\cdot H$) such that, if~$D$ is a divisor for which~$D\cdot H>0$, then~$\HH^2(S,\mathcal{L}(D))=0$.
+  Let~$H$ be an ample divisor on a surface~$S$. Then there exists an integer~$n_0$ (in fact, it is~$\mathrm{K}_S\cdot H$) such that, if~$D$ is a divisor for which~$D\cdot H>n_0$, then~$\HH^2(S,\mathcal{L}(D))=0$.
 \end{proposition}
 Recall that the situation for curves asks~$\deg D>n_0=2\mathrm{g}_C-2$ for~$\HH^1(C,\mathcal{L}(D))$ to be zero.
 
