@@ -7,6 +7,8 @@
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{biblatex}
+\usepackage{booktabs}
+\usepackage{diagbox}
 \usepackage{enumitem}
 \usepackage{mathtools}
 \usepackage{thmtools}
@@ -55,9 +57,14 @@
 \mathchardef\mhyphen="2D
 \newcommand\dash{\nobreakdash-\hspace{0pt}}
 \newcommand\dd{\mathrm{d}}
+\newcommand\Coh{\ensuremath{\mathrm{Coh}}}
 
+\DeclareMathOperator\Ext{Ext}
 \DeclareMathOperator\hh{h}
 \DeclareMathOperator\HH{H}
+\DeclareMathOperator\Hom{Hom}
+\DeclareMathOperator\tr{tr}
+\DeclareMathOperator\Proj{Proj}
 \DeclareMathOperator\res{res}
 \DeclareMathOperator\Spec{Spec}
 \DeclareMathOperator\supp{supp}
@@ -235,11 +242,37 @@ Again this is a (or rather, its different manifestations are) numerical relation
 
 \section{Serre duality}
 \label{section:serre-duality}
-\subsection{History}
-\label{subsection-serre-duality-history}
-
 \subsection{Statement}
 \label{subsection:serre-duality-statement}
+In the statement of Riemann--Roch we used the canonical sheaf~$\omega_X$, which made the magic work. In the more general setting that we will enter now (possible singularities) we will need a more general object serving the role of the canonical sheaf. We will define its properties, and then we are left with an existence question. This exposition is taken from \cite[\S III.7]{hartshorne-algebraic-geometry}, in later seminars we will give more general statements.
+\begin{definition}
+  Let~$X/k$ be a proper~$n$\dash dimensional scheme. A \emph{dualising sheaf} for~$X$ is a coherent sheaf~$\omega_X^\circ$ together with a \emph{trace morphism}~$\tr\colon\HH^n(X,\omega_X^\circ)\to k$, such that for all~$\mathcal{F}\in\Coh/X$ the natural pairing
+  \begin{equation}
+    \Hom(\mathcal{F},\omega_X^\circ)\times\HH^n(X,\mathcal{F})\to\HH^n(X,\omega_X^\circ)
+  \end{equation}
+  composed with~$\tr$ gives an isomorphism
+  \begin{equation}
+    \Hom(\mathcal{F},\omega_X^\circ)\cong\HH^n(X,\mathcal{F})^\vee.
+  \end{equation}
+\end{definition}
+So the first part of duality theory concerns the existence of this dualising sheaf. A sufficient condition is that~$X$ is projective \cite[proposition III.7.5]{hartshorne-algebraic-geometry}. In later seminars more general existence conditions will be discussed. One can prove that such a dualising sheaf and trace morphism are unique if they exist \cite[proposition III.7.2]{hartshorne-algebraic-geometry}.
+
+The next part concerns the actual duality. We state \cite[proposition 7.6]{hartshorne-algebraic-geometry}.
+\begin{theorem}[Serre duality]
+  \label{theorem:serre-duality}
+  Let~$X/k$ be a projective~$n$\dash dimensional scheme. Let~$\omega_X^\circ$ be its dualising sheaf. Let~$\mathcal{O}(1)$ be a very ample sheaf on~$X$. Then for all~$i\geq 0$ and~$\mathcal{F}\in\Coh/X$ we have functorial maps
+  \begin{equation}
+    \theta^i\colon\Ext^i(\mathcal{F},\omega_X^\circ)\to\HH^{n-i}(X,\mathcal{F})^\vee
+  \end{equation}
+  such that~$\theta^0$ corresponds to~$\tr$. Moreover, if~$X$ is Cohen--Macaulay\footnote{A technical condition that says that ``mild singularities'' are allowed. It means that each local ring has Krull dimension equal to the depth (we always have that depth is bounded above by Krull dimension), where depth corresponds to the length of a maximal regular sequence for the local ring itself. One can just read non-singular, which is the case we will need in later applications.} the~$\theta^i$ are isomorphisms for all~$i\geq 0$ and~$\mathcal{F}\in\Coh/X$.
+\end{theorem}
+The following corollary illustrates nicely why Serre duality is truly a duality result: it gives a relationship between~$\HH^i$ and~$\HH^{n-i}$.
+\begin{corollary}
+  Let~$X$ be projective Cohen--Macaulay of (equi-)dimension~$n$ over~$k$. Let~$\mathcal{F}$ be a locally free sheaf on~$X$. Then we have isomorphisms
+  \begin{equation}
+    \HH^i(X,\mathcal{F})\cong\HH^{n-i}(X,\mathcal{F}^\vee\otimes\omega_X^\circ)^\vee.
+  \end{equation}
+\end{corollary}
 
 \subsection{Proof of the curve case}
 \label{subsection:serre-duality-curves}
@@ -492,6 +525,46 @@ The proof for curves has an explicit flavour in terms of residues to it. In high
   \item Prove that~$\omega_X^\circ=\mathcal{E}\mathrm{xt}^r_{\mathbb{P}_k^n}(\mathcal{O}_X,\omega_{\mathbb{P}_k^n})$ is a dualising sheaf for~$X$, where~$r$ is the codimension of~$X$. Remark that~$\mathcal{E}\mathrm{xt}_{\mathbb{P}_k^n}^i(\mathcal{O}_X,\omega_{\mathbb{P}_k^n})=0$ for all~$i<r$.
 \end{enumerate}
 The question becomes: can we interpret this dualising sheaf? We know that for~$\mathbb{P}_k^n$ that the dualising sheaf is given by the canonical sheaf, hence the abuse of notation. Similarly, we have that for~$X$ nonsingular projective that this is true. The statement of Serre duality holds for Cohen--Macaulay varieties, i.e.\ we allow mild singularities. But then it's harder to interpret the dualising sheaf.
+
+For completeness' sake we can give the duality result for~$\mathbb{P}_k^n=\Proj k[x_0,\dotsc,x_n]$. Recall that~$\mathcal{O}_{\mathbb{P}_k^n}(1)$ consists of the linear forms on~$\mathbb{P}_k^n$, and higher twists corresponds to higher-degree equations.
+\begin{theorem}[Serre duality for $\mathbb{P}_k^n$]
+  \label{theorem:serre-duality-projective-space}
+  We have that
+  \begin{enumerate}
+    \item $\HH^i(\mathbb{P}_k^n,\mathcal{O}_{\mathbb{P}_k^n}(r))=0$ for all~$0<i<n$ and~$r\in\mathbb{Z}$.
+    \item $\HH^n(\mathbb{P}_k^n,\mathcal{O}_{\mathbb{P}_k^n}(-n-1))\cong k$;
+    \item $\HH^0(\mathbb{P}_k^n,\mathcal{O}_{\mathbb{P}_k^n}(r))\times\HH^n(\mathbb{P}_k^n,\mathcal{O}_{\mathbb{P}_k^n}(-n-r-1))\to\HH^n(\mathbb{P}_k^n,\mathcal{O}_{\mathbb{P}_k^n}(-n-1))\cong k$ is a perfect pairing of~$k$\dash vectorspaces.
+  \end{enumerate}
+\end{theorem}
+
+This yields the following pictures
+\begin{table}
+  \centering
+  \input{n-1}
+  \caption{Dimensions of~$\HH^i(\mathbb{P}_k^1,\mathcal{O}_{\mathbb{P}_k^1}(r))$}
+  \label{table:dimensions-projective-line}
+\end{table}
+
+\begin{table}
+  \centering
+  \input{n-2}
+  \caption{Dimensions of~$\HH^i(\mathbb{P}_k^2,\mathcal{O}_{\mathbb{P}_k^2}(r))$}
+  \label{table:dimensions-projective-line}
+\end{table}
+
+\begin{table}
+  \centering
+  \input{n-3}
+  \caption{Dimensions of~$\HH^i(\mathbb{P}_k^3,\mathcal{O}_{\mathbb{P}_k^3}(r))$}
+  \label{table:dimensions-projective-line}
+\end{table}
+
+\begin{table}
+  \centering
+  \input{n-4}
+  \caption{Dimensions of~$\HH^i(\mathbb{P}_k^4,\mathcal{O}_{\mathbb{P}_k^4}(r))$}
+  \label{table:dimensions-projective-line}
+\end{table}
 
 \section{Applications}
 \label{section:applications}
