@@ -172,10 +172,10 @@ This will be used in the proof of (cheap) Riemann--Roch, see \cref{lemma:cheap-r
 
 \subsection{Statement: curves}
 \label{subsection:statement-curves}
-We can now give a first version of the Riemann--Roch theorem.
+We can now give a first version of the Riemann--Roch theorem. The statement requires the canonical sheaf~$\Omega_C^1$, which will be introduced later.
 \begin{theorem}[Riemann--Roch]
   \label{theorem:riemann-roch}
-  Let~$\mathcal{L}$ be an invertible sheaf of degree~$d$ on~$C$. Then\fixthis{nice definition of $\Omega^1$}
+  Let~$\mathcal{L}$ be an invertible sheaf of degree~$d$ on~$C$. Then
   \begin{equation}
     \hh^0(C,\mathcal{L})-\hh^0(C,\Omega_C^1\otimes\mathcal{L}^\vee)=d-g+1.
   \end{equation}
@@ -186,7 +186,7 @@ As hinted at in the introduction, we consider the second term of the left-hand s
 \begin{equation}
   \hh^0(C,\mathcal{L})\geq d-g+1
 \end{equation}
-which is called \emph{Riemann's equality}, and an important question is whether we have equality in certain cases\expand{in the applications we should discuss this!}
+which is called \emph{Riemann's equality}, and an important question is whether we have equality in certain cases\expand{in the applications we should discuss this!}.
 
 The following is dubbed ``cheap Riemann--Roch'' by Ravi Vakil: it is a first step in proving Riemann--Roch and Serre duality for curves. Because it uses both~$\HH^0$ and~$\HH^1$ it is ``cheap'': $\HH^1$ is hard to understand. But it shows that
 \begin{enumerate}
@@ -273,7 +273,7 @@ The rest of this section is dedicated to the proof of Serre duality in the curve
 \paragraph{Ad\`eles}
 When I was preparing these notes this part scared me, because ``ad\`ele'' is a scary word I knew from people who know something about class field theory\footnote{It is also the street in which the math department of Universit\'e Paris-Sud is located.}. The approach of the proof of Riemann--Roch taken by Vakil, Serre and Weil is by considering ``pre-ad\`eles'' or repartitions. This avoids the technical machinery of class field theory (it would be insane to use it to prove something as down-to-earth as Riemann--Roch) and has a nice interpretation in terms of the geometry. By preparing these notes I finally got myself familiar with ad\`eles, so I hope other people will benefit too from advertising this approach.
 
-Before we start by building things from the ground up, remark that the occurence of techniques from class field theory is not too far-fetched. It deals with fields, there is a bijection between curves and their function fields \cite[\S I.6]{hartshorne-algebraic-geometry}, and the ring of ad\`eles of the function field of a curve satisfies a certain duality\addreference. This duality implies Riemann--Roch, and we will develop as much of class field theory as required for the proof. So let's get started.
+Before we start by building things from the ground up, remark that the occurence of techniques from class field theory is not too far-fetched. It deals with fields, there is a bijection between curves and their function fields \cite[\S I.6]{hartshorne-algebraic-geometry}, and the ring of ad\`eles of the function field of a curve satisfies self-duality which is one of the results in Tate's thesis. This self-duality implies Riemann--Roch, and we will develop as much of class field theory as required for the proof. So let's get started.
 
 \paragraph{The part on $\mathrm{I}(D)$}
 \begin{definition}
@@ -287,7 +287,9 @@ Hence a repartition is a collection of rational functions, indexed by the points
   \end{equation}
   an additive subgroup of~$R$.
 \end{definition}
-This is analogous to~$\mathcal{O}_C(D)$\fixthis{we should have a reminder on the definition somewhere}, but taken for each point separately. We can now interpret~$\HH^1$ in terms of these objects.
+This is analogous to~$\mathcal{O}_C(D)$, but taken for each point separately. Recall that~$\mathcal{O}_C(D)$ is the sheaf of meromorphic functions on~$C$ with prescribed behaviour in~$D$: if~$n_p$ is the coefficient of the point~$p$ in~$D$, then we require at most a pole of order~$-n_p$ is~$n_p$ is negative, or at least a zero of order~$n_p$ if~$n_p$ is positive.
+
+We can now interpret~$\HH^1$ in terms of these objects.
 \begin{proposition}
   \label{proposition:HH1}
   We have
@@ -380,9 +382,23 @@ Moreover, whereas it is a horribly big~$k$\dash vectorspace, it is well-behaved 
 \end{lemma}
 
 \paragraph{The part on differentials}
-\expand{some context}
+We will need to know what differentials on a curve are. In courses on differential geometry or complex analysis one has seen these before. In the algebraic geometry case one uses K\"ahler differentials to have a nice analogue. It provides another natural sheaf, besides the structure sheaf (and its twists). On a curve it will be an invertible sheaf, denoted~$\Omega_C^1$ and it has an associated canonical divisor~$\mathrm{K}_C$.
 
-Let~$M$ be the set of meromorphic differentials, which is a one-dimensional~$k(C)$\dash vectorspace as these are exactly the objects that (locally) look like~$f(z)\dd z$, with~$f\in k(C)$. For every point~$p\in C$ there is a \emph{residue map}
+The line bundle of differentials on a curve is the source of an important invariant
+\begin{definition}
+  The \emph{genus} of a curve is~$\mathrm{g}_C\coloneqq\dim_k\HH^0(C,\Omega_C^1)$.
+\end{definition}
+Another piece of notation that we will use is the set of meromorphic differentials~$M$, which is a one-dimensional~$k(C)$\dash vectorspace as these are exactly the objects that (locally) look like~$f(z)\dd z$, with~$f\in k(C)$. As this is a one-dimensional vectorspace, we just take the divisor associated to any meromorphic differential, and this will be the canonical divisor introduced before.
+
+We can now consider some differential forms (both meromorphic and holomorphic) on a curve. The terminology is mildly inspired by complex geometry here.
+\begin{example}
+  Take~$C=\mathbb{P}_k^1$. Then we have a differential form~$\omega=\dd z$ on~$\mathbb{A}_k^1$, and because the transition map to the second chart is~$z\mapsto z^{-1}$ we get that~$\dd(z^{-1})=-z^{-2}\dd z$, hence this differential form has a pole of order two at~$\infty$. Its associated canonical divisor is~$-2\infty$. There are no holomorphic differentials on~$\mathbb{P}_1^k$, its genus is zero.
+\end{example}
+\begin{example}
+  Take~$C=\mathbb{C}/\Lambda$ a complex elliptic curve, defined by taking a quotient by a torus. There is a differential form~$\omega=\dd z$ on~$\mathbb{C}$, which induces a differential form on~$C$. But as it is everywhere holomorphic it has no poles (nor zeroes), and the canonical divisor is zero. Hence the only holomorphic differential forms are the constants, and its genus is one.
+\end{example}
+
+For every point~$p\in C$ there is a \emph{residue map}
 \begin{equation}
   \res_p\colon M\to k,
 \end{equation}
