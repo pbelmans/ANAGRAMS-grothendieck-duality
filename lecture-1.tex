@@ -92,11 +92,11 @@ The Riemann--Roch theorem has already celebrated, or will almost celebrate its 1
 
 One can also look for Riemann--Roch-like statements for higher-dimensional, or singular objects. A version for smooth surfaces was proved by Guido Castelnuovo in 1896 (building on work of Max Noether from 1886 and Federigo Enriques\footnote{Who apparently studied at the University of Li\`ege.} in 1894). 
 
-With the advent of sheaf theory and its use in algebraic geometry, Friedrich Hirzebruch proved in 1954 a version of Riemann--Roch (now dubbed Hirzebruch--Riemann--Roch) for compact complex manifolds of arbitrary dimensions \addreference. And in 1957 Alexander Grothendieck proved a far-reaching generalisation in the language of modern algebraic geometry: it is a relative statement, which has the previous results as a ``trivial'' case \addreference. This version is known as Grothendieck--Riemann--Roch, or its abbreviation GRR.
+With the advent of sheaf theory and its use in algebraic geometry, Friedrich Hirzebruch proved in 1954 a version of Riemann--Roch (now dubbed Hirzebruch--Riemann--Roch) for compact complex manifolds of arbitrary dimensions. And in 1957 Alexander Grothendieck proved a far-reaching generalisation in the language of modern algebraic geometry: it is a relative statement, which has the previous results as a ``trivial'' case. This version is known as Grothendieck--Riemann--Roch, or its abbreviation GRR.
 
 But in this seminar we will highlight a different route of generalisations. Whereas the previous generalisations were about proving certain numbers related to topological information to be equal, one can also consider the intrinsic geometric structure of objects, and look for relationships between associated structures. This is the result of Serre duality, obtained by Jean--Pierre Serre in 1955 \cite{serre-faisceaux-algebriques-coherents}. It relates sheaf cohomology groups on non-singular projective algebraic varieties. It is related via Hodge theory to the maybe more familiar Poincar\'e duality if the base field is the complex numbers, but it considers the variety as a complex variety, not as a real manifold. One can obtain Riemann--Roch-like results this way, because it effectively reduces the amount of ``abstract'' cohomological information.
 
-The final goal of this seminar is Grothendieck duality. This is a relative version of Serre duality, with a first proof by Robin Hartshorne in 1966 \cite{hartshorne-residues-and-duality}. This proof is based on notes by Alexander Grothendieck, who envisioned the result in 1958 \addreference, but at the time the language required for the statement wasn't available. With the conception of derived categories \cite{verdier-phd}, due to Jean--Louis Verdier\footnote{Its precise date is hard to pin down, he defended his PhD in 1967 but derived categories had been used for a few years by then.} the generalisation become feasible.
+The final goal of this seminar is Grothendieck duality. This is a relative version of Serre duality, with a first proof by Robin Hartshorne in 1966 \cite{hartshorne-residues-and-duality}. This proof is based on notes by Alexander Grothendieck, who envisioned the result in 1957 \cite{grothendieck-theoremes-de-dualite}, but at the time the language required for the statement wasn't available. With the conception of derived categories \cite{verdier-phd}, due to Jean--Louis Verdier\footnote{Its precise date is hard to pin down, he defended his PhD in 1967 but derived categories had been used for a few years by then.} the generalisation become feasible.
 
 It is still an area of active research, with many relations to other results. In the past 2 decades it has seen interesting new proofs and generalisations. As far as I understand one can obtain the results in the other branch of generalisations (i.e.\ the Hirzebruch--Riemann--Roch and Grothendieck--Riemann--Roch type of results), but this now requires a difficult argument based on the Lefschetz--Verdier formula \cite[expos\'e III]{sga5}.
 
@@ -117,15 +117,12 @@ We first need to figure out what~$\HH^0$ and~$\HH^1$ are, in as concrete terms a
   \begin{equation}
     \HH^0(\mathbb{P}_k^1,\mathcal{O}_{\mathcal{P}_k^1})=k.
   \end{equation}
-  To see this, observe that~$\mathbb{P}_k^1$ is a gluing of two~$\mathbb{A}_k^1$'s. The regular functions on~$\mathbb{A}_k^1=\Spec k[x]$ are the polynomials. But if we take a polynomial~$f(x)$, the gluing procedure tells us that~$f(1/x)$ should be a polynomial on the other~$\mathbb{A}_k^1$, which is only possible if it is a constant. This is an algebraic analogue of \emph{Liouville's theorem} in complex analysis.
+  To see this, observe that~$\mathbb{P}_k^1$ is a gluing of two~$\mathbb{A}_k^1$'s. The regular functions on one part~$\mathbb{A}_k^1=\Spec k[x]$ are the polynomials. But if we take a polynomial~$f(x)$, the gluing procedure tells us that~$f(1/x)$ should be a polynomial on the other~$\mathbb{A}_k^1$, which is only possible if it is a constant. This is an algebraic analogue of \emph{Liouville's theorem} in complex analysis.
 \end{example}
 We observe that the global sections have the structure of a~$k$\dash vectorspace. This is the case for all~$\mathcal{O}_C$\dash modules. In this case we define
 \begin{equation}
   \hh^0(C,\mathcal{F})\coloneqq\dim_k\HH^0(C,\mathcal{F}).
 \end{equation}
-\begin{example}
-  Let~$C$ be an elliptic curve\expand.
-\end{example}
 
 \paragraph{$\HH^1$ of a sheaf}
 \begin{definition}
@@ -152,6 +149,7 @@ The definition of the zero in this vectorspace explains what~$\HH^1$ is about: i
 \end{example}
 These are both examples of \emph{flasque sheaves}, and these never have higher cohomology.
 
+\paragraph{The Euler characteristic}
 Again the cohomology groups have a~$k$\dash vectorspace structure, which allows us to define
 \begin{equation}
   \hh^1(C,\mathcal{F})\coloneqq\dim_k\HH^1(C,\mathcal{F})
@@ -160,8 +158,6 @@ and in general we will set
 \begin{equation}
   \hh^i(C,\mathcal{F})\coloneqq\dim_k\HH^i(C,\mathcal{F}).
 \end{equation}
-
-\paragraph{The Euler characteristic}
 By a nice result of Grothendieck we know that sheaf cohomology vanishes above the dimension of the variety \cite[theorem III.2.7]{hartshorne-algebraic-geometry}. Hence in the case of a curve there is only a~$\HH^0$ and a~$\HH^1$. We then define the \emph{Euler characteristic}
 \begin{equation}
   \chi(C,\mathcal{F})\coloneqq\hh^0(C,\mathcal{F})-\hh^1(C,\mathcal{F}).
@@ -191,10 +187,15 @@ This will be used in the proof of (cheap) Riemann--Roch, see \cref{lemma:cheap-r
 
 \subsection{Statement: curves}
 \label{subsection:statement-curves}
-We can now give a first version of the Riemann--Roch theorem. The statement requires the canonical sheaf~$\Omega_C^1$, which will be introduced later\fixthis.
+We can now give a first version of the Riemann--Roch theorem. The statement requires the canonical sheaf~$\Omega_C^1$, or line bundle of differentials, which will be introduced later.
+
+The line bundle of differentials on a curve is the source of an important invariant of the topology of the curve.
+\begin{definition}
+  The \emph{genus} of a curve is~$\mathrm{g}_C\coloneqq\dim_k\HH^0(C,\Omega_C^1)$.
+\end{definition}
 \begin{theorem}[Riemann--Roch]
   \label{theorem:riemann-roch}
-  Let~$\mathcal{L}$ be an invertible sheaf of degree~$d$ on~$C$. Then
+  Let~$\mathcal{L}$ be an invertible sheaf of degree~$d$ on~$C$. Let~$g$ be the genus of~$C$ Then
   \begin{equation}
     \hh^0(C,\mathcal{L})-\hh^0(C,\Omega_C^1\otimes\mathcal{L}^\vee)=d-g+1,
   \end{equation}
@@ -225,7 +226,9 @@ The following is dubbed ``cheap Riemann--Roch'' by Ravi Vakil: it is a first ste
   \end{equation}
 
   \begin{proof}
-    An invertible sheaf on~$C$ can always be written as\expand{why?}~$\mathcal{O}_C(p_1+\dotso+p_a-q_1-\dotso-q_b)$ for~$p_i$ and~$q_j$ points on~$C$. We get~$a-b=\deg(\mathcal{L})$. Then we can set up an induction on the number of points~$a+b$: for~$\mathcal{O}_C$ it is obvious, and adding a point uses the additivity of the Euler characteristic on short exact sequences.
+    An invertible sheaf on~$C$ can always be written as~$\mathcal{O}_C(p_1+\dotso+p_a-q_1-\dotso-q_b)$ for~$p_i$ and~$q_j$ points on~$C$, because in this case the Picard group (the group of invertible sheaves) is isomorphic to the group of Cartier divisors (which agree with Weil divisors, the most down-to-earth version we use here). We get~$a-b=\deg(\mathcal{L})$.
+    
+    Then we can set up an induction on the number of points~$a+b$: for~$\mathcal{O}_C$ it is obvious, and adding a point uses the additivity of the Euler characteristic on short exact sequences.
   \end{proof}
 \end{lemma}
 
@@ -272,10 +275,14 @@ In the statement of Riemann--Roch we used the canonical sheaf~$\omega_X$ (or~$\O
 \end{definition}
 So the first part of duality theory concerns the \emph{existence of this dualising sheaf}. A sufficient condition is that~$X$ is projective \cite[proposition III.7.5]{hartshorne-algebraic-geometry}. In later seminars more general existence conditions will be discussed. One can prove that such a dualising sheaf and trace morphism are unique if they exist \cite[proposition III.7.2]{hartshorne-algebraic-geometry}.
 
+\begin{example}
+  The most trivial case one can image is~$X=\Spec k$ a point. Then coherent sheaves are finite-dimensional vectorspaces, and~$\omega_X^\circ=k$. The isomorphism~$\tr$ is then the definition of the dual vectorspace.
+\end{example}<++>
+
 The next part concerns the \emph{actual duality}. We state \cite[proposition III.7.6]{hartshorne-algebraic-geometry}.
 \begin{theorem}[Serre duality]
   \label{theorem:serre-duality}
-  Let~$X/k$ be a projective~$n$\dash dimensional variety. Let~$\omega_X^\circ$ be its dualising sheaf. Let~$\mathcal{O}(1)$ be a very ample sheaf on~$X$. Then for all~$i\geq 0$ and~$\mathcal{F}\in\Coh/X$ we have functorial maps
+  Let~$X/k$ be a projective~$n$\dash dimensional variety. Let~$\omega_X^\circ$ be its dualising sheaf. Then for all~$i\geq 0$ and~$\mathcal{F}\in\Coh/X$ we have functorial maps
   \begin{equation}
     \theta^i\colon\Ext^i(\mathcal{F},\omega_X^\circ)\to\HH^{n-i}(X,\mathcal{F})^\vee
   \end{equation}
@@ -305,9 +312,9 @@ If we assume this theorem for now, the proof of the Riemann--Roch theorem become
   \begin{equation}
     \begin{aligned}
       &\hh^0(C,\mathcal{L})-\hh^0(C,\Omega^1\otimes\mathcal{L}^\vee) \\
-      &\quad=\hh^0(C,\mathcal{L})-\hh^1(C,\mathcal{L}) & \text{Riemann--Roch} \\
+      &\quad=\hh^0(C,\mathcal{L})-\hh^1(C,\mathcal{L}) & \text{Serre duality} \\
       &\quad=\chi(C,\mathcal{L}) & \text{definition of~$\chi$} \\
-      &\quad=d+\chi(C,\mathcal{O}_C) & \text{\cref{lemma:cheap-riemann-roch}} \\
+      &\quad=d+\chi(C,\mathcal{O}_C) & \text{cheap Riemann--Roch} \\
       &\quad=d+\hh^0(C,\mathcal{O}_C)-\hh^1(C,\mathcal{O}_C) & \text{definition of~$\chi$} \\
       &\quad=d+1-\hh^1(C,\mathcal{O}_C) & \text{global sections are constants} \\
       &\quad=d+1-\hh^0(C,\Omega_C^1) & \text{Serre duality} \\
@@ -361,11 +368,11 @@ We can now interpret~$\HH^1$ in terms of these objects.
     \end{equation}
     because constant sheaves don't have higher cohomology groups. Hence we have to prove that
     \begin{equation}
-      \HH^0(C,S)=R/\mathrm{R}(D).
+      \HH^0(C,S)\cong R/\mathrm{R}(D).
     \end{equation}
     To prove this, we have to interpret~$S$ as the quotient sheaf of~$\underline{k(C)}$, which we do by looking at its stalks. If~$p$ is a point of~$C$, we have
     \begin{equation}
-      S_p=k(C)/\mathcal{O}_C(D)=\{f\in k(C)\mid \mathrm{v}_p(F)\geq -\mathrm{v}_p(D)\}.
+      S_p=k(C)/\mathcal{O}_C(D)=\{f\in k(C)\mid \mathrm{v}_p(f)\geq -\mathrm{v}_p(D)\}.
     \end{equation}
     Hence
     \begin{equation}
@@ -421,11 +428,11 @@ Moreover, whereas it is a horribly big~$k$\dash vectorspace, it is well-behaved 
       \begin{aligned}
         \dim_k\mathrm{J}(D-D_n)&=\dim_k\mathrm{I}(D-D_n) & \text{definition} \\
         &=\hh^1(C,\mathcal{O}_C(D-D_n)) & \text{\cref{proposition:HH1}} \\
-        &=\hh^0(C,\mathcal{O}_C(D-D_n))-(d-n)+\text{constant} & \text{\cref{lemma:cheap-riemann-roch}} \\
-        &=n+\text{constant}' & n\gg 0
+        &=\hh^0(C,\mathcal{O}_C(D-D_n))-(d-n)+\text{constant} & \text{cheap Riemann--Roch} \\
+        &=n+\text{constant}' & n\gg 0.
       \end{aligned}
     \end{equation}
-    if~$d-n<0$, where the first constant will turn out to be the genus. In this case, constant means independent of~$n$ or~$D_n$.
+    In this case, constant means independent of~$n$ or~$D_n$.
 
     On the right-hand side we get by cheap Riemann--Roch (\cref{lemma:cheap-riemann-roch}) that
     \begin{equation}
@@ -435,15 +442,9 @@ Moreover, whereas it is a horribly big~$k$\dash vectorspace, it is well-behaved 
   \end{proof}
 \end{lemma}
 
-Hence Serre duality for curves becomes\expand
-
 \paragraph{The part on differentials}
 We will need to know what differentials on a curve are. In courses on differential geometry or complex analysis one has seen these before. In the algebraic geometry case one uses K\"ahler differentials to have a nice analogue. It provides another natural sheaf, besides the structure sheaf (and its twists). On a curve it will be an invertible sheaf, denoted~$\Omega_C^1$ and it has an associated canonical divisor~$\mathrm{K}_C$.
 
-The line bundle of differentials on a curve is the source of an important invariant of the topology of the curve.
-\begin{definition}
-  The \emph{genus} of a curve is~$\mathrm{g}_C\coloneqq\dim_k\HH^0(C,\Omega_C^1)$.
-\end{definition}
 Another piece of notation that we will use is the set of meromorphic differentials~$M$, which is a one-dimensional~$k(C)$\dash vectorspace as these are exactly the objects that (locally) look like~$f(z)\dd z$, with~$f\in k(C)$. As this is a one-dimensional vectorspace, we just take the divisor associated to any meromorphic differential, and this will be the canonical divisor introduced before.
 
 We can now consider some differential forms (both meromorphic and holomorphic) on a curve. The terminology is mildly inspired by complex geometry here.
@@ -487,7 +488,7 @@ It has the following properties.
   The pairing~$\langle-,-\rangle$ satisfies
   \begin{enumerate}
     \item\label{enumerate:pairing-properties-1} $\langle\omega,r\rangle=0$ if~$r\in k(C)$;
-    \item\label{enumerate:pairing-properties-2} $\langle\omega,r\rangle=0$ if~$r\in \mathrm{R}(D)$ and~$\omega\in\HH^0(C,\Omega^1(-D))$;
+    \item\label{enumerate:pairing-properties-2} $\langle\omega,r\rangle=0$ if~$r\in \mathrm{R}(D)$ and~$\omega\in\HH^0(C,\Omega_C^1(-D))$;
     \item\label{enumerate:pairing-properties-3} $\langle f\omega,r\rangle=\langle\omega,fr\rangle$ if~$f\in k(C)$.
   \end{enumerate}
 
@@ -499,9 +500,9 @@ It has the following properties.
     \end{enumerate}
   \end{proof}
 \end{lemma}
-For each meromorphic differential~$\omega$ in~$\HH^0(C,\Omega^1(-D))$ we have a linear functional~$\theta(\omega)$ on~$R$, and by \cref{enumerate:pairing-properties-1,enumerate:pairing-properties-2} of \cref{lemma:pairing-properties} it is also a linear functional on~$R/(\mathrm{R}(D)+k(C))$. Hence we get a map
+For each meromorphic differential~$\omega$ in~$\HH^0(C,\Omega_C^1(-D))$ we have a linear functional~$\theta(\omega)$ on~$R$, and by \cref{enumerate:pairing-properties-1,enumerate:pairing-properties-2} of \cref{lemma:pairing-properties} it is also a linear functional on~$R/(\mathrm{R}(D)+k(C))$. Hence we get a map
 \begin{equation}
-  \theta\colon\HH^0(C,\Omega^1(-D))\to\mathrm{J}(D)
+  \theta\colon\HH^0(C,\Omega_C^1(-D))\to\mathrm{J}(D)
 \end{equation}
 as~$\mathrm{J}(D)$ is shorthand for the dual of~$R/(\mathrm{R}(D)+k(C))$ by \cref{proposition:HH1}. This~$\theta$ is moreover defined as a map~$M\to J$ in general. But we have the following nice property, that relates the more general map to the specific map.
 \begin{lemma}
@@ -533,11 +534,13 @@ as~$\mathrm{J}(D)$ is shorthand for the dual of~$R/(\mathrm{R}(D)+k(C))$ by \cre
   \end{proof}
 \end{lemma}
 
-Recall that we wish to prove that~$\theta$ induces an isomorphism from~$\HH^0(C,\Omega^1(-D))$ to~$\HH^1(C,\mathcal{O}_C(D))^\vee$, and this last object is also denoted~$\mathrm{J}(D)$.
+Recall that we wish to prove that~$\theta$ induces an isomorphism from~$\HH^0(C,\Omega_C^1(-D))$ to~$\HH^1(C,\mathcal{O}_C(D))^\vee$, and this last object is also denoted~$\mathrm{J}(D)$.
 \begin{proof}[Proof of Serre duality]
-  To see that~$\theta$ is \emph{injective}, take~$\omega\in\HH^0(C,\Omega^1(-D))$ such that~$\theta(\omega)=0$. Then by \cref{lemma:theta-J(D)} we have that~$\omega\in\Omega(-D')$ for every divisor~$D'$, which implies~$\omega=0$, as all possible configurations of poles and zeroes should be valid at the same time.
+  To see that~$\theta$ is \emph{injective}, take~$\omega\in\HH^0(C,\Omega_C^1(-D))$ such that~$\theta(\omega)=0$. Then by \cref{lemma:theta-J(D)} we have that~$\omega\in\Omega_C^1(-D')$ for every divisor~$D'$, which implies~$\omega=0$, as all possible configurations of poles and zeroes should be valid at the same time.
 
-  To see that~$\theta$ is \emph{surjective}, observe that by \cref{enumerate:pairing-properties-3} of \cref{lemma:pairing-properties} we have that~$\theta$ is~$k(C)$\dash linear, from~$M$ to~$J$. By definition we have~$\dim_{k(C)}M=1$, by \cref{lemma:dim(J)<=1} we have~$\dim_{k(C)}J\leq 1$. Hence if~$\alpha$ is an element of~$\mathrm{J}(D)$ we get a meromorphic differential~$\omega$ such that~$\theta(\omega)\alpha$, and \cref{lemma:theta-J(D)} shows that~$\omega\in\Omega(-D)$.
+  To see that~$\theta$ is \emph{surjective}, observe that by \cref{enumerate:pairing-properties-3} of \cref{lemma:pairing-properties} we have that~$\theta$ is~$k(C)$\dash linear, from~$M$ to~$J$. By definition we have~$\dim_{k(C)}M=1$, by \cref{lemma:dim(J)<=1} we have~$\dim_{k(C)}J\leq 1$. An injection of finite-dimensional vectorspaces into a smaller vectorspace is necessarily surjective.
+
+  Hence if~$\alpha$ is an element of~$\mathrm{J}(D)$ we get a meromorphic differential~$\omega$ such that~$\theta(\omega)\alpha$, and \cref{lemma:theta-J(D)} shows that~$\omega\in\Omega(-D)$.
 \end{proof}
 
 \subsection{The general case}
@@ -597,8 +600,29 @@ This yields the pictures in \cref{table:hh-P-1,table:hh-P-2,table:hh-P-3,table:h
 \paragraph{Geometric genus equals arithmetic genus}
 For a projective nonsingular curve~$C$ we get that~$\mathrm{p}_{\mathrm{arith}}(C)=\hh^1(X,\mathcal{O}_X)=\hh^0(X,\Omega_C^1)=\mathrm{p}_{\mathrm{geom}}(C)$. Hence the arithmetic and geometric genus agree. The geometric genus ``counts the number of holes'' whereas the arithmetic genus doesn't really count anything (it can be negative in more general situations\footnote{E.g., the disjoint union of two~$\mathbb{P}_k^1$'s, because its arithmetic genus equals\begin{equation}1-\chi(\mathbb{P}_k^1\sqcup\mathbb{P}_k^1,\mathcal{O}_{\mathbb{P}_k^1\sqcup\mathbb{P}_k^1})=1-(2-0)=-1.\end{equation}.}, because its generalisation is an alternating sum).
 
+\paragraph{Curves of degree~$d$ in~$\mathbb{P}_k^n$}
+If~$C$ is given as a curve of degree~$d$ in~$\mathbb{P}_k^n$ we can take a hyperplane section~$C\cap H=D$ for a divisor. Then we get
+\begin{equation}
+  \chi(\mathcal{L}(D))=d+1-\mathrm{p}_{\mathrm{a}}(C).
+\end{equation}
+
 \paragraph{Vanishing of~$\HH^1$}
-\expand
+The theorem of Riemann--Roch should be view in terms of the \emph{Riemann--Roch problem}, which is the study of the asymptotic behaviour of~$\hh^0(C,\mathcal{O}_C(np))$, for~$p\in C$, or more general divisors. So the question becomes: can we determine~$\hh^1$, or the~$\hh^0$ of~$\omega_C(-D)$? The answer is given in \cite[remark IV.1.3.2]{hartshorne-algebraic-geometry}:
+\begin{lemma}
+  If~$\deg(D)>0$ and~$n\deg(D)>\deg(\mathrm{K}_C)$ then~$\hh^0(\mathrm{K}_C-nD)=0$.
+\end{lemma}
+
+\paragraph{The degree of the canonical divisor}
+The canonical divisor still might be a mysterious beast. But Riemann--Roch at least tells us its degree: applying it to~$\mathrm{K}_C$ and using the definition of the genus we get
+\begin{equation}
+  g-1=\deg(\mathrm{K}_C)+1-g
+\end{equation}
+i.e.\ $\deg(\mathrm{K}_C)=2g-2$.
+
+So for~$\mathbb{P}_k^1$, where the genus is~$0$, we get that the canonical divisor is the~$-2\infty$ we've seen before. For elliptic curves (i.e.\ curves of genus~$1$) we get that the canonical divisor has degree~$0$, and again because the genus is~$1$ we know that there are (only) the constants as differentials, hence the canonical divisor is equivalent to~$0$.
+
+\paragraph{Classification of curves}
+Time and space don't permit me to write anything about it, but Riemann--Roch is crucial in tacking classification problems for curves.
 
 \paragraph{Weierstrass gaps}
 Time and space don't permit me to write anything about it, but if one wishes to see more applications of Riemann--Roch for curves, Google ``Weierstrass gaps'' for a beautiful theory studying the points of curves.
