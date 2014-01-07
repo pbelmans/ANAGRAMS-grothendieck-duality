@@ -105,7 +105,7 @@ The goal of this seminar series is to first discuss the classical results of Rie
 
 \subsection{Preliminaries}
 \label{subsection:preliminaries}
-From now on I will use Ravi Vakil's notes on Riemann--Roch and Serre duality \cite{vakil-proof-riemann-roch}. These are by now probably subsumed in his excellent notes \cite{vakil-math216}.
+From now on I will use Ravi Vakil's notes on Riemann--Roch and Serre duality \cite{vakil-proof-riemann-roch}. You can also take a look at \cite{vakil-math216} for a broader picture.
 
 We first need to figure out what~$\HH^0$ and~$\HH^1$ are, in as concrete terms as possible. From now on we take~$C$ a nonsingular projective algebraic curve over an algebraically closed field~$k$.
 \paragraph{Global sections}
@@ -117,7 +117,7 @@ We first need to figure out what~$\HH^0$ and~$\HH^1$ are, in as concrete terms a
   \begin{equation}
     \HH^0(\mathbb{P}_k^1,\mathcal{O}_{\mathcal{P}_k^1})=k.
   \end{equation}
-  To see this, observe that~$\mathbb{P}_k^1$ is a gluing of two~$\mathbb{A}_k^1$'s. Regular functions on~$\mathbb{A}_k^1=\Spec k[x]$ are polynomials. But if we take a polynomial~$f(x)$, the gluing procedure tells us that~$f(1/x)$ should be a polynomial on the other~$\mathbb{A}_k^1$, which is only possible if it is a constant. This is an algebraic analogue of \emph{Liouville's theorem}.
+  To see this, observe that~$\mathbb{P}_k^1$ is a gluing of two~$\mathbb{A}_k^1$'s. The regular functions on~$\mathbb{A}_k^1=\Spec k[x]$ are the polynomials. But if we take a polynomial~$f(x)$, the gluing procedure tells us that~$f(1/x)$ should be a polynomial on the other~$\mathbb{A}_k^1$, which is only possible if it is a constant. This is an algebraic analogue of \emph{Liouville's theorem} in complex analysis.
 \end{example}
 We observe that the global sections have the structure of a~$k$\dash vectorspace. This is the case for all~$\mathcal{O}_C$\dash modules. In this case we define
 \begin{equation}
@@ -148,16 +148,25 @@ The definition of the zero in this vectorspace explains what~$\HH^1$ is about: i
       0 & p\notin U
     \end{cases}
   \end{equation}
-  for~$U\subseteq C$ open, which is an~$\mathcal{O}_C$\dash module by the obvious multiplication. Again~$\HH^1(C,k_p)=0$.
+  for~$U\subseteq C$ open, which is an~$\mathcal{O}_C$\dash module by the obvious multiplication. As in the previous case we get~$\HH^1(C,k_p)=0$.
 \end{example}
 These are both examples of \emph{flasque sheaves}, and these never have higher cohomology.
+
+Again the cohomology groups have a~$k$\dash vectorspace structure, which allows us to define
+\begin{equation}
+  \hh^1(C,\mathcal{F})\coloneqq\dim_k\HH^1(C,\mathcal{F})
+\end{equation}
+and in general we will set
+\begin{equation}
+  \hh^i(C,\mathcal{F})\coloneqq\dim_k\HH^i(C,\mathcal{F}).
+\end{equation}
 
 \paragraph{The Euler characteristic}
 By a nice result of Grothendieck we know that sheaf cohomology vanishes above the dimension of the variety \cite[theorem III.2.7]{hartshorne-algebraic-geometry}. Hence in the case of a curve there is only a~$\HH^0$ and a~$\HH^1$. We then define the \emph{Euler characteristic}
 \begin{equation}
   \chi(C,\mathcal{F})\coloneqq\hh^0(C,\mathcal{F})-\hh^1(C,\mathcal{F}).
 \end{equation}
-In general this will be an alternating sum over more terms. We will use this definition later on, the philosophy of ``taking together all the cohomology groups'' proves to be very fruitful.
+In general this will be an alternating sum over more terms, up to the dimension of the variety. We will use this definition later on, the philosophy of ``taking together all the cohomology groups'' proves to be very fruitful.
 
 \paragraph{A short exact sequence of sheaves}
 Take~$p\in C$. Then~$\mathcal{O}_C(-p)$ is the sheaf of regular functions with a zero in~$p$. Then we have a short exact sequence
@@ -182,13 +191,14 @@ This will be used in the proof of (cheap) Riemann--Roch, see \cref{lemma:cheap-r
 
 \subsection{Statement: curves}
 \label{subsection:statement-curves}
-We can now give a first version of the Riemann--Roch theorem. The statement requires the canonical sheaf~$\Omega_C^1$, which will be introduced later.
+We can now give a first version of the Riemann--Roch theorem. The statement requires the canonical sheaf~$\Omega_C^1$, which will be introduced later\fixthis.
 \begin{theorem}[Riemann--Roch]
   \label{theorem:riemann-roch}
   Let~$\mathcal{L}$ be an invertible sheaf of degree~$d$ on~$C$. Then
   \begin{equation}
-    \hh^0(C,\mathcal{L})-\hh^0(C,\Omega_C^1\otimes\mathcal{L}^\vee)=d-g+1.
+    \hh^0(C,\mathcal{L})-\hh^0(C,\Omega_C^1\otimes\mathcal{L}^\vee)=d-g+1,
   \end{equation}
+  where~$\mathcal{L}^\vee$ is the dual of~$\mathcal{L}$, given by~$\mathcal{H}\mathrm{om}(\mathcal{L},\mathcal{O}_C)$.
 \end{theorem}
 Hence Riemann--Roch is a relationship between some numbers: if we know all but one of them we know all of them. The number we care most about is~$\hh^0(C,\mathcal{L})$. When we take~$\mathcal{L}=\mathcal{O}_C(D)$ we are interested in the dimension of the space of functions with ``prescribed behaviour at~$D$'': we require the poles to be no worse than what is allowed by~$D$. As for most points the coefficient of~$p\in C$ will be zero, a section of~$\mathcal{O}_C(D)$ has (possibly) some poles in the points of~$D$ and (possibly) zeroes of at least a certain order.
 
@@ -196,7 +206,7 @@ As hinted at in the introduction, we consider the second term of the left-hand s
 \begin{equation}
   \hh^0(C,\mathcal{L})\geq d-g+1
 \end{equation}
-which is called \emph{Riemann's equality}, and an important question is whether we have equality in certain cases\expand{in the applications we should discuss this!}.
+which is called \emph{Riemann's equality}, and an important question is whether we have equality in certain cases.
 
 The following is dubbed ``cheap Riemann--Roch'' by Ravi Vakil: it is a first step in proving Riemann--Roch and Serre duality for curves. Because it uses both~$\HH^0$ and~$\HH^1$ it is ``cheap'': $\HH^1$ is hard to understand. But it shows that
 \begin{enumerate}
@@ -240,16 +250,18 @@ The following is dubbed ``cheap Riemann--Roch'' by Ravi Vakil: it is a first ste
     2\mathrm{p}_{\mathrm{a}}(C)-2=C^2+C\cdot\mathrm{K}_X.
   \end{equation}
 \end{theorem}
-Again this is a (or rather, its different manifestations are) numerical relation(s) on numbers associated to the surface and an invertible sheaf (or divisor) on it. We have a~$\HH^2$ popping up, which we don't understand at the moment. But once we've seen Serre duality we'll know how to reduce this~$\HH^2$ to a~$\HH^0$. Then we get a formula containing~$\HH^0$ and~$\HH^1$, the~$\HH^1$-term wasn't known at first and hence we only had an inequality. The failure of this equality was called the \emph{superabundance}. In \cref{section:applications} we will discuss some other interesting facts about this.
+Again this is a (or rather, its different manifestations are) numerical relation(s) on numbers associated to the surface and an invertible sheaf (or divisor) on it. We have a~$\HH^2$ popping up, which we don't understand at the moment. But once we've seen Serre duality we will know how to reduce this~$\HH^2$ to a~$\HH^0$. Then we get a formula containing~$\HH^0$ and~$\HH^1$.
+
+This~$\HH^1$-term wasn't known at first (we are now in the era of the Italian school) and hence we only had an inequality. The failure of this equality was called the \emph{superabundance}. In \cref{section:applications} we will discuss some other interesting facts about this.
 
 
 \section{Serre duality}
 \label{section:serre-duality}
 \subsection{Statement}
 \label{subsection:serre-duality-statement}
-In the statement of Riemann--Roch we used the canonical sheaf~$\omega_X$, which made the magic work. In the more general setting that we will enter now (possible singularities) we will need a more general object serving the role of the canonical sheaf. We will define its properties, and then we are left with an existence question. This exposition is taken from \cite[\S III.7]{hartshorne-algebraic-geometry}, in later seminars we will give more general statements.
+In the statement of Riemann--Roch we used the canonical sheaf~$\omega_X$ (or~$\Omega_C^1$ for curves, as they agree in dimension one), which made the magic work. In the more general setting that we will enter now (possible singularities) we will need a more general object serving the role of the canonical sheaf. We will define its properties, and then we are left with an existence question. This exposition is taken from \cite[\S III.7]{hartshorne-algebraic-geometry}, in later seminars we will give more general statements and come back to this setup.
 \begin{definition}
-  Let~$X/k$ be a proper~$n$\dash dimensional scheme. A \emph{dualising sheaf} for~$X$ is a coherent sheaf~$\omega_X^\circ$ together with a \emph{trace morphism}~$\tr\colon\HH^n(X,\omega_X^\circ)\to k$, such that for all~$\mathcal{F}\in\Coh/X$ the natural pairing
+  Let~$X/k$ be a proper~$n$\dash dimensional variety. A \emph{dualising sheaf} for~$X$ is a coherent sheaf~$\omega_X^\circ$ together with a \emph{trace morphism}~$\tr\colon\HH^n(X,\omega_X^\circ)\to k$, such that for all~$\mathcal{F}\in\Coh/X$ the natural pairing
   \begin{equation}
     \Hom(\mathcal{F},\omega_X^\circ)\times\HH^n(X,\mathcal{F})\to\HH^n(X,\omega_X^\circ)
   \end{equation}
@@ -258,12 +270,12 @@ In the statement of Riemann--Roch we used the canonical sheaf~$\omega_X$, which 
     \Hom(\mathcal{F},\omega_X^\circ)\cong\HH^n(X,\mathcal{F})^\vee.
   \end{equation}
 \end{definition}
-So the first part of duality theory concerns the existence of this dualising sheaf. A sufficient condition is that~$X$ is projective \cite[proposition III.7.5]{hartshorne-algebraic-geometry}. In later seminars more general existence conditions will be discussed. One can prove that such a dualising sheaf and trace morphism are unique if they exist \cite[proposition III.7.2]{hartshorne-algebraic-geometry}.
+So the first part of duality theory concerns the \emph{existence of this dualising sheaf}. A sufficient condition is that~$X$ is projective \cite[proposition III.7.5]{hartshorne-algebraic-geometry}. In later seminars more general existence conditions will be discussed. One can prove that such a dualising sheaf and trace morphism are unique if they exist \cite[proposition III.7.2]{hartshorne-algebraic-geometry}.
 
-The next part concerns the actual duality. We state \cite[proposition 7.6]{hartshorne-algebraic-geometry}.
+The next part concerns the \emph{actual duality}. We state \cite[proposition III.7.6]{hartshorne-algebraic-geometry}.
 \begin{theorem}[Serre duality]
   \label{theorem:serre-duality}
-  Let~$X/k$ be a projective~$n$\dash dimensional scheme. Let~$\omega_X^\circ$ be its dualising sheaf. Let~$\mathcal{O}(1)$ be a very ample sheaf on~$X$. Then for all~$i\geq 0$ and~$\mathcal{F}\in\Coh/X$ we have functorial maps
+  Let~$X/k$ be a projective~$n$\dash dimensional variety. Let~$\omega_X^\circ$ be its dualising sheaf. Let~$\mathcal{O}(1)$ be a very ample sheaf on~$X$. Then for all~$i\geq 0$ and~$\mathcal{F}\in\Coh/X$ we have functorial maps
   \begin{equation}
     \theta^i\colon\Ext^i(\mathcal{F},\omega_X^\circ)\to\HH^{n-i}(X,\mathcal{F})^\vee
   \end{equation}
@@ -279,7 +291,7 @@ The following corollary illustrates nicely why Serre duality is truly a duality 
 
 \subsection{Proof of the curve case}
 \label{subsection:serre-duality-curves}
-The curve case of Serre duality is the following.
+A version of Serre duality for curves states the following.
 \begin{theorem}
   \label{theorem:serre-duality-curves}
   There is a natural perfect pairing
@@ -287,7 +299,7 @@ The curve case of Serre duality is the following.
     \HH^0(C,\Omega_C^1(-D))\times\HH^1(C,\mathcal{O}_C(D))\to k.
   \end{equation}
 \end{theorem}
-If we assume this theorem for now, the proof of the Riemann--Roch theorem becomes an easy consequence.
+If we assume this theorem for now, the proof of the Riemann--Roch theorem becomes an easy corollary.
 \begin{proof}[Proof of Riemann--Roch using Serre duality]
   We have that
   \begin{equation}
@@ -295,7 +307,7 @@ If we assume this theorem for now, the proof of the Riemann--Roch theorem become
       &\hh^0(C,\mathcal{L})-\hh^0(C,\Omega^1\otimes\mathcal{L}^\vee) \\
       &\quad=\hh^0(C,\mathcal{L})-\hh^1(C,\mathcal{L}) & \text{Riemann--Roch} \\
       &\quad=\chi(C,\mathcal{L}) & \text{definition of~$\chi$} \\
-      &\quad=d+\chi(C,\mathcal{O}_C) & \text{\cref{proposition:cheap-riemann-roch}} \\
+      &\quad=d+\chi(C,\mathcal{O}_C) & \text{\cref{lemma:cheap-riemann-roch}} \\
       &\quad=d+\hh^0(C,\mathcal{O}_C)-\hh^1(C,\mathcal{O}_C) & \text{definition of~$\chi$} \\
       &\quad=d+1-\hh^1(C,\mathcal{O}_C) & \text{global sections are constants} \\
       &\quad=d+1-\hh^0(C,\Omega_C^1) & \text{Serre duality} \\
@@ -304,33 +316,38 @@ If we assume this theorem for now, the proof of the Riemann--Roch theorem become
   \end{equation}
 \end{proof}
 
-The rest of this section is dedicated to the proof of Serre duality in the curve case. It is taken from Vakil's notes, which are based on \cite{serre-groupes-algebriques-et-corps-de-classes} and originate from a proof by Weil.
+The rest of this section is dedicated to the proof of Serre duality in the curve case. It is taken from Vakil's notes, which are based on \cite[\S 2]{serre-groupes-algebriques-et-corps-de-classes} and originate from a proof by Weil. The original text of Serre is (as usual) beautiful, and definitely deserves a reading. It's hard to believe it was written in the fifties.
 
 \paragraph{Ad\`eles}
-When I was preparing these notes this part scared me, because ``ad\`ele'' is a scary word I knew from people who know something about class field theory\footnote{It is also the street in which the math department of Universit\'e Paris-Sud is located.}. The approach of the proof of Riemann--Roch taken by Vakil, Serre and Weil is by considering ``pre-ad\`eles'' or repartitions. This avoids the technical machinery of class field theory (it would be insane to use it to prove something as down-to-earth as Riemann--Roch) and has a nice interpretation in terms of the geometry. By preparing these notes I finally got myself familiar with ad\`eles, so I hope other people will benefit too from advertising this approach.
+When I was preparing these notes this part scared me, because ``ad\`ele'' is a scary word used by people who know something about class field theory\footnote{It is also the street in which the math department of Universit\'e Paris-Sud is located.}. I am not one of them. The approach of the proof of Riemann--Roch taken by Vakil, Serre and Weil is by considering ``pre-ad\`eles'' or repartitions. This avoids the technical machinery of class field theory (it would be insane to use it to prove something as down-to-earth as Riemann--Roch) and has a nice interpretation in terms of the geometry. By preparing these notes I finally got myself familiar with ad\`eles, so I hope other people will benefit too from advertising this approach.
 
 Before we start by building things from the ground up, remark that the occurence of techniques from class field theory is not too far-fetched. It deals with fields, there is a bijection between curves and their function fields \cite[\S I.6]{hartshorne-algebraic-geometry}, and the ring of ad\`eles of the function field of a curve satisfies self-duality which is one of the results in Tate's thesis. This self-duality implies Riemann--Roch, and we will develop as much of class field theory as required for the proof. So let's get started.
 
 \paragraph{The part on $\mathrm{I}(D)$}
+To stick to Serre's notation we will denote
+\begin{equation}
+  \mathrm{I}(D)\coloneqq\HH^1(C,\mathcal{O}_C(D)).
+\end{equation}
+The dimension of this vectorspace pops up in the statement of cheap Riemann--Roch, and we decided that~$\hh^1$ is not an easy invariant. Hence we would like to get a better understanding.
 \begin{definition}
-  A \emph{repartition} is an indexed set~$(f_p)_{p\in C}$ with~$f_p\in k(C)$ such that~$f_p\in\mathcal{O}_{C,p}$ for finitely many points~$p$. The set~$R$ of repartitions comes equipped with a ring structure (pointwise addition and multiplication), with~$k(C)$ being a subring of this (if~$f\in k(C)$ we take~$f_p=f$, which is regular at all but finitely many points of~$C$), and~$R$ being a~$k(C)$\dash algebra.
+  A \emph{repartition} is an indexed set~$(f_p)_{p\in C}$ with~$f_p\in k(C)$ such that~$f_p\in\mathcal{O}_{C,p}$ for all but finitely many points~$p$. The set~$R$ of repartitions comes equipped with a ring structure (pointwise addition and multiplication), with~$k(C)$ being a subring of this (if~$f\in k(C)$ we take~$f_p=f$, which is regular at all but finitely many points of~$C$), and~$R$ being a~$k(C)$\dash algebra.
 \end{definition}
 Hence a repartition is a collection of rational functions, indexed by the points of the curve, such that at most finitely many rational functions have a pole in the point at which they are associated. This ring contains tons of potential information (recall that~$\HH^1$ was about gluing local sections to a global section, and the obstructions in doing so), and we wish to put it to good use.
 \begin{definition}
   Let~$D$ be a divisor on~$C$. We set
   \begin{equation}
-    R(D)\coloneqq\{(f_p)_{p\in C}\mid \mathrm{v}_p(f_p)+\mathrm{v}_p(D)\geq 0\},
+    \mathrm{R}(D)\coloneqq\{(f_p)_{p\in C}\mid \mathrm{v}_p(f_p)+\mathrm{v}_p(D)\geq 0\},
   \end{equation}
   an additive subgroup of~$R$.
 \end{definition}
-This is analogous to~$\mathcal{O}_C(D)$, but taken for each point separately. Recall that~$\mathcal{O}_C(D)$ is the sheaf of meromorphic functions on~$C$ with prescribed behaviour in~$D$: if~$n_p$ is the coefficient of the point~$p$ in~$D$, then we require at most a pole of order~$-n_p$ is~$n_p$ is negative, or at least a zero of order~$n_p$ if~$n_p$ is positive.
+This is analogous to~$\mathcal{O}_C(D)$, but taken for each point separately. Recall that~$\mathcal{O}_C(D)$ is the sheaf of meromorphic functions on~$C$ with prescribed behaviour in~$D$: if~$n_p$ is the coefficient of the point~$p$ in~$D$, then we require at most a pole of order~$n_p$ is~$n_p$ is positive, or at least a zero of order~$n_p$ if~$n_p$ is negative\footnote{Sometimes the other convention is used\dots}.
 
 We can now interpret~$\HH^1$ in terms of these objects.
 \begin{proposition}
   \label{proposition:HH1}
   We have
   \begin{equation}
-    \HH^1(C,\mathcal{O}_C(D))\cong R/(R(D)+k(C)).
+    \mathrm{I}(D)=\HH^1(C,\mathcal{O}_C(D))\cong R/(\mathrm{R}(D)+k(C)).
   \end{equation}
 
   \begin{proof}
@@ -340,31 +357,32 @@ We can now interpret~$\HH^1$ in terms of these objects.
     \end{equation}
     Taking global sections we get
     \begin{equation}
-      k(C)\to\HH^0(C,S)\to\HH^1(C,\mathcal{O}_C(D))\to\HH^1(C,\underline{k(C)})=0
+      \dotso\to k(C)\to\HH^0(C,S)\to\HH^1(C,\mathcal{O}_C(D))\to\HH^1(C,\underline{k(C)})=0
     \end{equation}
     because constant sheaves don't have higher cohomology groups. Hence we have to prove that
     \begin{equation}
-      \HH^0(C,S)=R/R(D).
+      \HH^0(C,S)=R/\mathrm{R}(D).
     \end{equation}
-    To prove this, we have to interpret~$S$ as the quotient sheaf of~$\underline{k(C)}$, which we do by looking at its stalks. If~$p$ is again a point of~$C$, we have
+    To prove this, we have to interpret~$S$ as the quotient sheaf of~$\underline{k(C)}$, which we do by looking at its stalks. If~$p$ is a point of~$C$, we have
     \begin{equation}
       S_p=k(C)/\mathcal{O}_C(D)=\{f\in k(C)\mid \mathrm{v}_p(F)\geq -\mathrm{v}_p(D)\}.
     \end{equation}
-    Hence\expand{a few more words on motivating this}
+    Hence
     \begin{equation}
-      R/R(D)=\bigoplus_{p\in C}S_p.
+      R/\mathrm{R}(D)=\bigoplus_{p\in C}S_p,
     \end{equation}
+    the quotient is a sum of skyscraper sheaves, i.e.\ a again a skyscraper sheaf.
 
-    We wish to show that~$S$ equals this same direct sum of skyscraper sheaves, i.e.\ that sections of~$S$ consist of a selection of values of~$S_p$ for all~$p$, almost all of which are zero. To do so, let~$p$ be a point of~$C$, and let~$s\in S(U)$ be a section defined on an open neighbourhood~$U$ of~$p$. Then there exists a (smaller) neighbourhood~$U'$ such that~$s|_{U'\setminus p}=0$, which means that it has a lift to a section~$s'$ of~$\underline{k(C)}$. It suffices to take an open neighbourhood of~$p$, disjoint of~$(\supp D\setminus\{p\})\cup s^{-1}(\infty)$.
+    We wish to show that~$S$ equals this same direct sum of skyscraper sheaves, i.e.\ that sections of~$S$ consist of a selection of values of~$S_p$ for all~$p$, almost all of which are zero. To do so, let~$p$ be a point of~$C$, and let~$s\in S(U)$ be a section defined on an open neighbourhood~$U$ of~$p$. Then there exists a (smaller) neighbourhood~$U'$ such that~$s|_{U'\setminus p}=0$, which means that it has a lift to a section~$s'$ of~$\underline{k(C)}$. It suffices to take an open neighbourhood of~$p$, disjoint of~$(\supp D\setminus\{p\})\cup s^{-1}(\infty)$: we can add the negative of the section without changing the behaviour in the poles and zeroes.
   \end{proof}
 \end{proposition}
 
 \paragraph{The part on $\mathrm{J}(D)$ and $J$}
 We now set
 \begin{equation}
-  \mathrm{J}(D)\coloneqq\mathrm{I}(D)^\vee=(R/(R(D)+k(C)))^\vee.
+  \mathrm{J}(D)\coloneqq\mathrm{I}(D)^\vee=(R/(\mathrm{R}(D)+k(C)))^\vee.
 \end{equation}
-Hence an element of~$\mathrm{J}(D)$ is a~$k$\dash linear form on~$R$ (our huge ring of repartitions) which vanishes on~$R(D)$ and~$k(C)$. Because~$D\leq D'$ implies~$R(D)\subseteq R(D')$, hence~$\mathrm{J}(D')\subseteq\mathrm{J}(D)$ we can define
+Hence an element of~$\mathrm{J}(D)$ is a~$k$\dash linear form on~$R$ (our huge ring of repartitions) which vanishes on~$\mathrm{R}(D)$ and~$k(C)$. Because~$D\leq D'$ implies~$\mathrm{R}(D)\subseteq\mathrm{R}(D')$, hence~$\mathrm{J}(D')\subseteq\mathrm{J}(D)$ we can define
 \begin{equation}
   J\coloneqq\bigcup_{D}\mathrm{J}(D).
 \end{equation}
@@ -376,7 +394,7 @@ Hence an element of~$\mathrm{J}(D)$ is a~$k$\dash linear form on~$R$ (our huge r
     \begin{equation}
       f\alpha\colon R\to k:r\mapsto\langle\alpha,fr\rangle
     \end{equation}
-    which is a linear functional on~$R$, which vanishes on~$k(C)$. This assignment gives~$J$ the structure of a~$k(C)$\dash vectorspace: take~$\alpha\in\mathrm{J}(D)$ and~$(f)=D'$. Then the linear form~$f\alpha$ vanishes on~$R(D-D')$, because if~$r\in R(D-D')$ then~$fr\in R(D)$, hence~$\langle\alpha,fr\rangle=0$. So~$f\alpha$ belongs to~$J(D-D')$, and therefore to~$J$.
+    which is a linear functional on~$R$, which vanishes on~$k(C)$. This assignment gives~$J$ the structure of a~$k(C)$\dash vectorspace: take~$\alpha\in\mathrm{J}(D)$ and~$(f)=D'$. Then the linear form~$f\alpha$ vanishes on~$\mathrm{R}(D-D')$, because if~$r\in\mathrm{R}(D-D')$ then~$fr\in\mathrm{R}(D)$, hence~$\langle\alpha,fr\rangle=0$. So~$f\alpha$ belongs to~$\mathrm{J}(D-D')$, and therefore to~$J$.
   \end{proof}
 \end{lemma}
 Moreover, whereas it is a horribly big~$k$\dash vectorspace, it is well-behaved as a~$k(C)$\dash vectorspace.
@@ -384,12 +402,12 @@ Moreover, whereas it is a horribly big~$k$\dash vectorspace, it is well-behaved 
   \label{lemma:dim(J)<=1}
   We have~$\dim_{k(C)}J\leq 1$.
   \begin{proof}
-    Take~$\alpha,\beta$ linearly independent over~$k(C)$. We can find a~$D$ such that~$\alpha,\beta\in J(D)$, and denote~$d=\deg(D)$.
+    Take~$\alpha,\beta$ linearly independent over~$k(C)$. We can find a~$D$ such that~$\alpha,\beta\in\mathrm{J}(D)$, and denote~$d=\deg(D)$.
 
-    Assume that~$D_n$ is any divisor such that~$\deg(D_n)=n$. Then for each~$f,g\in\HH^0(C,\mathcal{O}_C(D_n))$ we get~$f\alpha\in J(D-D_n)$ by the previous argument, and similarly~$g\beta\in J(D-D_n)$. Because~$\alpha$ and~$\beta$ are linearly independent we know that
+    Assume that~$D_n$ is any divisor such that~$\deg(D_n)=n$. Then for each~$f,g\in\HH^0(C,\mathcal{O}_C(D_n))$ we get~$f\alpha\in\mathrm{J}(D-D_n)$ by the previous argument, and similarly~$g\beta\in\mathrm{J}(D-D_n)$. Because~$\alpha$ and~$\beta$ are linearly independent we know that
     \begin{equation}
       \begin{aligned}
-        \HH^0(C,\mathcal{O}_C(D_n))\oplus\HH^0(C,\mathcal{O}_C(D_n))&\to J(D-D_n) \\
+        \HH^0(C,\mathcal{O}_C(D_n))\oplus\HH^0(C,\mathcal{O}_C(D_n))&\to\mathrm{J}(D-D_n) \\
         (f,g)&\mapsto f\alpha+g\beta
       \end{aligned}
     \end{equation}
@@ -417,10 +435,12 @@ Moreover, whereas it is a horribly big~$k$\dash vectorspace, it is well-behaved 
   \end{proof}
 \end{lemma}
 
+Hence Serre duality for curves becomes\expand
+
 \paragraph{The part on differentials}
 We will need to know what differentials on a curve are. In courses on differential geometry or complex analysis one has seen these before. In the algebraic geometry case one uses K\"ahler differentials to have a nice analogue. It provides another natural sheaf, besides the structure sheaf (and its twists). On a curve it will be an invertible sheaf, denoted~$\Omega_C^1$ and it has an associated canonical divisor~$\mathrm{K}_C$.
 
-The line bundle of differentials on a curve is the source of an important invariant
+The line bundle of differentials on a curve is the source of an important invariant of the topology of the curve.
 \begin{definition}
   The \emph{genus} of a curve is~$\mathrm{g}_C\coloneqq\dim_k\HH^0(C,\Omega_C^1)$.
 \end{definition}
@@ -467,7 +487,7 @@ It has the following properties.
   The pairing~$\langle-,-\rangle$ satisfies
   \begin{enumerate}
     \item\label{enumerate:pairing-properties-1} $\langle\omega,r\rangle=0$ if~$r\in k(C)$;
-    \item\label{enumerate:pairing-properties-2} $\langle\omega,r\rangle=0$ if~$r\in R(D)$ and~$\omega\in\HH^0(C,\Omega^1(-D))$;
+    \item\label{enumerate:pairing-properties-2} $\langle\omega,r\rangle=0$ if~$r\in \mathrm{R}(D)$ and~$\omega\in\HH^0(C,\Omega^1(-D))$;
     \item\label{enumerate:pairing-properties-3} $\langle f\omega,r\rangle=\langle\omega,fr\rangle$ if~$f\in k(C)$.
   \end{enumerate}
 
@@ -479,21 +499,21 @@ It has the following properties.
     \end{enumerate}
   \end{proof}
 \end{lemma}
-For each meromorphic differential~$\omega$ in~$\HH^0(C,\Omega^1(-D))$ we have a linear functional~$\theta(\omega)$ on~$R$, and by \cref{enumerate:pairing-properties-1,enumerate:pairing-properties-2} it is also a linear functional on~$R/(R(D)+k(C))$. Hence we get a map
+For each meromorphic differential~$\omega$ in~$\HH^0(C,\Omega^1(-D))$ we have a linear functional~$\theta(\omega)$ on~$R$, and by \cref{enumerate:pairing-properties-1,enumerate:pairing-properties-2} of \cref{lemma:pairing-properties} it is also a linear functional on~$R/(\mathrm{R}(D)+k(C))$. Hence we get a map
 \begin{equation}
-  \theta\colon\HH^0(C,\Omega^1(-D))\to J(D)
+  \theta\colon\HH^0(C,\Omega^1(-D))\to\mathrm{J}(D)
 \end{equation}
-as~$\mathrm{J}(D)$ is shorthand for the dual of~$R/(R(D)+k(C))$ by \cref{proposition:HH1}. This~$\theta$ is moreover defined as a map~$M\to J$ in general. But we have the following nice property, that relates the more general map to the specific map.
+as~$\mathrm{J}(D)$ is shorthand for the dual of~$R/(\mathrm{R}(D)+k(C))$ by \cref{proposition:HH1}. This~$\theta$ is moreover defined as a map~$M\to J$ in general. But we have the following nice property, that relates the more general map to the specific map.
 \begin{lemma}
   \label{lemma:theta-J(D)}
-  Let~$\omega$ be a meromorphic differential such that~$\theta(\omega)\in\mathrm{J}(D)$. Then we have that~$\omega\in\HH^0(C,\Omega_C^1(-D))$.
+  Let~$\omega$ be a meromorphic differential such that~$\theta(\omega)\in\mathrm{J}(D)$. Then we have that~$\omega\in\HH^0(C,\Omega_C^1(-D))$\footnote{Remark that Serre denotes this sheaf~$\Omega_C^1(D)$, because for differentials he reverses the terminology.}.
 
   \begin{proof}
     Assume on the contrary that~$\omega\notin\Omega^1(-D)$. This means that there is a point~$p\in C$ such that~$\omega$ has a pole in~$p$ that is bigger than allowed by~$D$, or symbolically
     \begin{equation}
       \mathrm{v}_p(\omega)<\mathrm{v}_p(-D).
     \end{equation}
-    Then we take a repartition~$r\in R(D)$ by setting
+    Then we take a repartition~$r\in\mathrm{R}(D)$ by setting
     \begin{equation}
       r_q=
       \begin{cases}
@@ -509,22 +529,22 @@ as~$\mathrm{J}(D)$ is shorthand for the dual of~$R/(R(D)+k(C))$ by \cref{proposi
     \begin{equation}
       \langle\omega,r\rangle=\sum_{q\in C}\res(r_q\omega)=\res(r_p\omega)\neq 0.
     \end{equation}
-    But this means~$\theta(\omega)$ is not zero on~$R(D)$, but this is required by the definition of~$\theta$, hence we obtain a contradiction.
+    But this means~$\theta(\omega)$ is not zero on~$\mathrm{R}(D)$, but this is required by the definition of~$\theta$, hence we obtain a contradiction.
   \end{proof}
 \end{lemma}
 
 Recall that we wish to prove that~$\theta$ induces an isomorphism from~$\HH^0(C,\Omega^1(-D))$ to~$\HH^1(C,\mathcal{O}_C(D))^\vee$, and this last object is also denoted~$\mathrm{J}(D)$.
 \begin{proof}[Proof of Serre duality]
-  To see that~$\theta$ is \emph{injective}, take~$\omega\in\HH^0(C,\Omega^1(-D))$ such that~$\theta(\omega)=0$. Then by \cref{lemma:theta-J(D)} we have that~$\Omega(-\Delta)$ for every divisor~$\Delta$, which implies~$\omega=0$\expand.
+  To see that~$\theta$ is \emph{injective}, take~$\omega\in\HH^0(C,\Omega^1(-D))$ such that~$\theta(\omega)=0$. Then by \cref{lemma:theta-J(D)} we have that~$\omega\in\Omega(-D')$ for every divisor~$D'$, which implies~$\omega=0$, as all possible configurations of poles and zeroes should be valid at the same time.
 
-  To see that~$\theta$ is \emph{surjective}, observe that by \cref{TODO} we have that~$\theta$ is~$k(C)$\dash linear, from~$M$ to~$J$. By definition we have~$\dim_{k(C)}M=1$, by \cref{lemma:dim(J)<=1} we have~$\dim_{k(C)}J\leq 1$.
+  To see that~$\theta$ is \emph{surjective}, observe that by \cref{enumerate:pairing-properties-3} of \cref{lemma:pairing-properties} we have that~$\theta$ is~$k(C)$\dash linear, from~$M$ to~$J$. By definition we have~$\dim_{k(C)}M=1$, by \cref{lemma:dim(J)<=1} we have~$\dim_{k(C)}J\leq 1$. Hence if~$\alpha$ is an element of~$\mathrm{J}(D)$ we get a meromorphic differential~$\omega$ such that~$\theta(\omega)\alpha$, and \cref{lemma:theta-J(D)} shows that~$\omega\in\Omega(-D)$.
 \end{proof}
 
 \subsection{The general case}
 \label{subsection:remarks}
 The proof for curves has an explicit flavour in terms of residues to it. In higher dimensions we lose this. For a nice (but abstract) proof one can take a look at \cite[\S III.7]{hartshorne-algebraic-geometry}. The proof goes as follows, for~$X\subseteq\mathbb{P}_k^n$:
 \begin{enumerate}
-  \item Prove Serre duality for~$\mathbb{P}_k^n$, which is very concrete. The dualizing sheaf~$\omega_{\mathbb{P}_k^n}=\bigwedge^n\Omega_{\mathbb{P}_k^n/k}$ is~$\mathcal{O}_{\mathbb{P}_k^n}(-n-1)$.
+  \item Prove Serre duality for~$\mathbb{P}_k^n$, which is very concrete (see later). The dualizing sheaf~$\omega_{\mathbb{P}_k^n}=\bigwedge^n\Omega_{\mathbb{P}_k^n/k}$ is~$\mathcal{O}_{\mathbb{P}_k^n}(-n-1)$.
   \item Prove that~$\omega_X^\circ=\mathcal{E}\mathrm{xt}^r_{\mathbb{P}_k^n}(\mathcal{O}_X,\omega_{\mathbb{P}_k^n})$ is a dualising sheaf for~$X$, where~$r$ is the codimension of~$X$. Remark that~$\mathcal{E}\mathrm{xt}_{\mathbb{P}_k^n}^i(\mathcal{O}_X,\omega_{\mathbb{P}_k^n})=0$ for all~$i<r$.
 \end{enumerate}
 The question becomes: can we interpret this dualising sheaf? We know that for~$\mathbb{P}_k^n$ that the dualising sheaf is given by the canonical sheaf, hence the abuse of notation. Similarly, we have that for~$X$ nonsingular projective that this is true. The statement of Serre duality holds for Cohen--Macaulay varieties, i.e.\ we allow mild singularities. But then it's harder to interpret the dualising sheaf.
@@ -540,33 +560,33 @@ For completeness' sake we can give the duality result for~$\mathbb{P}_k^n=\Proj 
   \end{enumerate}
 \end{theorem}
 
-This yields the following pictures
+This yields the pictures in \cref{table:hh-P-1,table:hh-P-2,table:hh-P-3,table:hh-P-4}.
 \begin{table}
   \centering
   \input{n-1}
-  \caption{Dimensions of~$\HH^i(\mathbb{P}_k^1,\mathcal{O}_{\mathbb{P}_k^1}(r))$}
-  \label{table:dimensions-projective-line}
+  \caption{$\hh^i(\mathbb{P}_k^1,\mathcal{O}_{\mathbb{P}_k^1}(r))$}
+  \label{table:hh-P-1}
 \end{table}
 
 \begin{table}
   \centering
   \input{n-2}
-  \caption{Dimensions of~$\HH^i(\mathbb{P}_k^2,\mathcal{O}_{\mathbb{P}_k^2}(r))$}
-  \label{table:dimensions-projective-line}
+  \caption{$\hh^i(\mathbb{P}_k^2,\mathcal{O}_{\mathbb{P}_k^2}(r))$}
+  \label{table:hh-P-2}
 \end{table}
 
 \begin{table}
   \centering
   \input{n-3}
-  \caption{Dimensions of~$\HH^i(\mathbb{P}_k^3,\mathcal{O}_{\mathbb{P}_k^3}(r))$}
-  \label{table:dimensions-projective-line}
+  \caption{$\hh^i(\mathbb{P}_k^3,\mathcal{O}_{\mathbb{P}_k^3}(r))$}
+  \label{table:hh-P-3}
 \end{table}
 
 \begin{table}
   \centering
   \input{n-4}
-  \caption{Dimensions of~$\HH^i(\mathbb{P}_k^4,\mathcal{O}_{\mathbb{P}_k^4}(r))$}
-  \label{table:dimensions-projective-line}
+  \caption{$\hh^i(\mathbb{P}_k^4,\mathcal{O}_{\mathbb{P}_k^4}(r))$}
+  \label{table:hh-P-4}
 \end{table}
 
 \section{Applications}
@@ -575,7 +595,7 @@ This yields the following pictures
 \subsection{Facts about curves}
 \label{subsection:facts-curves}
 \paragraph{Geometric genus equals arithmetic genus}
-For a projective nonsingular curve~$C$ we get that~$\mathrm{p}_{\mathrm{arith}}(C)=\hh^1(X,\mathcal{O}_X)=\hh^0(X,\Omega_C^1)=\mathrm{p}_{\mathrm{geom}}(C)$. Hence the arithmetic and geometric genus agree. The geometric genus ``counts the number of holes'' whereas the arithmetic genus doesn't really count anything (it can be negative in more general situations\footnote{E.g., the disjoint union of two~$\mathbb{P}_k^1$'s, because the arithmetic genus equals\begin{equation}1-\chi(\mathbb{P}_k^1\sqcup\mathbb{P}_k^1,\mathcal{O}_{\mathbb{P}_k^1\sqcup\mathbb{P}_k^1})=1-(2-0)=-1.\end{equation}.}, because its generalisation is an alternating sum).
+For a projective nonsingular curve~$C$ we get that~$\mathrm{p}_{\mathrm{arith}}(C)=\hh^1(X,\mathcal{O}_X)=\hh^0(X,\Omega_C^1)=\mathrm{p}_{\mathrm{geom}}(C)$. Hence the arithmetic and geometric genus agree. The geometric genus ``counts the number of holes'' whereas the arithmetic genus doesn't really count anything (it can be negative in more general situations\footnote{E.g., the disjoint union of two~$\mathbb{P}_k^1$'s, because its arithmetic genus equals\begin{equation}1-\chi(\mathbb{P}_k^1\sqcup\mathbb{P}_k^1,\mathcal{O}_{\mathbb{P}_k^1\sqcup\mathbb{P}_k^1})=1-(2-0)=-1.\end{equation}.}, because its generalisation is an alternating sum).
 
 \paragraph{Vanishing of~$\HH^1$}
 \expand
