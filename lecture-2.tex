@@ -70,7 +70,7 @@ It suffices to take~$D=p$ in the context of the Riemann--Roch problem, and as so
 \begin{enumerate}
   \item if~$C=\mathbb{P}_k^1$ then~$n=1$ suffices as the degree of the canonical divisor is~$-2$, our point~$p\in\mathbb{P}_k^1$ corresponds to an~$a\in\mathbb{C}$ on some affine chart, the desired rational function with a pole in~$p$ is nothing but~$(z-a)^{-1}$;
   \item if~$C$ is an elliptic curve the degree of the canonical divisor is~$0$, so again~$n=1$ suffices;
-  \item for higher genus curves the choice of~$n>2g-2$ will always give us a rational function, but in general a lower number could do. This is discussed further in the paragraph on Weierstrass gaps\checkthis.
+  \item for higher genus curves the choice of~$n>2g-2$ will always give us a rational function, but in general a lower number could do. This is discussed further in the paragraph on Weierstrass gaps.
 \end{enumerate}
 
 \paragraph{Rational functions with poles in several points}
@@ -111,17 +111,26 @@ For low genera we also know what happens:
       0, 1, 1, ? , 2, 3, \dotsc
     \end{equation}
 \end{enumerate}
-What we don't know is whether the sequence of numbers will depend on the choice of~$p$ (it does). It is a bit mysterious at first sight, but on a genus~$2$ curve there will be exactly~$6$ points for which the missing term is~$2$, whereas all the others have missing terms~$1$. This behaviour is the same for all higher genera: there are finitely many points in which the behaviour is ``not as expected'', where the expectation is that the sequence starts with~$g+1$ copies of~$1$, after which it increases by~$1$ each time. Moreover, the number of exceptional points is~$g(g^2-1)$ (if one weighs them).
+What we don't know is whether the sequence of numbers will depend on the choice of~$p$ (it does). It is a bit mysterious at first sight, but on a genus~$2$ curve there will be exactly~$6$ points\footnote{These 6 points correspond to the ramification points of the degree 2 map to~$\mathbb{P}_k^1$: every genus~$2$ curve is hyperelliptic, i.e.\ given by~$y^2=f(x)$ for~$f$ of degree~$5$ or~$6$.} for which the missing term is~$2$, whereas all the others have missing terms~$1$. This behaviour is the same for all higher genera: there are finitely many points in which the behaviour is ``not as expected'', where the expectation is that the sequence starts with~$g+1$ copies of~$1$, after which it increases by~$1$ each time. Moreover, the number of exceptional points is~$g(g^2-1)$ (if one weighs them).
 
 \begin{definition}
   The points with ``exceptional behaviour'' as explained before are called \emph{Weierstrass points}
 \end{definition}
 
-The sequence of missing terms associated to such a Weierstrass point is interesting to study, and depends on the type of curve we are considering. This ties in with the use of Riemann--Roch in the classification of curves.
-
+The sequence of missing terms associated to such a Weierstrass point is interesting to study, and depends on the type of curve we are considering. This ties in with the use of Riemann--Roch in the classification of curves. In the case of hyperelliptic curves (in arbitrary genus) the Weierstrass points are exactly the ramification points (with their correct weights!) but in general it's harder to say what they correspond to geometrically.
 
 \paragraph{The group law on elliptic curves}
-\expand
+The Riemann--Roch theorem is also useful in proving that an elliptic curve~$E$ has a group structure. If one wishes to construct the group law by purely geometric notions proving the associativity is a bit hard (which is odd, because most of the times this axiom is rather easy to check). But there is an obvious group structure on the divisors, which we can put to good use.
+
+To do so we will need~$\Pic^0(E)$, this is the subgroup of degree-zero elements of~$\Pic(E)$ which is the group of all divisors modulo linear equivalence. The divisor of a rational function has degree zero, hence we have defined
+\begin{equation}
+  \Pic^0(E)=\{D\in\Div(E)\mid\deg(D)=0\}/\{\div(f)\mid f\in k(E)\}.
+\end{equation}
+Then we pick a neutral element~$p_0\in E$. This yields the map
+\begin{equation}
+  E\mapsto\Pic^0(E):p\mapsto\mathcal{O}_E(p-p_0).
+\end{equation}
+To see that this is a surjection, we take~$D$ a divisor of degree~$0$. We wish to show that there exists a unique point~$p\in E$ such that~$D$ is linearly equivalent to~$p-p_0$. As the degree of the canonical divisor is~$0$ we get~$\deg(\mathrm{K}_E-D-p_0)=-1$, so~$\hh^0(E,\mathcal{O}_E(\mathrm{K}_E-D-p_0))=0$. Hence~$\hh^0(E,\mathcal{O}_E(D+p_0))=1$. As before we can find an effective divisor linearly equivalent do~$D+p_0$, but as the the dimension is~$1$ and by applying \cite[proposition II.7.7]{hartshorne-algebraic-geometry} we get that this divisor is unique (the linear system is zero-dimensional). As the degree of this divisor is~$1$ we get a single point~$p$, i.e.\ the divisor~$p$ is rationally equivalent to~$D+p_0$, or~$D=p-p_0$ in~$\Pic^0(E)$.
 
 \paragraph{Classification of curves}
 Time and space don't permit me to write anything about it, but Riemann--Roch is crucial in tackling classification problems for curves.
