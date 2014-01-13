@@ -76,11 +76,50 @@ It suffices to take~$D=p$ in the context of the Riemann--Roch problem, and as so
 \paragraph{Rational functions with poles in several points}
 In a completely analogous manner we can find rational functions with poles in any number of points, as long as we don't put a bound on the multiplicity of the pole. This is \cite[exercise IV.1.2]{hartshorne-algebraic-geometry}. At this rate we will have solved all the exercises of this section in a whim\footnote{I won't do this though, but you are cordially invited to do them as they are interesting and not as frightening as most exercises in Hartshorne's book.}
 
+\paragraph{Weierstrass points}
+We had the Riemann--Roch problem for a divisor of the form~$np$, where we were interested in the numbers~$\hh^0(C,\mathcal{O}_C(np))$. These numbers count the rational functions with prescribed behaviour. If~$n>\deg(\mathrm{K}_C)=2g-2$ we had a complete knowledge about the behaviour. On the other hand, if~$n\leq -1$ we have no global sections, whereas~$n=0$ yields the constants. For~$n=2g-1$ on the other hand we get
+\begin{equation}
+  \hh^0(C,\mathcal{O}_C((2g-1)p))=2g-1-g+1=g
+\end{equation}
+and for~$n=2g-1+k$ we get~$g+k$ as the correction term will always be zero. Hence we get the following table
+\begin{table}
+  \centering
+  \begin{tabular}{cccccccccc}
+    $n$ & -1 & 0 & 1 & 2 & \dots & $2g-2$ & $2g-1$ & $2g$ & \dots \\\midrule
+    $\hh^0(C,\mathcal{O}_C(np)$ & 0 & 1 & ? & ? & ? & ? & $g$ & $g+1$ & \dots
+  \end{tabular}
+  \caption{Behaviour of $\hh^0(C,\mathcal{O}_C(np)$}
+  \label{table:np}
+\end{table}
+We also know that
+\begin{enumerate}
+  \item the numbers that we fill in have to be increasing: if a pole of order at most~$n$ in~$p$ exists, it surely exists if we allow poles of order~$n+1$;
+  \item they can moreover only increase by at most~$1$: if~$f$ and~$g$ are rational functions with a pole of the same order, then there exists a constant~$c$ such that~$f+cg$ has a pole of lower order (by cancelling the leading term in the local expression for~$f$ and~$g$).
+\end{enumerate}
+For low genera we also know what happens:
+\begin{enumerate}
+  \item $g=0$ has no missing terms, it is (starting from~$n=-1$)
+    \begin{equation}
+      0, 1, 2, 3, 4, 5, \dotsc
+    \end{equation}
+  \item $g=1$ has no missing terms, it is (starting from~$n=-1$) 
+    \begin{equation}
+      0, 1, 1, 2, 3, 4, \dotsc
+    \end{equation}
+  \item $g=2$ has one missing term, it is (starting form~$n=-1$)
+    \begin{equation}
+      0, 1, 1, ? , 2, 3, \dotsc
+    \end{equation}
+\end{enumerate}
+What we don't know is whether the sequence of numbers will depend on the choice of~$p$ (it does). It is a bit mysterious at first sight, but on a genus~$2$ curve there will be exactly~$6$ points for which the missing term is~$2$, whereas all the others have missing terms~$1$. This behaviour is the same for all higher genera: there are finitely many points in which the behaviour is ``not as expected'', where the expectation is that the sequence starts with~$g+1$ copies of~$1$, after which it increases by~$1$ each time. Moreover, the number of exceptional points is~$g(g^2-1)$ (if one weighs them).
+
+
+\paragraph{The group law on elliptic curves}
+\expand
+
 \paragraph{Classification of curves}
 Time and space don't permit me to write anything about it, but Riemann--Roch is crucial in tackling classification problems for curves.
 
-\paragraph{Weierstrass gaps}
-Time and space don't permit me to write anything about it, but if one wishes to see more applications of Riemann--Roch for curves, Google ``Weierstrass gaps'' for a beautiful theory studying the points of curves.
 
 \subsection{Facts about surfaces}
 \label{subsection:facts-surfaces}
@@ -95,6 +134,21 @@ As in the case of curves we have a criterion for the vanishing of a cohomology g
 Recall that the situation for curves asks~$\deg D>n_0=2\mathrm{g}_C-2$ for~$\HH^1(C,\mathcal{L}(D))$ to be zero.
 
 These vanishing results are pervasive throughout algebraic geometry. As we've seen in this talk the correct notion to study is the Euler--Poincar\'e characteristic, which incorporates all cohomological information. If one is interested in a single number though (which one often is) this requires these vanishing results in order to obtain a conclusion on this single number.
+
+\paragraph{Invariants of special surfaces}
+Surfaces come in a wealth of families or shapes. Often we can find interesting (numerical) information for a specific choice of surface(s).
+\begin{enumerate}
+  \item If~$S$ is a surface of degree~$d$ in~$\mathbb{P}_k^3$ (i.e.\ defined by a homogeneous equation of degree~$4$ in four variables such that the Jacobian matrix is nonsingular) then the self-intersection of the canonical divisor~$\mathrm{K}_S$ is given by
+    \begin{equation}
+      \mathrm{K}_S\cdot\mathrm{K}_S=d(d-4)^2.
+    \end{equation}
+    Hence this number depends on~$d$, in the same way~$\deg(\mathrm{K}_C)$ depended on~$g$.
+  \item If~$S$ is again a surface of degree~$d$ in~$\mathbb{P}_k^3$ such that it contains a straight line~$C=\mathbb{P}_k^1$ then~$C\cdot C=2-d$. Hence we get negative self-intersection if~$d\geq 3$, which at first is a truly counterintuitive thing. In characteristic~$0$ one can find such a surface for any choice of~$d$.
+  \item If~$S=C\times C'$ is a product of two curves of genus~$g$ and~$g'$ respectively, then
+    \begin{equation}
+      \mathrm{K}_{C\times C'}=8(g-1)(g'-1).
+    \end{equation}
+\end{enumerate}
 
 
 \section{Reminder on derived categories}
