@@ -1,47 +1,76 @@
 \documentclass[10pt,a4paper]{article}
-\usepackage{hyperref}
-\usepackage{cleveref}
-\hypersetup{hypertexnames = false, bookmarksdepth = 2, bookmarksopen = true, colorlinks, linkcolor = black, citecolor = black, urlcolor = black, pdfstartview={XYZ null null 1}}
+\input{packages}
+\input{configuration}
+\input{macros}
 
-\usepackage{amsfonts}
-\usepackage{amsmath}
-\usepackage{biblatex}
-\usepackage{enumitem}
-\usepackage{tikz-cd}
-\usepackage[colorinlistoftodos]{todonotes}
-
-\usepackage[T1]{fontenc}
-\usepackage[charter]{mathdesign}
-\usepackage[scaled]{beramono,berasans}
-\usepackage{eucal}
-\usepackage{epstopdf}
-\usepackage{microtype}
-\frenchspacing
-
-\addbibresource{bibliography.bib}
-
-\addtolength\parskip{.4ex}
-\setlength\parindent{0cm}
-
-\relpenalty=10000
-\binoppenalty=10000
-
-\mathchardef\mhyphen="2D
-\newcommand\dash{\nobreakdash-\hspace{0pt}}
-
-\title{Grothendieck duality: lecture 2 \\[.2em] \Large Grothendieck duality and applications}
+\title{Grothendieck duality: lecture 2 \\[.2em] \Large More on Riemann--Roch and Serre duality, with applications}
 \author{Pieter Belmans}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-  
+  These are the notes for my second lecture on Grothendieck duality in the ANAGRAMS seminar. They continue the discussion of Riemann--Roch and Serre duality started in the first lecture, by giving some applications.
+
+  Then we recall some of the preliminaries required for a statement of Grothendieck duality, to end with some possible manifestations of this general duality result.
 \end{abstract}
 
 \tableofcontents
 
-\setcounter{section}{-1}
+\clearpage
+
+
+\section{Applications of Riemann--Roch and Serre duality}
+\label{section:applications}
+As the first lecture didn't allow for a discussion of any applications I have moved these to (the notes of) the second lecture.
+
+\subsection{Facts about curves}
+\label{subsection:facts-curves}
+\paragraph{Geometric genus equals arithmetic genus}
+For a projective nonsingular curve~$C$ we get that~$\mathrm{p}_{\mathrm{arith}}(C)=\hh^1(C,\mathcal{O}_C)=\hh^0(C,\Omega_C^1)=\mathrm{p}_{\mathrm{geom}}(C)$. Hence the arithmetic and geometric genus agree. The geometric genus ``counts the number of holes'' whereas the arithmetic genus doesn't really count anything (it can be negative in more general situations\footnote{E.g., the disjoint union of two~$\mathbb{P}_k^1$'s, because its arithmetic genus equals\begin{equation}1-\chi(\mathbb{P}_k^1\sqcup\mathbb{P}_k^1,\mathcal{O}_{\mathbb{P}_k^1\sqcup\mathbb{P}_k^1})=1-(2-0)=-1.\end{equation}.}, because its generalisation is an alternating sum).
+
+\paragraph{Curves of degree~$d$ in~$\mathbb{P}_k^n$}
+If~$C$ is given as a curve of degree~$d$ in~$\mathbb{P}_k^n$ we can take a hyperplane section~$C\cap H=D$ for a divisor. Then we get
+\begin{equation}
+  \chi(\mathcal{L}(D))=d+1-\mathrm{p}_{\mathrm{a}}(C).
+\end{equation}
+
+\paragraph{Vanishing of~$\HH^1$}
+The theorem of Riemann--Roch should be view in terms of the \emph{Riemann--Roch problem}, which is the study of the (asymptotic) behaviour of~$\hh^0(C,\mathcal{O}_C(np))$, for~$p\in C$, or more general divisors. So the question becomes: can we determine~$\hh^1$, or the~$\hh^0$ of~$\omega_C(-D)$? The answer is given in \cite[remark IV.1.3.2]{hartshorne-algebraic-geometry}:
+\begin{lemma}
+  If~$\deg(D)>0$ and~$n\deg(D)>\deg(\mathrm{K}_C)$ then~$\hh^0(\mathrm{K}_C-nD)=0$.
+\end{lemma}
+
+\paragraph{The degree of the canonical divisor}
+The canonical divisor still might be a mysterious beast. But Riemann--Roch at least tells us its degree: applying it to~$\mathrm{K}_C$ and using the definition of the genus we get
+\begin{equation}
+  g-1=\deg(\mathrm{K}_C)+1-g
+\end{equation}
+i.e.\ $\deg(\mathrm{K}_C)=2g-2$.
+
+So for~$\mathbb{P}_k^1$, where the genus is~$0$, we get that the canonical divisor is the~$-2\infty$ we've seen before. For elliptic curves (i.e.\ curves of genus~$1$) we get that the canonical divisor has degree~$0$, and again because the genus is~$1$ we know that there are (only) the constants as differentials, hence the canonical divisor is equivalent to~$0$.
+
+\paragraph{Classification of curves}
+Time and space don't permit me to write anything about it, but Riemann--Roch is crucial in tackling classification problems for curves.
+
+\paragraph{Weierstrass gaps}
+Time and space don't permit me to write anything about it, but if one wishes to see more applications of Riemann--Roch for curves, Google ``Weierstrass gaps'' for a beautiful theory studying the points of curves.
+
+\subsection{Facts about surfaces}
+\label{subsection:facts-surfaces}
+\paragraph{Irregularity of a surface}
+Let~$S$ be a projective nonsingular surface. Its geometric genus is~$\mathrm{p}_{\mathrm{geom}}(S)=\hh^0(S,\omega_S)=\hh^2(S,\mathcal{O}_S)$ whereas its arithmetic genus is~$\mathrm{p}_{\mathrm{arith}}(S)=\hh^2(S,\mathcal{O}_S)-\hh^1(S,\mathcal{O}_S)$. Hence~$\mathrm{p}_{\mathrm{geom}}(S)\geq\mathrm{p}_{\mathrm{arith}}(S)$. Originally the Italian school thought (without knowing what sheaf cohomology was, they did all these things in more classical terms) that there was an equality. When they found out there are surfaces that have the strict inequality they dubbed the difference the \emph{irregularity}.
+
+\paragraph{Vanishing of~$\HH^2$}
+As in the case of curves we have a criterion for the vanishing of a cohomology group if a certain numerical criterion is satisfied \cite[lemma V.1.7]{hartshorne-algebraic-geometry}.
+\begin{proposition}
+  Let~$H$ be an ample divisor on a surface~$S$. Then there exists an integer~$n_0$ (in fact, it is~$\mathrm{K}_S\cdot H$) such that, if~$D$ is a divisor for which~$D\cdot H>n_0$, then~$\HH^2(S,\mathcal{L}(D))=0$.
+\end{proposition}
+Recall that the situation for curves asks~$\deg D>n_0=2\mathrm{g}_C-2$ for~$\HH^1(C,\mathcal{L}(D))$ to be zero.
+
+These vanishing results are pervasive throughout algebraic geometry. As we've seen in this talk the correct notion to study is the Euler--Poincar\'e characteristic, which incorporates all cohomological information. If one is interested in a single number though (which one often is) this requires these vanishing results in order to obtain a conclusion on this single number.
+
+
 \section{Reminder on derived categories}
 \label{section:derived-categories}
 

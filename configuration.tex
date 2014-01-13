@@ -1,0 +1,30 @@
+\addbibresource{bibliography.bib}
+
+\addtolength\parskip{.4ex}
+\setlength\parindent{0cm}
+
+\relpenalty=10000
+\binoppenalty=10000
+
+% todonotes configuration
+\newcounter{todocounter}
+\DeclareDocumentCommand\addreference{g}{\stepcounter{todocounter}\todo[color = blue!30, fancyline]{\thetodocounter. Add reference\IfNoValueF{#1}{: #1}}\xspace}
+\DeclareDocumentCommand\checkthis{g}{\stepcounter{todocounter}\todo[color = red!50, fancyline]{\thetodocounter. Check this\IfNoValueF{#1}{: #1}}\xspace}
+\DeclareDocumentCommand\fixthis{g}{\stepcounter{todocounter}\todo[color = orange!50, fancyline]{\thetodocounter. Fix this\IfNoValueF{#1}{: #1}}\xspace}
+\DeclareDocumentCommand\expand{g}{\stepcounter{todocounter}\todo[color = green!50, fancyline]{\thetodocounter. Expand\IfNoValueF{#1}{: #1}}\xspace}
+\newcommand\removethis{\stepcounter{todocounter}\todo[color=yellow!50]{\thetodocounter. Remove this?}}
+
+% environments
+\declaretheoremstyle[
+  spaceabove = 3pt,
+  spacebelow = 3pt,
+]{lecture}
+\theoremstyle{lecture}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+
