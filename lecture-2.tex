@@ -73,6 +73,30 @@ These vanishing results are pervasive throughout algebraic geometry. As we've se
 
 \section{Reminder on derived categories}
 \label{section:derived-categories}
+The main idea behind derived categories is to make working with derived functors more natural. Recall that given a left (or right) exact functor between abelian categories one can determine its derived functors, which form a family of functors. These functors measure the extent to which the original functor is not exact, and they can give interesting algebraic or geometric information (depending on the original choice of functor).
+
+The goal is to capture all of these in one single \emph{total derived functor}. So instead of working with the family~$(\RRR^nF)_{n\in\mathbb{N}}$ one wants to construct a functor~$\RRR F$ replacing the whole family.
+
+To calculate (co)homology one uses injective (or projective, or flat, or flabby, or~\dots depending on the context) resolutions. So instead of using a single object, it is natural to consider a whole (co)chain complex of objects. That is why, instead of using an abelian category~$\mathcal{A}$ (take for example~$\mathcal{A}=\Coh/X$ the abelian category of coherent sheaves on a scheme), one uses~$\Ch(\mathcal{A})$: the abelian category of (co)chain complexes over~$\mathcal{A}$.
+
+Because the calculation of (co)homology is invariant up to homotopy equivalence, we construct the category~$\KKK(\mathcal{A})$ by identifying morphisms in~$\Ch(\mathcal{A})$ which are homotopy equivalent. This is an intermediate step which can be skipped, but it helps in proving the main properties of the resulting object.
+
+The final step is the most technical one, and consists of inverting quasi-isomorphisms to obtain the \emph{derived category}. Recall that a quasi-isomorphism is a morphism which induces isomorphisms in the (co)homology, i.e.\ if~$f\colon A^\bullet\to B^\bullet$ is a morphism such that~$\HH^n(A^\bullet)\cong\HH^n(B^\bullet)$ for all~$n$ then we would like~$A^\bullet$ and~$B^\bullet$ to be isomorphic in our desired derived category. This way, an object becomes isomorphic to its resolution. The way to obtain this is analogous to the localisation of a ring: we formally add inverses. That this construction works as intended follows from the Gabriel--Zisman theorem.
+
+To summarise, the construction goes through the following steps
+\begin{enumerate}
+  \item pick an abelian category~$\mathcal{A}$ ($\Coh/X$, $\Qcoh/X$ or just~$A\mhyphen\mathrm{Mod}$ if you like);
+  \item consider the abelian category of (co)chain complexes over~$\mathcal{A}$;
+  \item construct the category of (co)chain complexes~$\KKK(\mathcal{A})$ over~$\mathcal{A}$ by identifying the homotopy equivalences in~$\Ch(\mathcal{A})$;
+  \item construct the derived category~$\derived(\mathcal{A})$ of~$\mathcal{A}$ by inverting the quasi-isomorphisms in~$\KKK(\mathcal{A})$.
+\end{enumerate}
+Instead of considering all (co)chain complexes, we can also consider complexes which satisfy a certain boundedness assumption. We could ask for the complexes to be
+\begin{enumerate}
+  \item bounded on both sides (denoted~$\derived^\bounded(\mathcal{A})$),
+  \item bounded below or above (denoted~$\derived^+(\mathcal{A})$ resp.\ $\derived^-(\mathcal{A})$),
+  \item concentrated in positive or negative degrees (denoted~$\derived^{\geq 0}(\mathcal{A})$ resp.\ $\derived^{\leq 0}(\mathcal{A})$).
+\end{enumerate}
+
 
 \section{Grothendieck duality}
 \label{section:grothendieck-duality}
