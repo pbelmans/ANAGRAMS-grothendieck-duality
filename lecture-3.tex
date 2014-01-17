@@ -49,6 +49,69 @@ Instead of considering all (co)chain complexes, we can also consider complexes w
 \label{section:grothendieck-duality}
 \subsection{Motivation}
 \label{subsection:motivation}
+There are several ways of motivating Grothendieck duality, and the desire to generalise Serre duality\footnote{If unfamiliar with Serre duality, one is either invited to read the notes to the first lecture, or glance at the summary of Serre duality later on.}. Of course, the restriction on the classical Serre duality are rather severe: we want a smooth (or mildly singular) projective variety over a field, and a vector bundle. Can we do similar things:
+\begin{enumerate}
+  \item for more general schemes? 
+  \item over more general base schemes?
+  \item for more general sheaves?
+\end{enumerate}
+The answer will be yes, otherwise we wouldn't be discussing Grothendieck duality.
+
+\paragraph{Adjoint functors}
+A more down-to-earth motivation for the form that Grothendieck duality often takes is given in \cite[chapter 6]{triangulated-categories}. Recall from the first lecture the statement of Serre duality, preceded by the required definition of a dualising sheaf, as given in \cite{hartshorne-algebraic-geometry}.
+\begin{definition}
+  Let~$X/k$ be a proper~$n$\dash dimensional variety. A \emph{dualising sheaf} for~$X$ is a coherent sheaf~$\omega_X^\circ$ together with a \emph{trace morphism}~$\tr\colon\HH^n(X,\omega_X^\circ)\to k$, such that for all~$\mathcal{F}\in\Coh/X$ the natural pairing
+  \begin{equation}
+    \Hom(\mathcal{F},\omega_X^\circ)\times\HH^n(X,\mathcal{F})\to\HH^n(X,\omega_X^\circ)
+  \end{equation}
+  composed with~$\tr$ gives an isomorphism
+  \begin{equation}
+    \Hom(\mathcal{F},\omega_X^\circ)\cong\HH^n(X,\mathcal{F})^\vee.
+  \end{equation}
+\end{definition}
+Then the statement, where~$X$ admits a dualising sheaf, reads:
+\begin{theorem}[Serre duality]
+  \label{theorem:serre-duality}
+  Let~$X/k$ be a projective~$n$\dash dimensional variety. Let~$\omega_X^\circ$ be its dualising sheaf. Then for all~$i\geq 0$ and~$\mathcal{F}\in\Coh/X$ we have functorial maps
+  \begin{equation}
+    \theta^i\colon\Ext^i(\mathcal{F},\omega_X^\circ)\to\HH^{n-i}(X,\mathcal{F})^\vee
+  \end{equation}
+  such that~$\theta^0$ corresponds to~$\tr$. Moreover, if~$X$ is Cohen--Macaulay\footnote{A technical condition that says that ``mild singularities'' are allowed. It means that each local ring has Krull dimension equal to the depth (we always have that depth is bounded above by Krull dimension), where depth corresponds to the length of a maximal regular sequence for the local ring itself. One can just read non-singular, which is the case we will need in later applications.} the~$\theta^i$ are isomorphisms for all~$i\geq 0$ and~$\mathcal{F}\in\Coh/X$.
+\end{theorem}
+We also obtained a corollary, which explains the name ``duality'': it relates~$\HH^i$ to~$\HH^{n-i}$, and does so by using a duality of vector spaces.
+\begin{corollary}
+  Let~$X$ be projective Cohen--Macaulay of (equi-)dimension~$n$ over~$k$. Let~$\mathcal{F}$ be a locally free sheaf on~$X$. Then we have isomorphisms
+  \begin{equation}
+    \HH^i(X,\mathcal{F})\cong\HH^{n-i}(X,\mathcal{F}^\vee\otimes\omega_X^\circ)^\vee.
+  \end{equation}
+\end{corollary}
+This is just one of the many ways of writing the isomorphism. Another would be
+\begin{equation}
+  \Hom_k\left( \HH^i(X,\mathcal{F}),k \right)\cong\HH^{n-i}\left( X,\HHom(\mathcal{F},\omega_X^\circ) \right).
+\end{equation}
+We are almost where we want to be. The last step to take is ``go relative''. Which of course in this case is not that spectacular. So let's look at the structural morphism~$f\colon X\to\Spec k$. We are working for a vector bundle~$\mathcal{F}$ on~$X$, so we could also look at a vector bundle on~$\Spec k$, which is nothing but a finite-dimensional vectorspace~$V$. Generalising the previous equation, and applying the tensor-Hom adjunction we obtain
+\begin{equation}
+  \Hom_k\left( \HH^i(X,\mathcal{F}),V \right)\cong\HH^{n-i}\left( X,\HHom(\mathcal{F},V\otimes_k\omega_X^\circ) \right)\cong\Ext^{n-i}\left( \mathcal{F},V\otimes_k\omega_X^\circ \right).
+\end{equation}
+With a little imagination this looks like an adjunction:
+\begin{enumerate}
+  \item the cohomology groups~$\HH^i(X,\mathcal{F})$ can be taken together to~$\mathbf{R}f_*(\mathcal{F})$\footnote{The functor~$f_*$ in this case is nothing but global sections, as~$f_*(\mathcal{F})$ evaluated on~$\Spec k$ is~$\Gamma(f^{-1}(\Spec k),\mathcal{F})$.};
+  \item by the properties of the derived category we can take~$\Ext$'s together into a~$\Hom$ in the derived category\expand{this is not yet in the introduction to derived categories!}.
+\end{enumerate}
+Hence we can write Serre duality as
+\begin{equation}
+  \Hom_{\mathbf{D}^{\mathrm{b}}(\Spec k)}\left( \mathbf{R}f_*(\mathcal{F}),V \right)\cong\Hom_{\mathbf{D}^{\mathrm{b}}(X)}\left( \mathcal{F},f^!(V) \right)
+\end{equation}
+where~$\mathbf{D}^{\mathrm{b}}(\Spec k)$ is the bounded derived category of finite-dimensional~$k$\dash vector spaces and~$\mathbf{D}^{\mathrm{b}}(X)$ is the bounded derived category of coherent sheaves on~$X$\footnote{For ease of statement we'll take~$X$ smooth here.}. Hence Serre duality asserts the existence of a dual
+\begin{equation}
+  f^!\colon\mathbf{D}^{\mathrm{b}}(\Spec k)\to\mathbf{D}^{\mathrm{b}}(X)
+\end{equation}
+which in this case is explicitly given by~$-\otimes_k\omega_X^\circ$. But in this statement we could easily replace~$f\colon X\to\Spec k$ by a more general~$f\colon X\to Y$, and the existence of a right adjoint~$f^!$ would still make sense!
+
+
+\paragraph{Dualising complexes}
+So we now that there is some virtue in looking at the relative context, and that we will obtain an adjoint pair encoding Grothendieck duality. Another thing we could do is look at the dualising sheaf. Then we can motivate Grothendieck duality by considering another rather trivial situation: $\Spec\mathbb{Z}$, as was done in \cite[\S V.1]{hartshorne-residues-and-duality}\expand.
+
 
 \subsection{The ideal theorem}
 The first thing we can consider as a form of Grothendieck duality is \cite[Ideal theorem on page 6]{hartshorne-residues-and-duality}. This summarises what one tries to prove to be able to speak of a ``Grothendieck duality result''. After the statement we will collect some contexts in which we can prove this.
