@@ -11,7 +11,9 @@
 \maketitle
 
 \begin{abstract}
-  
+  These are the notes for my third lecture on Grothendieck duality in the ANAGRAMS seminar. We (finally) come to a statement of Grothendieck duality. In order to do so we first review derived categories, from the viewpoint of someone who has already touched homological algebra in the classical sense\footnote{Taking the viewpoint of someone who has never touched homological algebra is too ambitious.} \cite{weibel-homological-algebra}.
+
+  After this quick reminder some motivation for considering a possible generalisation of Serre duality is discussed, after which the full statement of Grothendieck duality (in various incarnations) is given. To conclude this lecture we discuss applications of Grothendieck duality.
 \end{abstract}
 
 \tableofcontents
@@ -21,6 +23,7 @@
 \setcounter{section}{-1}
 \section{Reminder on derived categories}
 \label{section:derived-categories}
+\subsection{Derived functors}
 The main idea behind derived categories is to make working with derived functors more natural. Recall that given a left (or right) exact functor between abelian categories one can determine its derived functors, which form a family of functors. These functors measure the extent to which the original functor is not exact, and they can give interesting algebraic or geometric information (depending on the original choice of functor).
 
 \begin{example}
@@ -31,7 +34,15 @@ There are other examples.
 \begin{example}
   Global sections are a special case of pushforward: if~$f\colon X\to\Spec k$ is the structural morphism then~$f_*(-)=\Gamma(X,-)$. We obtain a sheaf on~$\Spec k$, which is nothing but a vectorspace, the only non-empty open set has~$\Gamma(f^{-1}(\Spec k),-)$ as its sections. We can conclude that~$f_*$ will not be right-exact in general as it is a generalisation of global sections.
 \end{example}
+\begin{example}
+  Another well-known left exact functor is~$\Hom_A(M,-)$ (let's take~$\mathcal{A}=A\mhyphen\mathrm{Mod}$ for~$A$ a commutative ring and~$M$ an~$A$\dash module), whose right-derived functors are the Ext-functors.
+\end{example}
+\begin{example}
+  Adjoint to~$\Hom_A(M,-)$ we have~$-\otimes_AM$, whose left-derived functors are the Tor-functors.
+\end{example}
+For a whole bunch of examples, and the context for the previous ones, see \cref{subsection:six-functors-yoga}.
 
+\subsection{Derived categories}
 The goal is to capture all of these in one single \emph{total derived functor}. So instead of working with the family~$(\RR^nF)_{n\in\mathbb{N}}$ one wants to construct a functor~$\RRR F$ replacing the whole family.
 
 To calculate (co)homology one uses injective (or projective, or flat, or flabby, or~\dots depending on the context) resolutions. So instead of using a single object, it is natural to consider a whole (co)chain complex of objects. That is why, instead of using an abelian category~$\mathcal{A}$ (take for example~$\mathcal{A}=\Coh/X$ the abelian category of coherent sheaves on a scheme), one uses~$\Ch(\mathcal{A})$: the abelian category of (co)chain complexes over~$\mathcal{A}$.
@@ -127,7 +138,7 @@ The first thing we can consider as a form of Grothendieck duality is \cite[Ideal
 \begin{theorem}[Ideal theorem] {\ }
   \label{theorem:classical}
   \begin{enumerate}
-    \item\label{enumerate:classical-a} For every morphism $f\colon X\to Y$ of finite type of preschemes, there is a functor
+    \item\label{enumerate:classical-a} For every morphism $f\colon X\to Y$ of finite type of preschemes\footnote{I have left this historic terminology in: what nowadays are called schemes were called preschemes in the early days of scheme theory. At first the philosophy was that we'd be mostly interested in separated schemes, which were called schemes, and not necessarily separated schemes were preschemes. In case you didn't know this little fact from the history of scheme theory, you know understand references to preschemes.} there is a functor
       \begin{equation}
         f^!\colon\derived(Y)\to\derived(X)
       \end{equation}
@@ -226,9 +237,6 @@ The question is: in which situations can we prove this ideal theorem? The answer
   \caption{Comparison of singularness of $X$ and the look of $\omega_X^\circ$}
   \label{table:comparison-X-dualising-sheaf}
 \end{table}
-
-\section{History of the results}
-\label{section:history}
 
 
 \section{Applications}
