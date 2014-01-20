@@ -32,10 +32,11 @@ The main idea behind derived categories is to make working with derived functors
 
 There are other examples.
 \begin{example}
+  \label{example:global-sections-pushforward}
   Global sections are a special case of pushforward: if~$f\colon X\to\Spec k$ is the structural morphism then~$f_*(-)=\Gamma(X,-)$. We obtain a sheaf on~$\Spec k$, which is nothing but a vectorspace, the only non-empty open set has~$\Gamma(f^{-1}(\Spec k),-)$ as its sections. We can conclude that~$f_*$ will not be right-exact in general as it is a generalisation of global sections.
 \end{example}
 \begin{example}
-  Another well-known left exact functor is~$\Hom_A(M,-)$ (let's take~$\mathcal{A}=A\mhyphen\mathrm{Mod}$ for~$A$ a commutative ring and~$M$ an~$A$\dash module), whose right-derived functors are the Ext-functors.
+  Another well-known left exact functor is~$\Hom_A(M,-)$, which is an endofunctor on the abelian category~$A\mhyphen\mathrm{Mod}$ for~$A$ a commutative ring and~$M$ an~$A$\dash module), whose right-derived functors are the Ext-functors. These have a down-to-earth interpretation as extensions, by the Yoneda Ext-construction.
 \end{example}
 \begin{example}
   Adjoint to~$\Hom_A(M,-)$ we have~$-\otimes_AM$, whose left-derived functors are the Tor-functors.
@@ -45,7 +46,7 @@ For a whole bunch of examples, and the context for the previous ones, see \cref{
 \subsection{Derived categories}
 The goal is to capture all of these in one single \emph{total derived functor}. So instead of working with the family~$(\RR^nF)_{n\in\mathbb{N}}$ one wants to construct a functor~$\RRR F$ replacing the whole family.
 
-To calculate (co)homology one uses injective (or projective, or flat, or flabby, or~\dots depending on the context) resolutions. So instead of using a single object, it is natural to consider a whole (co)chain complex of objects. That is why, instead of using an abelian category~$\mathcal{A}$ (take for example~$\mathcal{A}=\Coh/X$ the abelian category of coherent sheaves on a scheme), one uses~$\Ch(\mathcal{A})$: the abelian category of (co)chain complexes over~$\mathcal{A}$.
+To calculate (co)homology one uses injective (or projective, or flat, or flabby, or~\dots\ depending on the context) resolutions. So instead of using a single object, it is natural to consider a whole (co)chain complex of objects. That is why, instead of using an abelian category~$\mathcal{A}$ (take for example~$\mathcal{A}=\Coh/X$ the abelian category of coherent sheaves on a scheme), one uses~$\Ch(\mathcal{A})$: the abelian category of (co)chain complexes over~$\mathcal{A}$.
 
 Because the calculation of (co)homology is invariant up to homotopy equivalence, we construct the category~$\KKK(\mathcal{A})$ by identifying morphisms in~$\Ch(\mathcal{A})$ which are homotopy equivalent. This is an intermediate step which can be skipped, but it helps in proving the main properties of the resulting object.
 
@@ -58,12 +59,20 @@ To summarise, the construction goes through the following steps
   \item construct the category of (co)chain complexes~$\KKK(\mathcal{A})$ over~$\mathcal{A}$ by identifying the homotopy equivalences in~$\Ch(\mathcal{A})$;
   \item construct the derived category~$\derived(\mathcal{A})$ of~$\mathcal{A}$ by inverting the quasi-isomorphisms in~$\KKK(\mathcal{A})$.
 \end{enumerate}
-Instead of considering all (co)chain complexes, we can also consider complexes which satisfy a certain boundedness assumption. We could ask for the complexes to be
+Instead of considering all (co)chain complexes, we can also consider complexes which satisfy a certain boundedness assumption. We could ask for (the cohomology of) the complexes to be
 \begin{enumerate}
   \item bounded on both sides (denoted~$\derived^\bounded(\mathcal{A})$),
   \item bounded below or above (denoted~$\derived^+(\mathcal{A})$ resp.\ $\derived^-(\mathcal{A})$),
   \item concentrated in positive or negative degrees (denoted~$\derived^{\geq 0}(\mathcal{A})$ resp.\ $\derived^{\leq 0}(\mathcal{A})$).
 \end{enumerate}
+
+One interesting property of the derived category is that the Hom\dash functor for~$\mathcal{A}$ turns into a device that knows all~$\Ext^i$. We have a canonical inclusion of~$\mathcal{A}$ into~$\derived(\mathcal{A})$, by considering an object as a cochain complex in degree~$0$. Now we can shift objects: the object~$A[i]$ in~$\derived(\mathcal{A})$ is the cochain complex such that~$A$ lives in degree~$i$. Then we obtain the formula
+\begin{equation}
+  \label{equation:Hom-Ext}
+  \Hom_{\derived(\mathcal{A})}(A,B[i])\cong\Ext_{\mathcal{A}}^i(A,B).
+\end{equation}
+To see why this is true: the object~$B[i]$ is isomorphic to a shift of an injective resolution in~$\derived(\mathcal{A})$, hence the~$\Hom$ in~$\derived(\mathcal{A})$ is nothing but a way of computing the derived functors of~$\Hom$.
+
 
 \section{Grothendieck duality}
 \label{section:grothendieck-duality}
@@ -115,8 +124,8 @@ We are almost where we want to be. The last step to take is ``go relative''. Whi
 \end{equation}
 With a little imagination this looks like an adjunction:
 \begin{enumerate}
-  \item the cohomology groups~$\HH^i(X,\mathcal{F})$ can be taken together to~$\mathbf{R}f_*(\mathcal{F})$\footnote{The functor~$f_*$ in this case is nothing but global sections, as~$f_*(\mathcal{F})$ evaluated on~$\Spec k$ is~$\Gamma(f^{-1}(\Spec k),\mathcal{F})$.};
-  \item by the properties of the derived category we can take~$\Ext$'s together into a~$\Hom$ in the derived category\expand{this is not yet in the introduction to derived categories!}.
+  \item the cohomology groups~$\HH^i(X,\mathcal{F})$ can be taken together\footnote{The functor~$f_*$ in this case is nothing but global sections, as~$f_*(\mathcal{F})$ evaluated on~$\Spec k$ is~$\Gamma(f^{-1}(\Spec k),\mathcal{F})$, see \cref{example:global-sections-pushforward}.} to~$\mathbf{R}f_*(\mathcal{F})$;
+  \item by the properties of the derived category we can take~$\Ext$'s together into a~$\Hom$ in the derived category, see \eqref{equation:Hom-Ext}.
 \end{enumerate}
 Hence we can write Serre duality as
 \begin{equation}
@@ -130,7 +139,29 @@ which in this case is explicitly given by~$-\otimes_k\omega_X^\circ$. But in thi
 
 
 \paragraph{Dualising complexes}
-So we now that there is some virtue in looking at the relative context, and that we will obtain an adjoint pair encoding Grothendieck duality. Another thing we could do is look at the dualising sheaf. Then we can motivate Grothendieck duality by considering another rather trivial situation: $\Spec\mathbb{Z}$, as was done in \cite[\S V.1]{hartshorne-residues-and-duality}\expand.
+So we now that there is some virtue in looking at the relative context, and that we will obtain an adjoint pair encoding Grothendieck duality. Another thing we could do is look at the dualising sheaf. Then we can motivate Grothendieck duality by considering another rather trivial situation: $\Spec\mathbb{Z}$, as was done in \cite[\S V.1]{hartshorne-residues-and-duality}.
+
+There are two ways of taking the dual of an abelian group:
+\begin{enumerate}
+  \item the \emph{Pontryagin dual} of a finite abelian group, which is the functor~$\Hom_{\Ab}(-,\mathbb{Q}/\mathbb{Z})$;
+  \item the dual of a finitely generated free group, which is the functor~$\Hom_{\Ab}(-,\mathbb{Q})$.
+\end{enumerate}
+Each applied twice to the correct situation gives a abelian group isomorphic to the one you started with. We can consider these two dualising groups at the same time, by considering the complex
+\begin{equation}
+  \dotso\to0\to\mathbb{Q}\to\mathbb{Q}/\mathbb{Z}\to0\to\dotso
+\end{equation}
+in~$\derived_{\mathrm{fg}}^\bounded(\Ab)$, the derived category of bounded complexes inside~$\derived^+(\Ab)$ whose cohomology is finitely generated. This 2-term complex is an injective resolution of~$\mathbb{Z}$, as both groups are divisible! So it is isomorphic to~$\mathbb{Z}$ in~$\derived_{\mathrm{fg}}^\bounded(\Ab)$, and to perform computations in the derived category we might as well use this complex instead of~$\mathbb{Z}$. This yields the following proposition \cite[proposition:V.1-1]{hartshorne-residues-and-duality}.
+\begin{proposition}
+  The functor
+  \begin{equation}
+    \dual\colon\derived_{\mathrm{fg}}^\bounded\to\derived_{\mathrm{fg}}^\bounded:M^\bullet\to\RRRHom^\bullet(M^\bullet,\mathbb{Z})
+  \end{equation}
+  is a contravariant endofunctor, and there is a natural equivalence
+  \begin{equation}
+    \eta\colon\identity_{\derived_{\mathrm{fg}}^\bounded(\Ab)}\Rightarrow\dual\circ\dual.
+  \end{equation}
+\end{proposition}
+Hence on the ``small'' category~$\derived_{\mathrm{fg}}^\bounded(\Ab)$ sitting inside the bigger~$\derived^+(\Ab)$ this duality functor is truly a duality. The small category corresponds to the bounded derived category of coherent sheaves, as by the usual mantra ``coherent = finitely generated.''
 
 
 \subsection{The ideal theorem}
@@ -138,7 +169,7 @@ The first thing we can consider as a form of Grothendieck duality is \cite[Ideal
 \begin{theorem}[Ideal theorem] {\ }
   \label{theorem:classical}
   \begin{enumerate}
-    \item\label{enumerate:classical-a} For every morphism $f\colon X\to Y$ of finite type of preschemes\footnote{I have left this historic terminology in: what nowadays are called schemes were called preschemes in the early days of scheme theory. At first the philosophy was that we'd be mostly interested in separated schemes, which were called schemes, and not necessarily separated schemes were preschemes. In case you didn't know this little fact from the history of scheme theory, you know understand references to preschemes.} there is a functor
+    \item\label{enumerate:classical-a} For every morphism $f\colon X\to Y$ of finite type\footnote{Recall that a morphism of finite type means that there exists an open affine covering of the codomain, such that the inverse images of these open sets admit a finite open affine covering, such that each of these rings is finitely generated over the open affine in the codomain.} of preschemes\footnote{I have left this historic terminology in: what nowadays are called schemes were called preschemes in the early days of scheme theory. At first the philosophy was that we'd be mostly interested in separated schemes, which were called schemes, and not necessarily separated schemes were preschemes. In case you didn't know this little fact from the history of scheme theory, you know understand references to preschemes.} there is a functor
       \begin{equation}
         f^!\colon\derived(Y)\to\derived(X)
       \end{equation}
@@ -150,12 +181,12 @@ The first thing we can consider as a form of Grothendieck duality is \cite[Ideal
             f^!(\mathcal{G})=f^*(\mathcal{G})\otimes\omega,
           \end{equation}
           where $\omega=\Omega_{X/Y}^n$ is the sheaf of highest order differentials;
-        \item\label{enumerate:classical-a-3} if $f$ is a finite morphism, then
+        \item\label{enumerate:classical-a-3} if $f$ is a finite\footnote{Recall that a morphism is finite if there exists an open affine covering of the codomain such that the inverse image of each open affine is again affine, and moreover finite as a module over the original ring.} morphism, then\fixthis{notation?}
           \begin{equation}
             f^!(\mathcal{G})=\HHom_{\mathcal{O}_Y}(f_*\mathcal{O}_X,\mathcal{G})^\sim.
           \end{equation}
       \end{enumerate}
-    \item\label{enumerate:classical-b} For every proper morphism $f\colon X\to Y$ of preschemes, there is a \emph{trace morphism}
+    \item\label{enumerate:classical-b} For every proper\footnote{Recall that a proper morphism between schemes is like a proper map of topological spaces, where inverse images of compact sets are again compact. As being compact in a non-Hausdorff context doesn't make much sense, algebraic geometers use a different definition of proper: the map~$f\colon X\to Y$ between schemes is said to be \emph{proper} if it is universally closed (i.e.\ for all~$Y\to Z$ is~$X\times_YZ\to Z$ closed on the level of underlying topological spaces) and separated (i.e.~$\Delta_f\colon X\to X\times_YX$ is closed, which is an analogue of being Hausdorff).} morphism $f\colon X\to Y$ of preschemes, there is a \emph{trace morphism}
       \begin{equation}
         \Tr_f\colon\RRR f_*\circ f^!\Rightarrow\identity
       \end{equation}
