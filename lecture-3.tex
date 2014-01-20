@@ -23,7 +23,16 @@
 \label{section:derived-categories}
 The main idea behind derived categories is to make working with derived functors more natural. Recall that given a left (or right) exact functor between abelian categories one can determine its derived functors, which form a family of functors. These functors measure the extent to which the original functor is not exact, and they can give interesting algebraic or geometric information (depending on the original choice of functor).
 
-The goal is to capture all of these in one single \emph{total derived functor}. So instead of working with the family~$(\RRR^nF)_{n\in\mathbb{N}}$ one wants to construct a functor~$\RRR F$ replacing the whole family.
+\begin{example}
+  So far we have used just one derived functor, which was sheaf cohomology. The left-exact functor under consideration is~$\Gamma(X,-)$, its derived functors~$\HH^i(X,-)$.
+\end{example}
+
+There are other examples.
+\begin{example}
+  Global sections are a special case of pushforward: if~$f\colon X\to\Spec k$ is the structural morphism then~$f_*(-)=\Gamma(X,-)$. We obtain a sheaf on~$\Spec k$, which is nothing but a vectorspace, the only non-empty open set has~$\Gamma(f^{-1}(\Spec k),-)$ as its sections. We can conclude that~$f_*$ will not be right-exact in general as it is a generalisation of global sections.
+\end{example}
+
+The goal is to capture all of these in one single \emph{total derived functor}. So instead of working with the family~$(\RR^nF)_{n\in\mathbb{N}}$ one wants to construct a functor~$\RRR F$ replacing the whole family.
 
 To calculate (co)homology one uses injective (or projective, or flat, or flabby, or~\dots depending on the context) resolutions. So instead of using a single object, it is natural to consider a whole (co)chain complex of objects. That is why, instead of using an abelian category~$\mathcal{A}$ (take for example~$\mathcal{A}=\Coh/X$ the abelian category of coherent sheaves on a scheme), one uses~$\Ch(\mathcal{A})$: the abelian category of (co)chain complexes over~$\mathcal{A}$.
 
@@ -232,6 +241,14 @@ The question is: in which situations can we prove this ideal theorem? The answer
 
 \subsection{Fourier--Mukai transforms}
 \label{subsection:fourier-mukai-transforms}
+
+\subsection{More applications}
+\begin{enumerate}
+  \item moduli spaces: see \cite{deligne-mumford-irreducibility-moduli-of-curves}
+  \item resolution of singularities: \addreference
+  \item arithmetic geometry: Eisenstein stuff \addreference
+  \item enumerative geometry: \addreference
+\end{enumerate}
 
 \printbibliography
 
