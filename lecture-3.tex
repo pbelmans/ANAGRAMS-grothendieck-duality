@@ -240,8 +240,9 @@ The first thing we can consider as a form of Grothendieck duality is \cite[Ideal
             \HHom_{\mathcal{O}_Y}(f_*\mathcal{O}_X,\mathcal{G})\to\mathcal{G}.
           \end{equation}
       \end{enumerate}
-    \item\label{enumerate:classical-c} If $f\colon X\to Y$ is a proper morphism, then the duality morphism
+    \item\label{enumerate:classical-c} If $f\colon X\to Y$ is a proper morphism, then the \emph{duality morphism}
       \begin{equation}
+        \label{equation:duality-morphism}
         \Theta_f\colon\RRRHom_X(\mathcal{F},f^!(\mathcal{G}))\to\RRRHom_Y(\mathbf{R}f_*\mathcal{F},\mathcal{G})
       \end{equation}
       obtained by composing the natural map\footnote{Obtained as the Yoneda pairing, see \cite[page 5]{hartshorne-residues-and-duality}.} above with $\Tr_f$, is an isomorphism for $\mathcal{F}\in\derived(X)$ and $\mathcal{G}\in\derived(Y)$.
@@ -311,8 +312,18 @@ In \cref{table:situations,table:situations-derived-categories} we have fitted th
   \label{table:situations-derived-categories}
 \end{table}
 
-\subsection{How to recover classical results?}
-\label{subsection:classical-results}
+\begin{remark}
+  The \emph{duality morphism} \eqref{equation:duality-morphism} also has a relative version \cite[3.4.4]{conrad-grothendieck-duality-and-base-change}, which reads
+  \begin{equation}
+    \underline{\Theta}_f\colon\RRR f_*\RRRHHom_X^\bullet(\mathcal{F}^\bullet,f^!(\mathcal{G}^\bullet))\to\RRRHHom_Y^\bullet(\RRR f_*(\mathcal{F}^\bullet),G^\bullet).
+  \end{equation}
+  Taking global sections yields the result mentioned in the ideal theorem.
+\end{remark}
+
+\subsection{What about dualising complexes?}
+The ideal theorem as stated here does not mention dualising objects. But in the case of Serre duality we really phrased things in terms of our ``magic object''~$\omega_X^\circ$ which made the theory work. In the approach to Grothendieck duality of Hartshorne these dualising objects still play an important role (in the next lecture we will see approaches in which the role of this explicit object is greatly diminished), and trying to get a hold on them is the main difficulty. The problem in handling dualising complexes is that they are objects in the derived category, and there is the usual mantra that triangulated categories do not allow gluing, so a straightforward local approach doesn't work.
+
+In the proof of Grothendieck duality one tries to keep track of what the dualising object looks like. Recall that in the case of Riemann--Roch this dualising object was~$\Omega_C^1$, and in the context of Serre duality we used~$\Omega_{\mathbb{P}_k^n/k}^n$ for projective space, and a~$\sheafExt$ construction for the general case of a projective variety. In the situation of Grothendieck duality where we have used derived categories everywhere one can ask what~$\omega_X^\circ=f^!(\mathcal{O}_X)$ looks like. The answer is given in \cref{table:comparison-X-dualising-sheaf}.
 
 \begin{table}[p]
   \centering
@@ -329,11 +340,12 @@ In \cref{table:situations,table:situations-derived-categories} we have fitted th
   \label{table:comparison-X-dualising-sheaf}
 \end{table}
 
+We observe that the philosophy is ``the nicer~$X$, the nicer~$\omega_X^\circ$''.
+
 
 \section{Applications}
 \label{section:applications-grothendieck-duality}
-\subsection{Local duality}
-\label{subsection:local-duality}
+Due to time constraints, both in preparing these notes and actually lecturing about them, the following list of applications is not as worked out as I want it to be.
 
 \subsection{The yoga of six functors}
 \label{subsection:six-functors-yoga}
@@ -354,10 +366,10 @@ and in the case of manifolds and locally compact spaces we have Poincar\'e--Verd
 \end{enumerate}
 
 In formalising the properties that are similar in each of these contexts we see that
-\begin{enumerate}
+\begin{itemize}
   \item we are considering ``image functors of sheaves'';
   \item we are using the monoidal structure of the category of sheaves.
-\end{enumerate}
+\end{itemize}
 In the general situation of abstract Verdier duality we can identify the following functors, for~$f\colon X\to Y$ a morphism in some category, and~$\mathcal{C}(X)$ some category of sheaves associated to~$X$.
 
 \begin{center}
@@ -382,20 +394,25 @@ We have relationships between these functors. These are the adjunctions
 \end{enumerate}
 In the situation of Grothendieck duality we moreover have the adjunction (with some abuse of notation, dropping~$\RRR$)
 \begin{equation}
-  f_*\dash f^!
+  f_*\dashv f^!
 \end{equation}
 if~$f\colon X\to Y$ is a proper map between the correct type of schemes. Or rather, we have~$f_*=f_!$ in this situation. But in general these are different, so we really have six functors and not just five. In the case of \'etale cohomology these six (or four) functors are also interesting to interpret, for which one is referred to \cite{milne-etale-cohomology}.
 
-\subsection{Fourier--Mukai transforms}
-\label{subsection:fourier-mukai-transforms}
+\subsection{Other applications}
+Each of the following applications more than deserves a proper treatment, but unfortunately this is not possible here. It is here to show how diverse applications of Grothendieck duality can get.
 
-\subsection{More applications}
-\begin{enumerate}
-  \item moduli spaces: see \cite{deligne-mumford-irreducibility-moduli-of-curves}
-  \item resolution of singularities: \addreference
-  \item arithmetic geometry: Eisenstein stuff \addreference
-  \item enumerative geometry: \addreference
-\end{enumerate}
+\paragraph{Local duality}
+The study of local rings and singularities leads to working with Cohen--Macaulay rings and modules, and understanding these in as concrete terms as possible. It is related to representation theory as well.
+
+\paragraph{Fourier--Mukai transforms}
+By using the formalism of the six functors one can work with Fourier--Mukai transforms, which are an analogue of the usual Fourier transforms, but now for derived categories of sheaves on smooth projective varieties. A really nice introduction to this subject is \cite{huybrechts-fourier-mukai}.
+
+\paragraph{The moduli of curves}
+The paper that introduced algebraic stacks to the world \cite{deligne-mumford-irreducibility-moduli-of-curves} also uses Grothendieck duality right from the start. They are working in a relative situation (because they study families of curves) hence they require the abstract machinery, but apply it to very down-to-earth situations of stable curves and understanding what they look like.
+
+\paragraph{Arithmetic geometry}
+The relative formalism also applies to arithmetic geometry, for example in studying Eisenstein ideals \cite{mazur-modular-curves-eisenstein-ideal}.
+
 
 \printbibliography
 
