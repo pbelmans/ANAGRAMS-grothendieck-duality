@@ -66,12 +66,17 @@ Instead of considering all (co)chain complexes, we can also consider complexes w
   \item concentrated in positive or negative degrees (denoted~$\derived^{\geq 0}(\mathcal{A})$ resp.\ $\derived^{\leq 0}(\mathcal{A})$).
 \end{enumerate}
 
-One interesting property of the derived category is that the Hom\dash functor for~$\mathcal{A}$ turns into a device that knows all~$\Ext^i$. We have a canonical inclusion of~$\mathcal{A}$ into~$\derived(\mathcal{A})$, by considering an object as a cochain complex in degree~$0$. Now we can shift objects: the object~$A[i]$ in~$\derived(\mathcal{A})$ is the cochain complex such that~$A$ lives in degree~$i$. Then we obtain the formula
-\begin{equation}
-  \label{equation:Hom-Ext}
-  \Hom_{\derived(\mathcal{A})}(A,B[i])\cong\Ext_{\mathcal{A}}^i(A,B).
-\end{equation}
-To see why this is true: the object~$B[i]$ is isomorphic to a shift of an injective resolution in~$\derived(\mathcal{A})$, hence the~$\Hom$ in~$\derived(\mathcal{A})$ is nothing but a way of computing the derived functors of~$\Hom$.
+One interesting property of the derived category is that the Hom\dash functor for~$\mathcal{A}$ turns into a device that knows all~$\Ext^i$.
+\begin{example}
+  We have a canonical inclusion of~$\mathcal{A}$ into~$\derived(\mathcal{A})$, by considering an object as a cochain complex in degree~$0$. Now we can shift objects: the object~$A[i]$ in~$\derived(\mathcal{A})$ is the cochain complex such that~$A$ lives in degree~$i$. Then we obtain the formula
+  \begin{equation}
+    \label{equation:Hom-Ext}
+    \Hom_{\derived(\mathcal{A})}(A,B[i])\cong\Ext_{\mathcal{A}}^i(A,B).
+  \end{equation}
+  To see why this is true: the object~$B[i]$ is isomorphic to a shift of an injective resolution in~$\derived(\mathcal{A})$, hence the~$\Hom$ in~$\derived(\mathcal{A})$ is nothing but a way of computing the derived functors of~$\Hom$.
+
+  Sometimes we'll denote~$\Hom_{\derived(\mathcal{A})}(A^\bullet,B^\bullet)$ by~$\RRRHom^\bullet(A^\bullet,B^\bullet)$ to save a little on the notation.
+\end{example}
 
 
 \section{Grothendieck duality}
@@ -131,11 +136,23 @@ Hence we can write Serre duality as
 \begin{equation}
   \Hom_{\mathbf{D}^{\mathrm{b}}(\Spec k)}\left( \mathbf{R}f_*(\mathcal{F}),V \right)\cong\Hom_{\mathbf{D}^{\mathrm{b}}(X)}\left( \mathcal{F},f^!(V) \right)
 \end{equation}
-where~$\mathbf{D}^{\mathrm{b}}(\Spec k)$ is the bounded derived category of finite-dimensional~$k$\dash vector spaces and~$\mathbf{D}^{\mathrm{b}}(X)$ is the bounded derived category of coherent sheaves on~$X$\footnote{For ease of statement we'll take~$X$ smooth here.}. Hence Serre duality asserts the existence of a dual
+where~$\mathbf{D}^{\mathrm{b}}(\Spec k)$ is the bounded derived category of finite-dimensional~$k$\dash vector spaces and~$\mathbf{D}^{\mathrm{b}}(X)$ is the bounded derived category of coherent sheaves on~$X$ (assume~$X$ is smooth).
+
+Hence Serre duality asserts the existence of a dual
 \begin{equation}
   f^!\colon\mathbf{D}^{\mathrm{b}}(\Spec k)\to\mathbf{D}^{\mathrm{b}}(X)
 \end{equation}
 which in this case is explicitly given by~$-\otimes_k\omega_X^\circ$. But in this statement we could easily replace~$f\colon X\to\Spec k$ by a more general~$f\colon X\to Y$, and the existence of a right adjoint~$f^!$ would still make sense!
+
+A word on the notation~$f^!$:
+\begin{enumerate}
+  \item It is often pronounced ``$f$ upper shriek'', and it's named ``exceptional inverse image'';
+  \item It \emph{only} lives on the level of derived categories, unlike~$f_*$ and~$f^*$, which get derived into~$\RRR f_*$ and~$\LLL f^*$, so in line with \cite[\S 3.1, \'expos\'e XVIII]{sga43} which says (in a slightly different context, but still valid)
+    \begin{quote}
+      N.B.\ La notation~$\RRR f^!$ est abusive en ce que~$\RRR f^!$ n'est en g\'en\'eral pas le d\'eriv\'e d'un foncteur~$f^!$.
+    \end{quote}
+    For this reason I will just denote it by~$f^!$, as is already done for instance in \cite{hartshorne-residues-and-duality}.
+\end{enumerate}
 
 
 \paragraph{Dualising complexes}
@@ -143,15 +160,18 @@ So we now that there is some virtue in looking at the relative context, and that
 
 There are two ways of taking the dual of an abelian group:
 \begin{enumerate}
-  \item the \emph{Pontryagin dual} of a finite abelian group, which is the functor~$\Hom_{\Ab}(-,\mathbb{Q}/\mathbb{Z})$;
-  \item the dual of a finitely generated free group, which is the functor~$\Hom_{\Ab}(-,\mathbb{Q})$.
+  \item the \emph{Pontryagin dual} of a finite abelian group, which is given by the functor~$\Hom_{\Ab}(-,\mathbb{Q}/\mathbb{Z})$;
+  \item the dual of a finitely generated free group, which is given by the functor~$\Hom_{\Ab}(-,\mathbb{Q})$.
 \end{enumerate}
-Each applied twice to the correct situation gives a abelian group isomorphic to the one you started with. We can consider these two dualising groups at the same time, by considering the complex
+Each applied twice to the correct situation gives a abelian group isomorphic to the one you started with. We can consider these two dualising functors at the same time, by considering the complex
 \begin{equation}
   \dotso\to0\to\mathbb{Q}\to\mathbb{Q}/\mathbb{Z}\to0\to\dotso
 \end{equation}
-in~$\derived_{\mathrm{fg}}^\bounded(\Ab)$, the derived category of bounded complexes inside~$\derived^+(\Ab)$ whose cohomology is finitely generated. This 2-term complex is an injective resolution of~$\mathbb{Z}$, as both groups are divisible! So it is isomorphic to~$\mathbb{Z}$ in~$\derived_{\mathrm{fg}}^\bounded(\Ab)$, and to perform computations in the derived category we might as well use this complex instead of~$\mathbb{Z}$. This yields the following proposition \cite[proposition:V.1-1]{hartshorne-residues-and-duality}.
+in~$\derived_{\mathrm{fg}}^\bounded(\Ab)$, the derived category of bounded complexes inside~$\derived^+(\Ab)$ whose cohomology is finitely generated. This 2-term complex is an injective resolution of~$\mathbb{Z}$, as both groups are divisible! So it is isomorphic to~$\mathbb{Z}$ in~$\derived_{\mathrm{fg}}^\bounded(\Ab)$, and to perform computations in the derived category we can interchange them freely.
+
+This yields the following proposition \cite[proposition:V.1-1]{hartshorne-residues-and-duality}.
 \begin{proposition}
+  \label{proposition:duality-abelian-groups}
   The functor
   \begin{equation}
     \dual\colon\derived_{\mathrm{fg}}^\bounded\to\derived_{\mathrm{fg}}^\bounded:M^\bullet\to\RRRHom^\bullet(M^\bullet,\mathbb{Z})
@@ -163,6 +183,26 @@ in~$\derived_{\mathrm{fg}}^\bounded(\Ab)$, the derived category of bounded compl
 \end{proposition}
 Hence on the ``small'' category~$\derived_{\mathrm{fg}}^\bounded(\Ab)$ sitting inside the bigger~$\derived^+(\Ab)$ this duality functor is truly a duality. The small category corresponds to the bounded derived category of coherent sheaves, as by the usual mantra ``coherent = finitely generated.''
 
+\begin{proof}[Proof of proposition \ref{proposition:duality-abelian-groups}]
+  We have
+  \begin{equation}
+    \HH^i(\dual(M^\bullet))=\HH^i(\RRRHom^\bullet(M^\bullet,\mathbb{Z}))=\Ext^i(M^\bullet,\mathbb{Z})
+  \end{equation}
+  hence if~$M^\bullet$ has finitely generated and bounded cohomology, so has~$\dual(M^\bullet)$. We obtain that~$\dual$ is a well-defined endofunctor.
+
+  The natural equivalence is defined in \cite[lemma V.1.2]{hartshorne-residues-and-duality} in an obvious way. To check that it is a natural equivalence: take a free resolution of~$M^\bullet$. This means finding a surjection of a free abelian group onto~$M^\bullet$ and repeating this process for the kernel of this map, and so on.
+  
+  By \cite[lemma I.7.1]{hartshorne-residues-and-duality} it suffices to check it for~$M^\bullet=\mathbb{Z}^r$ for some~$r\geq 1$ as we only care about finitely generated cohomology. But things are additive, hence we can take~$r=1$. Now it suffices to observe that
+  \begin{equation}
+    \Ext^i(\mathbb{Z},\mathbb{Z})=
+    \begin{cases}
+      \mathbb{Z} & i=0 \\
+      0 & i\neq 0
+    \end{cases}
+  \end{equation}
+  which gives the desired natural equivalence.
+\end{proof}
+
 
 \subsection{The ideal theorem}
 The first thing we can consider as a form of Grothendieck duality is \cite[Ideal theorem on page 6]{hartshorne-residues-and-duality}. This summarises what one tries to prove to be able to speak of a ``Grothendieck duality result''. After the statement we will collect some contexts in which we can prove this.
@@ -171,6 +211,7 @@ The first thing we can consider as a form of Grothendieck duality is \cite[Ideal
   \begin{enumerate}
     \item\label{enumerate:classical-a} For every morphism $f\colon X\to Y$ of finite type\footnote{Recall that a morphism of finite type means that there exists an open affine covering of the codomain, such that the inverse images of these open sets admit a finite open affine covering, such that each of these rings is finitely generated over the open affine in the codomain.} of preschemes\footnote{I have left this historic terminology in: what nowadays are called schemes were called preschemes in the early days of scheme theory. At first the philosophy was that we'd be mostly interested in separated schemes, which were called schemes, and not necessarily separated schemes were preschemes. In case you didn't know this little fact from the history of scheme theory, you know understand references to preschemes.} there is a functor
       \begin{equation}
+        \label{equation:f-upper-shriek}
         f^!\colon\derived(Y)\to\derived(X)
       \end{equation}
       such that
@@ -181,9 +222,9 @@ The first thing we can consider as a form of Grothendieck duality is \cite[Ideal
             f^!(\mathcal{G})=f^*(\mathcal{G})\otimes\omega,
           \end{equation}
           where $\omega=\Omega_{X/Y}^n$ is the sheaf of highest order differentials;
-        \item\label{enumerate:classical-a-3} if $f$ is a finite\footnote{Recall that a morphism is finite if there exists an open affine covering of the codomain such that the inverse image of each open affine is again affine, and moreover finite as a module over the original ring.} morphism, then\fixthis{notation?}
+        \item\label{enumerate:classical-a-3} if $f$ is a finite\footnote{Recall that a morphism is finite if there exists an open affine covering of the codomain such that the inverse image of each open affine is again affine, and moreover finite as a module over the original ring.} morphism, then
           \begin{equation}
-            f^!(\mathcal{G})=\HHom_{\mathcal{O}_Y}(f_*\mathcal{O}_X,\mathcal{G})^\sim.
+            f^!(\mathcal{G})=\HHom_{\mathcal{O}_Y}(f_*\mathcal{O}_X,\mathcal{G}).
           \end{equation}
       \end{enumerate}
     \item\label{enumerate:classical-b} For every proper\footnote{Recall that a proper morphism between schemes is like a proper map of topological spaces, where inverse images of compact sets are again compact. As being compact in a non-Hausdorff context doesn't make much sense, algebraic geometers use a different definition of proper: the map~$f\colon X\to Y$ between schemes is said to be \emph{proper} if it is universally closed (i.e.\ for all~$Y\to Z$ is~$X\times_YZ\to Z$ closed on the level of underlying topological spaces) and separated (i.e.~$\Delta_f\colon X\to X\times_YX$ is closed, which is an analogue of being Hausdorff).} morphism $f\colon X\to Y$ of preschemes, there is a \emph{trace morphism}
@@ -206,15 +247,33 @@ The first thing we can consider as a form of Grothendieck duality is \cite[Ideal
       obtained by composing the natural map\footnote{Obtained as the Yoneda pairing, see \cite[page 5]{hartshorne-residues-and-duality}.} above with $\Tr_f$, is an isomorphism for $\mathcal{F}\in\derived(X)$ and $\mathcal{G}\in\derived(Y)$.
   \end{enumerate}
 \end{theorem}
-The question is: in which situations can we prove this ideal theorem? The answer (as per \cite{hartshorne-residues-and-duality}, nowadays it is more general) is:
+So the ideal theorem has 3 main themes:
+\begin{enumerate}
+  \item the existence of the adjoint~$f^!$;
+  \item the trace morphism for proper morphisms;
+  \item the duality for proper morphisms.
+\end{enumerate}
+The first theme describes the functor~$f^!$ in the cases where we know what it should be. The second theme describes what the counit adjunction should look like, while the third theme asserts that it actually is an adjunction. Remark that
+\begin{enumerate}
+  \item We haven't specified~$\derived(X)$.
+  \item The role of~$\derived(X)$ will change depending on
+    \begin{enumerate}
+      \item the type of schemes we are considering;
+      \item the type of maps we are considering;
+      \item the theme we are considering.
+    \end{enumerate}
+\end{enumerate}
+
+The question is: in which situations can we prove this ideal theorem? The answer (as per \cite{hartshorne-residues-and-duality}, nowadays it is more general, this will be discussed in the next lecture) is:
 \begin{enumerate}
   \item noetherian schemes of finite Krull dimensions and morphisms which factor through a suitable projective space \cite[\S III.8, \S III.10, \S III.11]{hartshorne-residues-and-duality}: all statements are applied for $\derived_\qc^+(-)$ except the last in which case $\mathcal{F}$ lives in $\derived_\qc^-(X)$;
   \item noetherian schemes which admit dualizing complexes (see \cite[\S V.10]{hartshorne-residues-and-duality}, it implies finite Krull dimension) and morphisms whose fibres are of bounded dimension \cite[\S VII.3]{hartshorne-residues-and-duality}: all statements are applied to $\derived_\coh^+(-)$ except the last in which case $\mathcal{F}$ lives in $\derived_\qc^-(X)$;
   \item noetherian schemes of finite Krull dimension and smooth morphisms \cite[\S VII.4]{hartshorne-residues-and-duality}: the results in \ref{enumerate:classical-a} are applied to $\derived_\qc^+(-)$, in \ref{enumerate:classical-b} to $\derived_\qc^\bounded(-)$ and in \ref{enumerate:classical-c} to $\mathcal{F}$ in $\derived_\qc^-(X)$ and $\mathcal{G}$ in $\derived_\qc^\bounded(Y)$;
   \item noetherian schemes and arbitrary morphisms \cite[appendix]{hartshorne-residues-and-duality}, but only statements \ref{enumerate:classical-a-1}, \ref{enumerate:classical-b-1} and \ref{enumerate:classical-c}: the results are applied to $\derived(\Qcoh(-))$.
 \end{enumerate}
+In \cref{table:situations,table:situations-derived-categories} we have fitted this information in a nice overview.
 
-\begin{table}
+\begin{table}[p]
   \centering
   \begin{tabular}{cccc}
     \toprule
@@ -229,7 +288,7 @@ The question is: in which situations can we prove this ideal theorem? The answer
   \label{table:situations}
 \end{table}
 
-\begin{table}
+\begin{table}[p]
   \centering
   \begin{tabular}{rccc}
     \toprule
@@ -255,7 +314,7 @@ The question is: in which situations can we prove this ideal theorem? The answer
 \subsection{How to recover classical results?}
 \label{subsection:classical-results}
 
-\begin{table}
+\begin{table}[p]
   \centering
   \begin{tabular}{cc}
     \toprule
@@ -263,7 +322,8 @@ The question is: in which situations can we prove this ideal theorem? The answer
     $X$ smooth & $\omega_X^\circ=\bigwedge^{\dim X}\Omega_X[\dim X]$ \\
     $X$ Gorenstein & $\omega_X^\circ$ shift of a line bundle by $\dim X$ \\
     $X$ Cohen--Macaulay & $\omega_X^\circ$ shift of a sheaf by $\dim X$ \\
-    $X$ arbitrary & $\omega_X^\circ$ is a complex
+    $X$ arbitrary & $\omega_X^\circ$ is a complex \\
+    \bottomrule
   \end{tabular}
   \caption{Comparison of singularness of $X$ and the look of $\omega_X^\circ$}
   \label{table:comparison-X-dualising-sheaf}
