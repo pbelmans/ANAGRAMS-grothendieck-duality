@@ -337,6 +337,54 @@ In \cref{table:situations,table:situations-derived-categories} we have fitted th
 
 \subsection{The yoga of six functors}
 \label{subsection:six-functors-yoga}
+The notion of Grothendieck duality that we have seen so far is in the following situation:
+\begin{enumerate}
+  \item (quasi)coherent sheaves;
+  \item Zariski topology for schemes;
+\end{enumerate}
+But one can consider other contexts too. In the study of \'etale cohomology we have:
+\begin{enumerate}
+  \item torsion sheaves;
+  \item \'etale topology for schemes;
+\end{enumerate}
+and in the case of manifolds and locally compact spaces we have Poincar\'e--Verdier duality:
+\begin{enumerate}
+  \item sheaves;
+  \item locally compact spaces.
+\end{enumerate}
+
+In formalising the properties that are similar in each of these contexts we see that
+\begin{enumerate}
+  \item we are considering ``image functors of sheaves'';
+  \item we are using the monoidal structure of the category of sheaves.
+\end{enumerate}
+In the general situation of abstract Verdier duality we can identify the following functors, for~$f\colon X\to Y$ a morphism in some category, and~$\mathcal{C}(X)$ some category of sheaves associated to~$X$.
+
+\begin{center}
+  \begin{tabular}{ccc}
+    \toprule
+    notation & name & signature \\\midrule
+    $f^*$ & inverse image & $f^*\colon\mathcal{C}(Y)\to\mathcal{C}(X)$ \\
+    $f_*$ & direct image & $f_*\colon\mathcal{C}(X)\to\mathcal{C}(Y)$ \\
+    $f_!$ & exceptional (or proper) direct image & $f_!\colon\mathcal{C}(X)\to\mathcal{C}(Y)$ \\
+    $f^!$ & exceptional (or proper) inverse image & $f^!\colon\mathcal{C}(Y)\to\mathcal{C}(X)$ \\
+    $\HHom(-,-)$ & internal Hom & $\mathcal{C}(X)\times\mathcal{C}(X)\to\mathcal{C}(X)$ \\
+    $-\otimes-$ & internal tensor product & $\mathcal{C}(X)\times\mathcal{C}(X)\to\mathcal{C}(X)$ \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+
+We have relationships between these functors. These are the adjunctions
+\begin{enumerate}
+  \item $f^*\dashv f_*$;
+  \item $f_!\dashv f^!$;
+  \item $-\otimes C\dashv \HHom(C,-)$.
+\end{enumerate}
+In the situation of Grothendieck duality we moreover have the adjunction (with some abuse of notation, dropping~$\RRR$)
+\begin{equation}
+  f_*\dash f^!
+\end{equation}
+if~$f\colon X\to Y$ is a proper map between the correct type of schemes. Or rather, we have~$f_*=f_!$ in this situation. But in general these are different, so we really have six functors and not just five. In the case of \'etale cohomology these six (or four) functors are also interesting to interpret, for which one is referred to \cite{milne-etale-cohomology}.
 
 \subsection{Fourier--Mukai transforms}
 \label{subsection:fourier-mukai-transforms}
