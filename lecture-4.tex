@@ -18,6 +18,77 @@
 
 \clearpage
 
+\section{Applications of Grothendieck duality}
+\label{section:applications-grothendieck-duality}
+Due to time constraints, both in preparing these notes and actually lecturing about them, the following list of applications is not as worked out as I want it to be.
+
+\subsection{The yoga of six functors}
+\label{subsection:six-functors-yoga}
+The notion of Grothendieck duality that we have seen so far is in the following situation:
+\begin{enumerate}
+  \item (quasi)coherent sheaves;
+  \item Zariski topology for schemes;
+\end{enumerate}
+But one can consider other contexts too. In the study of \'etale cohomology we have:
+\begin{enumerate}
+  \item torsion sheaves;
+  \item \'etale topology for schemes;
+\end{enumerate}
+and in the case of manifolds and locally compact spaces we have Poincar\'e--Verdier duality:
+\begin{enumerate}
+  \item sheaves;
+  \item locally compact spaces.
+\end{enumerate}
+
+In formalising the properties that are similar in each of these contexts we see that
+\begin{itemize}
+  \item we are considering ``image functors of sheaves'';
+  \item we are using the monoidal structure of the category of sheaves.
+\end{itemize}
+In the general situation of abstract Verdier duality we can identify the following functors, for~$f\colon X\to Y$ a morphism in some category, and~$\mathcal{C}(X)$ some category of sheaves associated to~$X$.
+
+\begin{center}
+  \begin{tabular}{ccc}
+    \toprule
+    notation & name & signature \\\midrule
+    $f^*$ & inverse image & $f^*\colon\mathcal{C}(Y)\to\mathcal{C}(X)$ \\
+    $f_*$ & direct image & $f_*\colon\mathcal{C}(X)\to\mathcal{C}(Y)$ \\
+    $f_!$ & exceptional (or proper) direct image & $f_!\colon\mathcal{C}(X)\to\mathcal{C}(Y)$ \\
+    $f^!$ & exceptional (or proper) inverse image & $f^!\colon\mathcal{C}(Y)\to\mathcal{C}(X)$ \\
+    $\HHom(-,-)$ & internal Hom & $\mathcal{C}(X)\times\mathcal{C}(X)\to\mathcal{C}(X)$ \\
+    $-\otimes-$ & internal tensor product & $\mathcal{C}(X)\times\mathcal{C}(X)\to\mathcal{C}(X)$ \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+
+We have relationships between these functors. These are the adjunctions
+\begin{enumerate}
+  \item $f^*\dashv f_*$;
+  \item $f_!\dashv f^!$;
+  \item $-\otimes C\dashv \HHom(C,-)$.
+\end{enumerate}
+In the situation of Grothendieck duality we moreover have the adjunction (with some abuse of notation, dropping~$\RRR$)
+\begin{equation}
+  f_*\dashv f^!
+\end{equation}
+if~$f\colon X\to Y$ is a proper map between the correct type of schemes. Or rather, we have~$f_*=f_!$ in this situation. But in general these are different, so we really have six functors and not just five. In the case of \'etale cohomology these six (or four) functors are also interesting to interpret, for which one is referred to \cite{milne-etale-cohomology}.
+
+\subsection{Other applications}
+Each of the following applications more than deserves a proper treatment, but unfortunately this is not possible here. It is here to show how diverse applications of Grothendieck duality can get.
+
+\paragraph{Local duality}
+The study of local rings and singularities leads to working with Cohen--Macaulay rings and modules, and understanding these in as concrete terms as possible. It is related to representation theory as well.
+
+\paragraph{Fourier--Mukai transforms}
+By using the formalism of the six functors one can work with Fourier--Mukai transforms, which are an analogue of the usual Fourier transforms, but now for derived categories of sheaves on smooth projective varieties. A really nice introduction to this subject is \cite{huybrechts-fourier-mukai}.
+
+\paragraph{The moduli of curves}
+The paper that introduced algebraic stacks to the world \cite{deligne-mumford-irreducibility-moduli-of-curves} also uses Grothendieck duality right from the start. They are working in a relative situation (because they study families of curves) hence they require the abstract machinery, but apply it to very down-to-earth situations of stable curves and understanding what they look like.
+
+\paragraph{Arithmetic geometry}
+The relative formalism also applies to arithmetic geometry, for example in studying Eisenstein ideals \cite{mazur-modular-curves-eisenstein-ideal}.
+
+
 \section{Hartshorne's proof: dualising and residual complexes}
 
 \section{Deligne's proof: right adjoint by Verdier}
