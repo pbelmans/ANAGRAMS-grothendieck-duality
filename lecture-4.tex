@@ -53,8 +53,8 @@ In the general situation of abstract Verdier duality we can identify the followi
     notation & name & signature \\\midrule
     $f^*$ & inverse image & $f^*\colon\mathcal{C}(Y)\to\mathcal{C}(X)$ \\
     $f_*$ & direct image & $f_*\colon\mathcal{C}(X)\to\mathcal{C}(Y)$ \\
-    $f_!$ & exceptional (or proper) direct image & $f_!\colon\mathcal{C}(X)\to\mathcal{C}(Y)$ \\
-    $f^!$ & exceptional (or proper) inverse image & $f^!\colon\mathcal{C}(Y)\to\mathcal{C}(X)$ \\
+    $f_!$ & exceptional (or proper, or twisted) direct image & $f_!\colon\mathcal{C}(X)\to\mathcal{C}(Y)$ \\
+    $f^!$ & exceptional (or proper, or twisted) inverse image & $f^!\colon\mathcal{C}(Y)\to\mathcal{C}(X)$ \\
     $\HHom(-,-)$ & internal Hom & $\mathcal{C}(X)\times\mathcal{C}(X)\to\mathcal{C}(X)$ \\
     $-\otimes-$ & internal tensor product & $\mathcal{C}(X)\times\mathcal{C}(X)\to\mathcal{C}(X)$ \\
     \bottomrule
@@ -117,8 +117,51 @@ The relative formalism also applies to arithmetic geometry, for example in study
 
 
 \section{Hartshorne's proof: dualising and residual complexes}
+\label{section:hartshorne}
+\subsection{Context}
+\label{subsection:context}
+The first proof of Grothendieck duality was given by Robin Hartshorne in 1966 \cite{hartshorne-residues-and-duality}, based on notes provided by Alexander Grothendieck in 1963. As the statement and proof require the use of derived categories, Jean--Louis Verdier's ongoing work was included, and it was (as far as I can tell) the first published treatise of derived categories.
 
-\section{Deligne's proof: right adjoint by Verdier}
+This approach is the most geometric of them all, but also the most complicated. To quote Amnon Neeman \cite{neeman-grothendieck-duality-bousfield-brown}:
+\begin{quote}
+  [\ldots] Since derived categories are basically unsuited for local computations, the argument turns out to be quite unpleasant.
+\end{quote}
+If one reads the proof as outlined in \cite{hartshorne-residues-and-duality} this will become clear: after introducing the required notions of derived categories in algebraic geometry (the first 100 pages) the proof takes 250 pages. These 250 pages also and only summarise many important results on local cohomology and depend heavily on technical results in the EGA's.
+
+Moreover, the proof from \cite{hartshorne-residues-and-duality} is incomplete, and contains errors. Regarding the incompleteness the author himself says in \cite[\S II.5]{hartshorne-residues-and-duality}:
+\begin{quote}
+  Now these examples are only three of many more compatibilities which will come immediately to the reader's mind. I could make a big list, and in principle could prove each one on the list. [\ldots] And since the chore of inventing these diagrams and checking their commutativity is almost mechanical, the reader would not want to read them, nor I write them. [\ldots]
+\end{quote}
+Hence the reader is left with checking lots of commutative diagrams.
+
+And there is an important omission from the proof: the compatibility of the trace map for smooth morphisms with arbitrary base change. If~$f\colon X\to Y$ is a proper, surjective, smooth map of schemes whose fibers are equidimensional of dimension~$n$, then we had the \emph{trace map} \cite[\S VII.4]{hartshorne-residues-and-duality}
+\begin{equation}
+  \gamma_f\colon\RR^nf_*(\omega_{X/Y})\to\mathcal{O}_Y
+\end{equation}
+which is an isomorphism if~$f$ has geometrically connected fibers. Now let
+\begin{equation}
+  \begin{tikzcd}
+    X' \arrow{r}{v} \arrow{d}{g} & X \arrow{d}{f} \\
+    Y' \arrow{r}{u} & Y
+  \end{tikzcd}
+\end{equation}
+be a cartesian diagram, then we get an isomorphism
+\begin{equation}
+  u^*\left( \RR^nf_*(\omega_{X/Y}) \right)\to\RR^ng_*\left( v^*(\omega_{X/Y}) \right)\cong\RR^ng_*(\omega_{X'/Y'}).
+\end{equation}
+The desired compatibility then asserts that
+\begin{equation}
+  \begin{tikzcd}
+    u^*\left( \RR^nf_*(\omega_{X/Y}) \right) \arrow{rr}{\cong} \arrow{rd}{u^*(\gamma_f)} & & \RR^ng_*(\omega_{X'/Y'}) \arrow{ld}{\gamma_{g}} \\
+    & u^*(\mathcal{O}_Y)=\mathcal{O}_{Y'}
+  \end{tikzcd}
+\end{equation}
+is a commutative diagram. A nice discussion of the state of this base change compatibility can be found in \cite[\S 1.1]{conrad-grothendieck-duality-and-base-change}. To summarise: it has never been proved (it is left to the reader in \cite[\S VII.4]{hartshorne-residues-and-duality}), and its proof is highly non-trivial.
+
+This brings us by \cite{conrad-grothendieck-duality-and-base-change}: this book is written as a complement to the original proof, providing information on the omissions and fixing the numerous mistakes in the original proof. As the theory of derived categories was in its infancy, many things were still unclear, and this caused errors. Some of these are trivial to fix, others are severe and require a completely different proof.
+
+\section{Deligne's proof: the right adjoint}
+If one wishes to settle for a Grothendieck duality theory, without dualising and residual complexes, it is possible to prove the existence of the right adjoint~$f^!$ by other means \cite{deligne-appendix,verdier-twisted-inverse-image-functor}. One can then show that the remaining aspects of Grothendieck duality follow from the existence of this adjoint.
 
 \section{Neeman's proof: Brown's representability theorem}
 \label{section:neeman}
