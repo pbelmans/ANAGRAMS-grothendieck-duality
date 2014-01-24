@@ -36,7 +36,7 @@ But one can consider other contexts too. In the study of \'etale cohomology we h
 \end{enumerate}
 and in the case of manifolds and locally compact spaces we have Poincar\'e--Verdier duality:
 \begin{enumerate}
-  \item sheaves;
+  \item sheaves of abelian groups;
   \item locally compact spaces.
 \end{enumerate}
 
@@ -73,6 +73,36 @@ In the situation of Grothendieck duality we moreover have the adjunction (with s
 \end{equation}
 if~$f\colon X\to Y$ is a proper map between the correct type of schemes. Or rather, we have~$f_*=f_!$ in this situation. But in general these are different, so we really have six functors and not just five. In the case of \'etale cohomology these six (or four) functors are also interesting to interpret, for which one is referred to \cite{milne-etale-cohomology}.
 
+\subsection{The moduli of curves}
+The paper that introduced \emph{stacks} to the world \cite{deligne-mumford-irreducibility-moduli-of-curves} also applies Grothendieck duality right from the start. The goal is to study the \emph{moduli space~$\mathcal{M}_g$ of curves of genus~$g$}, and show that it is irreducible, regardless of the choice of base field.
+
+As they say themselves, the ``key definition of the whole paper'' is:
+\begin{definition}
+  Let~$S$ be any scheme. Let~$g\geq 2$. A \emph{stable curve of genus~$g$} over~$S$ is a proper flat morphism~$\pi\colon C\to S$ whose geometric fibres are reduced, connected, $1$\dash dimensional schemes~$C_s$ such that
+  \begin{enumerate}
+    \item $C_s$ has only ordinary double points;
+    \item if~$E$ is a non-singular rational component of~$C_s$, then~$E$ meets the other components of~$C_s$ in more than~$2$ points;
+    \item $\dim\HH^1(\mathcal{O}_{C_s})=g$.
+  \end{enumerate}
+\end{definition}
+So two aspects of Grothendieck duality come to mind: the relative situation, and the (mild) singularities. We get a canonical invertible sheaf~$\omega_{C/S}$ on~$C$, which will act as a \emph{family} of sufficiently nice curves to connect any two points in the moduli space, thus proving irreducibility. One then proves the following properties of the dualising sheaf:
+\begin{enumerate}
+  \item $\omega_{C/S}^{\otimes n}$ is relatively very ample for~$n\geq 3$;
+  \item $\pi_*(\omega_{C/S}^{\otimes n})$ is locally free of rank~$(2n-1)(g-1)$.
+\end{enumerate}
+The proof of these properties uses the fact that we ``almost'' get a smooth curve of genus~$g$, and we study the different irreducible components, together with the explicit manifestation of Grothendieck duality for curves with at most ordinary double points.
+
+Hence we can conclude that, taking~$n=3$, we can realise a stable curve~$C\to S$ as a family of curves inside~$\mathbb{P}^{5g-6}$ such that the Hilbert polynomial of each point is~$(6n-1)(g-1)$.
+
+This yields the construction of a subscheme~$\mathrm{H}_g\subseteq\mathrm{Hilb}_{\mathbb{P}^{5g-6}}^{(6n-1)(g-1)}$ of \emph{tricanonically embedded stable curves}, i.e.\ the functor described by
+\begin{equation}
+  \Hom_{\mathrm{Sch}}(S,\mathrm{H}_g)\cong\left\{ \left( \text{$\pi\colon C\to S$ stable; $\Proj\left( \pi_*(\omega_{C/S}^{\otimes 3}) \right)\cong\mathbb{P}_S^{5g-6}$} \right) \right\}/{\cong}
+\end{equation}
+for a scheme~$S$. By taking the quotient of the (open locus of smooth curves of the) scheme~$\mathrm{H}_g$ by the~$\mathrm{PGL}_{5g-6}$\dash action we obtain a model for the moduli space of (smooth) curves, and hence we can try to compute things.
+
+From this point on the proof does not use Grothendieck duality anymore, so I will end the summary here.
+
+
 \subsection{Other applications}
 Each of the following applications more than deserves a proper treatment, but unfortunately this is not possible here. It is here to show how diverse applications of Grothendieck duality can get.
 
@@ -81,9 +111,6 @@ The study of local rings and singularities leads to working with Cohen--Macaulay
 
 \paragraph{Fourier--Mukai transforms}
 By using the formalism of the six functors one can work with Fourier--Mukai transforms, which are an analogue of the usual Fourier transforms, but now for derived categories of sheaves on smooth projective varieties. A really nice introduction to this subject is \cite{huybrechts-fourier-mukai}.
-
-\paragraph{The moduli of curves}
-The paper that introduced algebraic stacks to the world \cite{deligne-mumford-irreducibility-moduli-of-curves} also uses Grothendieck duality right from the start. They are working in a relative situation (because they study families of curves) hence they require the abstract machinery, but apply it to very down-to-earth situations of stable curves and understanding what they look like.
 
 \paragraph{Arithmetic geometry}
 The relative formalism also applies to arithmetic geometry, for example in studying Eisenstein ideals \cite{mazur-modular-curves-eisenstein-ideal}.
