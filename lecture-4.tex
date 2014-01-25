@@ -168,7 +168,56 @@ Summarising 500 pages of proof is a rather non-trivial task to do, but I will tr
 \subsection{Nagata's compactification theorem}
 
 \subsection{Dualising and residual complexes}
+Recall from the description of duality on~$\Spec\mathbb{Z}$ (see the previous lecture) that we had a ``bounded complex of quasicoherent sheaves with coherent cohomology''. In this case all the highbrow terminology boils down to ``a bounded complex of abelian groups with finitely generated cohomology''. As the complex we considered was an injective resolution of~$\mathbb{Z}$ this condition is clearly satisfied.
 
+By considering this particular complex we obtained a duality functor
+\begin{equation}
+  \dual\colon M^\bullet\to\RRRHom^\bullet(M^\bullet,\mathbb{Z})
+\end{equation}
+for~$M^\bullet$ an object in~$\derived_{\mathrm{fg}}^\bounded(\Ab)=\derived_{\coh}^\bounded(\Spec\mathbb{Z})$, i.e.\ applying the dual twice yields something functorially isomorphic to what you started with. This is completely analogous to the case of vectorspaces: one has to start with a finite-dimensional one to get the double dual isomorphic to the original one.
+
+Generalising this we get to the following definition.
+\begin{definition}
+  Let~$X$ be locally noetherian. A complex~$\mathcal{R}^\bullet\in\derived_\coh^+(X)_\fid$ such that for each~$\mathcal{F}^\bullet\in\derived(X)$ the morphism
+  \begin{equation}
+    \eta\colon\mathcal{F}^\bullet\to\ddual\circ\ddual(\mathcal{F}^\bullet)=\RRRHHom^\bullet\left( \RRRHHom(\mathcal{F}^\bullet,\mathcal{R}^\bullet),\mathcal{R}^\bullet \right)
+  \end{equation}
+  is an isomorphism.
+\end{definition}
+As is fashionable in algebraic geometry, we have turned our problem into a definition. But this is a remarkably interesting definition, as we can observe the following \emph{properties}:
+\begin{enumerate}
+  \item the complex~$\mathcal{R}^\bullet$ is quasi-isomorphic to a bounded complex of quasicoherent injective sheaves, hence we get that~$\ddual\colon\derived(X)\to\derived(X)$ sends~$\derived_\coh^\bounded(X)$ to itself, and it interchanges~$\derived_\coh^+(X)$ and~$\derived_\coh^-(X)$;
+  \item if~$X$ is regular of finite Krull dimension then~$\mathcal{O}_X$ is already a dualising complex \cite[example V.2.2]{hartshorne-residues-and-duality};
+  \item one can check whether~$\mathcal{R}^\bullet$ is dualising at all the stalks of closed points of~$X$ \cite[corollary V.2.3]{hartshorne-residues-and-duality};
+  \item dualising complexes are preserved by~$f^\flat$ and~$f^\sharp$ \cite[proposition V.2.4 and theorem V.8.3]{hartshorne-residues-and-duality}, hence for embeddable~$f$ we get that~$f^!$ preserves dualising complexes, and this means that we can compute~$f^!$ by the following isomorphism
+    \begin{equation}
+      f^!(\mathcal{F}^\bullet)\cong\ddual_X\circ\LLL f^*\circ\ddual_Y(\mathcal{F}^\bullet)
+    \end{equation}
+    with
+    \begin{equation}
+      \begin{aligned}
+        \ddual_X(-)&\coloneqq\RRRHHom_X^\bullet(-,f^!(\mathcal{R}^\bullet)) \\
+        \ddual_Y(-)&\coloneqq\RRRHHom_Y^\bullet(-,\mathcal{R}^\bullet)
+      \end{aligned}
+    \end{equation}
+    if~$\mathcal{R}^\bullet$ is a dualising complex on~$Y$ and~$f\colon X\to Y$ is embeddable \cite[proposition V.8.5]{hartshorne-residues-and-duality};
+  \item if more generally~$f$ is of finite type with~$Y$ noetherian and~$\mathcal{R}^\bullet$ a dualising complex on~$Y$ then~$f^!(\mathcal{R}^\bullet)$ will be one on~$X$;
+  \item dualising complexes are unique up to tensoring with invertible sheaves and shifts \cite[theorem V.3.1]{hartshorne-residues-and-duality}.
+\end{enumerate}
+Regarding the question of its \emph{existence}, one has the following necessary and sufficient conditions \cite[\S V.10]{hartshorne-residues-and-duality}:
+\paragraph{Sufficient conditions}
+Hence, under which conditions can we prove the existence of a dualising complex?
+\begin{enumerate}
+  \item $X$ Gorenstein and of finite Krull dimension.
+  \item $X$ of finite type over~$Y$ with~$Y$ admitting a dualising comlex (which has $X$ of finite type over a field~$k$ as a special case, hence we get Serre duality for arbitrary singularities).
+\end{enumerate}
+\paragraph{Necessary conditions}
+Hence, what properties of~$X$ does the existence of a dualising complex imply?
+\begin{enumerate}
+  \item $X$ has finite Krull dimension.
+  \item $X$ is catenary.
+\end{enumerate}
+As the proof of Grothendieck duality by constructing an explicit formula for~$f^!$ depends on dualising complexes, one could hope for a more general result by taking a different approach. This will be discussed later on.
 
 \section{Deligne's proof: the right adjoint}
 If one wishes to settle for a Grothendieck duality theory, without dualising and residual complexes, it is possible to prove the existence of the right adjoint~$f^!$ by other means \cite{deligne-appendix,verdier-twisted-inverse-image-functor}. One can then show that the remaining aspects of Grothendieck duality follow from the existence of this adjoint.
