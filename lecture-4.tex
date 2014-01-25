@@ -122,6 +122,7 @@ The relative formalism also applies to arithmetic geometry, for example in study
 \label{subsection:context}
 The first proof of Grothendieck duality was given by Robin Hartshorne in 1966 \cite{hartshorne-residues-and-duality}, based on notes provided by Alexander Grothendieck in 1963. As the statement and proof require the use of derived categories, Jean--Louis Verdier's ongoing work was included, and it was (as far as I can tell) the first published treatise of derived categories.
 
+\paragraph{Issues with the proof}
 This approach is the most geometric of them all, but also the most complicated. To quote Amnon Neeman \cite{neeman-grothendieck-duality-bousfield-brown}:
 \begin{quote}
   [\ldots] Since derived categories are basically unsuited for local computations, the argument turns out to be quite unpleasant.
@@ -132,9 +133,10 @@ Moreover, the proof from \cite{hartshorne-residues-and-duality} is incomplete, a
 \begin{quote}
   Now these examples are only three of many more compatibilities which will come immediately to the reader's mind. I could make a big list, and in principle could prove each one on the list. [\ldots] And since the chore of inventing these diagrams and checking their commutativity is almost mechanical, the reader would not want to read them, nor I write them. [\ldots]
 \end{quote}
-Hence the reader is left with checking lots of commutative diagrams.
+Hence the reader is left with checking lots and lots of commutative diagrams, some of them depending on very subtle sign conventions in homological algebra!
 
-And there is an important omission from the proof: the compatibility of the trace map for smooth morphisms with arbitrary base change. If~$f\colon X\to Y$ is a proper, surjective, smooth map of schemes whose fibers are equidimensional of dimension~$n$, then we had the \emph{trace map} \cite[\S VII.4]{hartshorne-residues-and-duality}
+\paragraph{Trace maps and base change}
+There is an important omission from the proof: the compatibility of the trace map for smooth morphisms with arbitrary base change. If~$f\colon X\to Y$ is a proper, surjective, smooth map of schemes whose fibers are equidimensional of dimension~$n$, then we had the \emph{trace map} \cite[\S VII.4]{hartshorne-residues-and-duality}
 \begin{equation}
   \gamma_f\colon\RR^nf_*(\omega_{X/Y})\to\mathcal{O}_Y
 \end{equation}
@@ -156,9 +158,10 @@ The desired compatibility then asserts that
     & u^*(\mathcal{O}_Y)=\mathcal{O}_{Y'}
   \end{tikzcd}
 \end{equation}
-is a commutative diagram. A nice discussion of the state of this base change compatibility can be found in \cite[\S 1.1]{conrad-grothendieck-duality-and-base-change}. To summarise: it has never been proved (it is left to the reader in \cite[\S VII.4]{hartshorne-residues-and-duality}), and its proof is highly non-trivial.
+is a commutative diagram. A nice discussion of the state of this base change compatibility can be found in \cite[\S 1.1]{conrad-grothendieck-duality-and-base-change}. To summarise: the proof is left to the reader in \cite[\S VII.4]{hartshorne-residues-and-duality}, and its proof is highly non-trivial, which brings us by \cite{conrad-grothendieck-duality-and-base-change}.
 
-This brings us by \cite{conrad-grothendieck-duality-and-base-change}: this book is written as a complement to the original proof, providing information on the omissions and fixing the numerous mistakes in the original proof. As the theory of derived categories was in its infancy, many things were still unclear, and this caused errors. Some of these are trivial to fix, others are severe and require a completely different proof. And to top things of: some (minor) mistakes have been found in Brian Conrad's book, but these don't require difficult fixes.
+\paragraph{Companion to the proof}
+This book is written as a complement to the original proof, providing information on the omissions and fixing the numerous mistakes in the original proof. As the theory of derived categories was in its infancy, many things were still unclear, and this caused errors. Some of these are trivial to fix, others are severe and require a completely different proof. And to top things of: some (minor) mistakes have been found in Brian Conrad's book, but these don't require difficult fixes and a detailed erratum is available.
 
 In total, one understands that if the proof and a companion to the proof take about 500 pages, it's hardly an easy proof.
 
@@ -167,7 +170,7 @@ Summarising 500 pages of proof is a rather non-trivial task to do, but I will tr
 
 \subsection{Nagata's compactification theorem}
 
-\subsection{Dualising and residual complexes}
+\subsection{Dualising complexes}
 Recall from the description of duality on~$\Spec\mathbb{Z}$ (see the previous lecture) that we had a ``bounded complex of quasicoherent sheaves with coherent cohomology''. In this case all the highbrow terminology boils down to ``a bounded complex of abelian groups with finitely generated cohomology''. As the complex we considered was an injective resolution of~$\mathbb{Z}$ this condition is clearly satisfied.
 
 By considering this particular complex we obtained a duality functor
@@ -217,10 +220,36 @@ Hence, what properties of~$X$ does the existence of a dualising complex imply?
   \item $X$ has finite Krull dimension.
   \item $X$ is catenary.
 \end{enumerate}
-As the proof of Grothendieck duality by constructing an explicit formula for~$f^!$ depends on dualising complexes, one could hope for a more general result by taking a different approach. This will be discussed later on.
+As the proof of Grothendieck duality by constructing an explicit formula for~$f^!$ depends on dualising complexes, one could hope for a more general result by taking a different approach. This will be discussed later on. First we have to discuss how one can use local duality and dualising complexes to obtain a global theory.
+
+
+\subsection{Residual complexes}
+The problem is that we cannot glue dualising complexes together, as the derived category is not a local object \addreference. Hence we need to do some work to use our dualising complexes from the previous paragraph and obtain~$f^!$.
+
+The idea is to take a dualising complex~$\mathcal{R}^\bullet\in\derived_\coh^+(X)$ and turn it into an actual complex (i.e.\ in some~$\Ch(X)$) which will be called the \emph{residual complex}\expand{why this terminology?}.
+
+As we can glue actual complexes together, we can obtain a~$f^!$ by gluing residual complexes together. Of course, we need to know that it doesn't matter whether we use dualising complexes or residual complexes. I.e.\ we will look for a functor~$\cousin\colon\derived_\coh^+(X)\to\Ch_\coh^+(\Qcoh_\inj/X)$ such that~$\quotient\circ\cousin(\mathcal{R}^\bullet)\cong\mathcal{R}^\bullet$, where~$\quotient$ is the quotient functor in the construction of the derived category, and~$\Ch_\coh^+(\Qcoh_\inj/X)$ is a model for~$\derived_\coh^+(X)$.
+
+The definition of a residual complex seems odd at first sight.
+\begin{definition}
+  Let~$X$ be a locally noetherian prescheme. A \emph{residual complex}~$\mathcal{K}^\bullet$ on~$X$ is a bounded below complex of quasicoherent injective~$\mathcal{O}_X$\dash modules with coherent cohomology, together with an isomorphism
+  \begin{equation}
+    \bigoplus_{p\in\mathbb{Z}}\cong\bigoplus_{x\in X}\mathrm{J}(x)
+  \end{equation}
+  where~$\mathrm{J}(x)$ is the quasicoherent injective~$\mathcal{O}_X$\dash module given by the constant sheaf with values in an injective hull of~$k(x)$ over~$\mathcal{O}_{X,x}$ on~$\mathrm{cl}(\{x\})$, and zero elsewhere.
+\end{definition}
+The reason why this definition is interesting can be deduced from \cite[proposition V.3.4]{hartshorne-residues-and-duality}, which gives a description of dualising complexes in the stalk. This description is given by a purity result for Ext-functors, hence considering these rather special residual complexes which are constructed from injective hulls makes sense.
+
+The functor~$\cousin$ uses the theory of \emph{Cousin complexes}, and this is based on suitable filtrations of~$X$. For more information, see \cite[chapter IV]{hartshorne-residues-and-duality}.
+
+This ``equivalence'' of residual and dualising complexes is one of the subtle points in the proof, and things are not correct the way they are stated. For a discussion of the problems, and a solution, see the discussion around \cite[lemma 3.2.1]{conrad-grothendieck-duality-and-base-change}.
+
+As the equivalence is true under reasonable hypotheses, one can then define~$f^!$ along similar means using Nagata compactifications. This is where the main technical part of the proof is found \cite[\S VI.2--VI.5]{hartshorne-residues-and-duality}. It requires checking lots and lots of commutative diagrams, and this is one of the reasons for the existence of \cite{conrad-grothendieck-duality-and-base-change}.
+
 
 \section{Deligne's proof: the right adjoint}
 If one wishes to settle for a Grothendieck duality theory, without dualising and residual complexes, it is possible to prove the existence of the right adjoint~$f^!$ by other means \cite{deligne-appendix,verdier-twisted-inverse-image-functor}. One can then show that the remaining aspects of Grothendieck duality follow from the existence of this adjoint.
+
 
 \section{Neeman's proof: Brown's representability theorem}
 \label{section:neeman}
