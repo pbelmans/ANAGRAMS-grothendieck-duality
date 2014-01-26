@@ -73,6 +73,83 @@ In the situation of Grothendieck duality we moreover have the adjunction (with s
 \end{equation}
 if~$f\colon X\to Y$ is a proper map between the correct type of schemes. Or rather, we have~$f_*=f_!$ in this situation. But in general these are different, so we really have six functors and not just five. In the case of \'etale cohomology these six (or four) functors are also interesting to interpret, for which one is referred to \cite{milne-etale-cohomology}.
 
+\subsection{Fourier--Mukai transforms}
+Using this formalism of five (or six) functors we can get an interesting ``calculus of derived functors''. Some of these properties have been stated in the previous subsection, but we will now repeat them. The goal is to show that on the level of derived categories one gets lots of compatibilities which can be useful for computations, especially after we have discussed Orlov's existence result.
+
+We will consider~$f\colon X\to Y$ a morphism of projective schemes over a field~$k$ which is the context of \cite{huybrechts-fourier-mukai-transforms}. The following are formal, in the sense that they are generalisations of the underived formulas.
+\begin{description}
+  \item[projection formula] {\ }
+    
+    $f$ proper, $\mathcal{F}^\bullet\in\derived^\bounded(\Coh/X)$ and~$\mathcal{G}^\bullet\in\derived^\bounded(\Coh/Y)$
+    \begin{equation}
+      \begin{tikzcd}
+        \RRR f_*(\mathcal{F}^\bullet)\otimes^\LLL\mathcal{G}^\bullet \arrow{r}{\sim} & \RRR f_*\left( \mathcal{F}^\bullet\otimes^\LLL f^*(\mathcal{E}^\bullet) \right)
+      \end{tikzcd}
+    \end{equation}
+
+  \item[$\LLL f^*$ and~$\otimes^\LLL$ commute] {\ }
+    
+    $\mathcal{F}^\bullet,\mathcal{G}^\bullet\in\derived^\bounded(\Coh/Y)$
+    \begin{equation}
+      \begin{tikzcd}
+        \LLL f^*(\mathcal{F}^\bullet)\otimes^\LLL f^*(\mathcal{G}^\bullet) \arrow{r}{\sim} & \LLL f^*(\mathcal{F}^\bullet\otimes^\LLL\mathcal{G}^\bullet);
+      \end{tikzcd}
+    \end{equation}
+
+  \item[$\LLL f^*\dashv\RRR f_*$] {\ }
+    
+    $f$ projective, $\mathcal{F}^\bullet\in\derived^\bounded(\Coh/X)$, $\mathcal{G}^\bullet\in\derived^\bounded(\Coh/Y)$
+    \begin{equation}
+      \begin{tikzcd}
+        \Hom_{\derived^\bounded(\Coh/X)}\left( \LLL f^*(\mathcal{G}^\bullet),\mathcal{F}^\bullet \right) \arrow{r}{\sim} & \Hom_{\derived^\bounded(\Coh/X)}\left( \mathcal{G}^\bullet,\RRR f_*(\mathcal{F}^\bullet) \right);
+      \end{tikzcd}
+    \end{equation}
+
+  \item[$\otimes^\LLL$ and $\RRRHHom$ adjunction] {\ }
+    
+    $X$ smooth and projective, $\mathcal{F}^\bullet,\mathcal{G}^\bullet,\mathcal{H}^\bullet\in\derived^\bounded(\Coh/X)$
+    \begin{equation}
+      \begin{aligned}
+        \RRRHHom(\mathcal{F}^\bullet,\mathcal{G}^\bullet)\otimes^\LLL\mathcal{G}^\bullet\cong\RRRHHom(\mathcal{F}^\bullet,\mathcal{G}^\bullet\otimes^\LLL\mathcal{H}^\bullet), \\
+        \RRRHHom(\mathcal{F}^\bullet,\RRRHHom(\mathcal{G}^\bullet,\mathcal{H}^\bullet))\cong\RRRHHom(\mathcal{F}^\bullet\otimes^\LLL\mathcal{G}^\bullet,\mathcal{H}^\bullet), \\
+        \RRRHHom(\mathcal{F}^\bullet,\mathcal{G}^\bullet\otimes^\LLL\mathcal{H}^\bullet)\cong\RRRHHom(\RRRHHom(\mathcal{G}^\bullet,\mathcal{F}^\bullet),\mathcal{H}^\bullet);
+      \end{aligned}
+    \end{equation}
+
+  \item[global sections and $\RRRHHom$] {\ }
+    
+    $\mathcal{F}^\bullet\in\derived^\bounded(\Coh/X)$
+    \begin{equation}
+      \RRR\Gamma\circ\RRRHHom_X(\mathcal{F}^\bullet,-)=\RRRHom(\mathcal{F}^\bullet,-);
+    \end{equation}
+
+  \item[$\LLL f^*$ and $\RRRHHom$ commute] {\ }
+    
+    $\mathcal{F}^\bullet,\mathcal{G}^\bullet\in\derived^\bounded(Y)$
+    \begin{equation}
+      \begin{tikzcd}
+        \LLL f^*\left( \RRRHHom_Y(\mathcal{F}^\bullet,\mathcal{G}^\bullet) \right) \arrow{r}{\sim} & \RRRHHom_X\left( \LLL f^*(\mathcal{F}^\bullet),\LLL f^*(\mathcal{G}^\bullet) \right);
+      \end{tikzcd}
+    \end{equation}
+
+  \item[flat base change] {\ }
+
+    for
+    \begin{equation}
+      \begin{tikzcd}
+        Y' \arrow[swap]{d}{g} \arrow{r}{v} & Y \arrow{d}{f} \\
+        X' \arrow[swap]{r}{u} & X
+      \end{tikzcd}
+    \end{equation}
+    with~$f$ proper and~$u$ flat, $\mathcal{F}^\bullet\in\derived(\Qcoh/Y)$
+    \begin{equation}
+      \begin{tikzcd}
+        u^*\circ\RRR f_*(\mathcal{F}^\bullet) \arrow{r}{\sim} & \RRR g_*\circ v^*(\mathcal{F}^\bullet).
+      \end{tikzcd}
+    \end{equation}
+\end{description}
+But as we saw in the description of the general six functor formalism\expand
+
 \subsection{The moduli of curves}
 The paper that introduced \emph{stacks} to the world \cite{deligne-mumford-irreducibility-moduli-of-curves} also applies Grothendieck duality right from the start. The goal is to study the \emph{moduli space~$\mathcal{M}_g$ of curves of genus~$g$}, and show that it is irreducible, regardless of the choice of base field.
 
