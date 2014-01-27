@@ -223,7 +223,7 @@ From this point on the proof does not use Grothendieck duality anymore, so I wil
 
 
 \subsection{Other applications}
-Each of the following applications more than deserves a proper treatment. Unfortunately this is not possible here, due to lack of time, space and familiarity with the subject. They are here to show how diverse applications of Grothendieck duality can get.
+Each of the following applications more than deserves a proper treatment. Unfortunately this is not possible here, due to lack of time, space and familiarity with the subject. They are here to show how diverse applications of Grothendieck duality can get. Any error in this list is due to my limited knowledge on the subject.
 
 \paragraph{Local duality}
 The study of local rings and singularities leads to working with Cohen--Macaulay rings and modules, and understanding these in as concrete terms as possible. It is related to representation theory as well.
@@ -291,11 +291,81 @@ This book is written as a complement to the original proof, providing informatio
 In total, one understands that if the proof and a companion to the proof take about 500 pages, it's hardly an easy proof.
 
 \subsection{Outline of the proof}
-Summarising 500 pages of proof is a rather non-trivial task to do, but I will try to outline my view on the proof and its structure. Hopefully this helps in tackling the proof, and identifying which parts could be of interest to the reader.
+Summarising 500 pages of proof is a rather non-trivial task to do, but I will try to outline my view on the proof and its structure. Hopefully this helps in tackling the proof, and identifying which parts could be of interest to the reader. I will do this by summarising the different chapters, later on some interesting points will be highlighted in separate paragraphs.
 
-\subsection{Nagata's compactification theorem}
+As mentioned before (but maybe not explicitly enough): this approach to Grothendieck duality can be summarised by the following slogan.
+\begin{quote}
+  We define~$f^!$ by looking for a dualising complex and \emph{defining} the functor in terms of this complex.
+\end{quote}
+The whole setup of the book should be considered in this point of view.
+
+\begin{description}
+  \item[chapters 1 and 2] As derived categories were still in their infancy and there was not a published text available about them, they are first introduced and then applied to the situation of schemes. For a more up-to-date introduction one can look at \cite[chapters 1--3]{huybrechts-fourier-mukai-transforms}.
+  \item[chapter 3] The proof of Grothendieck duality for projective morphisms. In this ``easy'' case we can do more explicit computations, and control the dualising object. The idea is to factor sufficiently nice morphisms (see \cref{subsection:embeddable-morphisms}) into
+    \begin{enumerate}
+      \item smooth morphisms,
+      \item finite morphisms;
+    \end{enumerate}
+    and introduce the functor~$f^!$ for each of these. The functor~$f^!$ for a finite morphism is denoted~$f^\flat$, the one for a smooth morphism is~$f^\sharp$.
+    
+    By checking compatibility of these two definitions (which are suggested by the Ideal theorem, as given in the previous lecture) one obtains a theory of~$f^!$ for these nice morphisms \cite[theorem III.8.7]{hartshorne-residues-and-duality} (but not all the required properties for~$f^!$). This is then used to obtain Grothendieck duality for \emph{projective} morphisms \cite[\S III.9, III.10]{hartshorne-residues-and-duality}.
+
+    Remark that \cite{altman-kleiman-grothendieck-duality} looks like it proves Grothendieck duality in this projective case. But actually it only proves a statement similar to Serre duality (in the original sense of \cite{serre-faisceaux-algebriques-coherents}), no derived categories are mentioned: the proof uses spectral sequences and some results on depth to obtain a statement for singular varieties over a field. The book itself remains interesting (for historical reasons) as it is the earliest easy-to-read text on the algebraic aspects of algebraic geometry I have seen so far.
+
+    A similar idea of factoring morphisms into tractable ones occurs in \cref{section:deligne}.
+
+  \item[chapter 4] As discussed in the section on applications of Grothendieck duality there is an interesting notion of local duality, related to local cohomology. Before tackling global Grothendieck duality one has to understand what happens in the local case, as this is what is used to characterise the objects defined in the next chapters.
+
+    Historically, local duality is treated in \cite{sga2} and \cite{hartshorne-local-cohomology}. Remark that this second book are the notes of a seminar by Hartshorne on local duality, and are originally from 1961, the same period as SGA2 (which was done in 1961--1962).
+
+  \item[chapter 5] Recall that this approach to Grothendieck duality can be summarised by the following slogan.
+    \begin{quote}
+      We define~$f^!$ by looking for a dualising complex and \emph{define} the functor in terms of this complex.
+    \end{quote}
+    But the statement of Grothendieck duality doesn't mention dualising complexes explicitly. Hence it is not required to develop this machinery if one is looking for~$f^!$, but it does give an explicit flavour to it. In this chapter the machinery and properties of dualising complexes are discussed. The goal is to understand how dualising complexes relate to local duality, how this behaves with respect to singularities and how we can interpret the dualising complexes. Some of these properties are discussed in \cref{subsection:dualising-complexes}.
+
+  \item[chapter 6] Unfortunately, dualising complexes live in a derived category, and this is a non-local object\addreference. To solve this problem \emph{residual complexes} are introduced. These are a manifestation of dualising complexes in the non-derived category of chain complexes. A nice motivation for having a theory for both dualising and residual complexes is given on \cite[pages 106--107]{conrad-grothendieck-duality-and-base-change}. In the case of a curve~$C$ these two manifestations are
+    \begin{enumerate}
+      \item the dualising complex $\Omega_{C/k}^1[1]$ (familiar from Riemann--Roch!);
+      \item the residual complex
+        \begin{equation}
+          \dotso\to i_{\xi,*}\left( \Omega_{X/k,\xi}^1 \right)
+        \end{equation}
+        where~$\xi$ is the generic point of~$C$.
+    \end{enumerate}
+    These complexes are quasi-isomorphic to eachother, but the residual complex is a bunch of injective hulls taken together, which can be taken to live in a non-derived category and still allow for computations. For more information on the definition see \cref{subsection:residual-complexes}.
+
+    Now a theory for embeddable morphisms and residual complexes is developed, using functors~$f^\yy$ and~$f^\zz$ for finite and smooth morphisms\footnote{This is really weird notation.}. Their definitions depend on (pointwise) dualising complexes, but they are truly functors on the non-derived level. This chapter is the technical part of the book, which lots of compatibility checks.
+
+  \item[chapter 7] In this chapter Grothendieck duality in its general form is finally proved. We have obtained many preliminary results, and this allows us to summarise the final proof \cite[theorem VII.3.3]{hartshorne-residues-and-duality} as follows:
+    \begin{enumerate}
+      \item Grothendieck duality for~$\RRRHHom$ is local, hence we reduce~$Y$ to the spectrum of a local ring (so the base is affine).
+      \item By some machinery of derived categories we can replace the complex by a single quasicoherent sheaf on~$X$.
+      \item We can replace the quasicoherent sheaf on~$X$ by a coherent one using a direct limit argument.
+      \item As~$Y$ is affine the local statement for~$\RRRHHom$ becomes a global statement for~$\RRRHom$.
+      \item We check compatibility of the global statement with composition of two morphisms (this is not a part of the conceptual flow of the proof in my opinion). This is where residual complexes are required. One of the compatibilities requires a coherence condition, which explains the reduction in the third step.
+      \item Using noetherian induction on~$X$ we can assume that the theorem is proven for every~$g\colon Z\to Y$ where~$i\colon Z\to X$ is a closed immersion with~$Z\neq X$ and~$g=f\circ i$.
+      \item As~$X$ is proper over~$Y$ we apply Chow's lemma to find an~$X'$ which is projective over~$Y$ and a projective morphism~$g\colon X\to X'$ which is an isomorphism over some non-empty open subset~$U$. By the noetherian induction we can assume the theorem proven for the complement, which allows us to reduce the statement to the projective morphism in the factorisation of Chow's lemma.
+      \item Now we can apply the results we had for projective morphisms, and conclude.
+    \end{enumerate}
+    The remainder of the chapter is dedicated to spelling out the trace map and making the duality result more explicit for proper smooth morphisms.
+\end{description}
+
+\subsection{Embeddable morphisms}
+\label{subsection:embeddable-morphisms}
+To proof Grothendieck duality one first proves it for embeddable morphisms.
+\begin{definition}
+  Let~$S$ be a base scheme. A morphism~$f\colon X\to Y$ is \emph{embeddable} (over~$S$) if there exists a smooth scheme~$P$ (over~$S$) and a finite morphism~$i\colon X\to P_Y=P\times_SY$ such that~$f=p_2\circ i$.
+\end{definition}
+Exactly how useful is this definition?
+\begin{enumerate}
+  \item If~$f\colon X\to Y$ is finite then~$f$ can be factored through~$P=S$.
+  \item If~$f\colon X\to Y$ is projective, where~$Y$ is quasicompact and admits an ample sheaf, then~$f$ can be factored through some~$P=\mathbb{P}_Y^n$ \cite[II.5.5.4(ii)]{egaII}.
+\end{enumerate}
+The main issue is that morphisms of finite type (a very general class of morphisms) are locally embeddable, but not globally so. Hence this approach does not yield a theory of~$f^!$ in general. To overcome this issue we need the notion of dualising and especially residual complexes.
 
 \subsection{Dualising complexes}
+\label{subsection:dualising-complexes}
 Recall from the description of duality on~$\Spec\mathbb{Z}$ (see the previous lecture) that we had a ``bounded complex of quasicoherent sheaves with coherent cohomology''. In this case all the highbrow terminology boils down to ``a bounded complex of abelian groups with finitely generated cohomology''. As the complex we considered was an injective resolution of~$\mathbb{Z}$ this condition is clearly satisfied.
 
 By considering this particular complex we obtained a duality functor
@@ -347,8 +417,8 @@ Hence, what properties of~$X$ does the existence of a dualising complex imply?
 \end{enumerate}
 As the proof of Grothendieck duality by constructing an explicit formula for~$f^!$ depends on dualising complexes, one could hope for a more general result by taking a different approach. This will be discussed later on. First we have to discuss how one can use local duality and dualising complexes to obtain a global theory.
 
-
 \subsection{Residual complexes}
+\label{subsection:residual-complexes}
 The problem is that we cannot glue dualising complexes together, as the derived category is not a local object \addreference. Hence we need to do some work to use our dualising complexes from the previous paragraph and obtain~$f^!$.
 
 The idea is to take a dualising complex~$\mathcal{R}^\bullet\in\derived_\coh^+(X)$ and turn it into an actual complex (i.e.\ in some~$\Ch(X)$) which will be called the \emph{residual complex}\expand{why this terminology?}.
@@ -373,8 +443,40 @@ As the equivalence is true under reasonable hypotheses, one can then define~$f^!
 
 
 \section{Deligne's proof: the right adjoint}
+\label{section:deligne}
 If one wishes to settle for a Grothendieck duality theory, without dualising and residual complexes, it is possible to prove the existence of the right adjoint~$f^!$ by other means \cite{deligne-appendix,verdier-twisted-inverse-image-functor}. One can then show that the remaining aspects of Grothendieck duality follow from the existence of this adjoint.
 
+The idea for this approach comes from Verdier duality, which is a generalised Poincar\'e duality for topological spaces. It is possible to obtain the results in an almost formal way, if one has a good theory of ``cohomology with proper support''.
+
+\subsection{Nagata's compactification theorem}
+The main idea in Deligne's approach is to replace the morphism~$f\colon X\to Y$ by more tractable ones. As in the case of general topology it is often easier to prove something for compact spaces. The notion of compactness (in the usual sense, often denoted quasicompactness) is only mildly interesting, and does not suffice to prove Grothendieck duality. The correct notion of compactness is properness. So we make the following definition.
+\begin{definition}
+  Let~$f\colon X\to Y$ be a morphism of schemes. It is \emph{compactifiable} (in the terminology of \cite[appendix]{hartshorne-residues-and-duality}) if there exist morphisms~$g\colon X\to\overline{X}$ and~$h\colon\overline{X}\to Y$ such that
+  \begin{equation}
+    \begin{tikzcd}
+      X \arrow{rr}{f} \arrow{rd}{g} & & Y \\
+      & \overline{X} \arrow{ur}{h}
+    \end{tikzcd}
+  \end{equation}
+  such that
+  \begin{enumerate}
+    \item $g$ is an open immersion;
+    \item $h$ is proper.
+  \end{enumerate}
+\end{definition}
+The question now becomes: which morphisms are compactifiable? The answer is very interesting, and given by the following theorem \cite{nagata-imbedding,nagata-generalization-imbedding,conrad-delignes-notes-nagata-compactification}.
+\begin{theorem}[Nagata's compactification theorem]
+  \label{theorem:nagata}
+  Let~$f\colon X\to Y$ be separated and of finite type between quasicompact and quasiseperated schemes. Then~$f$ is compactifiable.
+\end{theorem}
+Hence this suffices to obtain the existence of~$f^!$ in a very general context, e.g.\ noetherian schemes.
+
+Remark that the history of this theorem is intriguing: it was proved in 1962, but in the language of Zariski--Riemann spaces and valuations, which is algebraic geometry in the sense of Zariski and Weil. Hence the proof nor the statement were known in the language of schemes. This has now changed \cite{lutkebohmert-compactification,conrad-delignes-notes-nagata-compactification,deligne-plongement-de-nagata}. This result would be an interesting topic for another series of lectures in the seminar.
+
+\subsection{Sketch of the proof}
+Using this notion of compactifiability he defines a functor~$f_!$ (or~$\RRR f_!$, depending on the notation, but it is \emph{not} a derived functor) which is related to~$\RRR f_*$. Then using a result by Verdier \cite{verdier-bourbaki-300} we get a right adjoint~$f^!$ for~$\RRR f_*$. Then he proves that~$f_!$ and~$f^!$ are adjoint to eachother (in the context of pro-objects), and deduces some properties. For more deductions on the properties of~$f^!$ see \cite{verdier-twisted-inverse-image-functor}.
+
+A similar approach is by the way taken to define~$f_!$ and~$f^!$ in the context of \'etale cohomology \cite[expos\'e XVII]{sga43}.
 
 \section{Neeman's proof: Brown's representability theorem}
 \label{section:neeman}
