@@ -11,7 +11,16 @@
 \maketitle
 
 \begin{abstract}
-  
+  These are the notes for my fourth and final lecture on Grothendieck duality in the ANAGRAMS seminar. They contain some applications of Grothendieck duality, given from my point of view. I hope these serve both as a motivation for Grothendieck duality and as a motivation to study these interesting subjects, regardless from their relationship with Grothendieck duality.
+
+  The remainder of these notes is dedicated to an overview of some of the proofs in the literature. They are significantly more detailed than the expos\'e in the seminar. I describe:
+  \begin{enumerate}
+    \item Hartshorne's geometric proof,
+    \item Deligne's pro-objects categorical proof,
+    \item Neeman's proof based on Brown's representability,
+    \item Murfet's proof based on the mock homotopy category of projectives;
+  \end{enumerate}
+  while the approaches by Lipman and Yekutieli--Zhang are merely mentioned.
 \end{abstract}
 
 \tableofcontents
@@ -444,7 +453,7 @@ As the equivalence is true under reasonable hypotheses, one can then define~$f^!
 
 \section{Deligne's proof: the right adjoint}
 \label{section:deligne}
-If one wishes to settle for a Grothendieck duality theory, without dualising and residual complexes, it is possible to prove the existence of the right adjoint~$f^!$ by other means \cite{deligne-appendix,verdier-twisted-inverse-image-functor}. One can then show that the remaining aspects of Grothendieck duality follow from the existence of this adjoint.
+If one wishes to settle for a Grothendieck duality theory, without dualising and residual complexes, it is possible to prove the existence of the right adjoint~$f^!$ by other means \cite{deligne-appendix-f-upper-shriek,verdier-base-change-twisted-inverse-image}. One can then show that the remaining aspects of Grothendieck duality follow from the existence of this adjoint.
 
 The idea for this approach comes from Verdier duality, which is a generalised Poincar\'e duality for topological spaces. It is possible to obtain the results in an almost formal way, if one has a good theory of ``cohomology with proper support''.
 
@@ -473,8 +482,8 @@ Hence this suffices to obtain the existence of~$f^!$ in a very general context, 
 
 Remark that the history of this theorem is intriguing: it was proved in 1962, but in the language of Zariski--Riemann spaces and valuations, which is algebraic geometry in the sense of Zariski and Weil. Hence the proof nor the statement were known in the language of schemes. This has now changed \cite{lutkebohmert-compactification,conrad-delignes-notes-nagata-compactification,deligne-plongement-de-nagata}. This result would be an interesting topic for another series of lectures in the seminar.
 
-\subsection{Sketch of the proof}
-Using this notion of compactifiability he defines a functor~$f_!$ (or~$\RRR f_!$, depending on the notation, but it is \emph{not} a derived functor) which is related to~$\RRR f_*$. Then using a result by Verdier \cite{verdier-bourbaki-300} we get a right adjoint~$f^!$ for~$\RRR f_*$. Then he proves that~$f_!$ and~$f^!$ are adjoint to eachother (in the context of pro-objects), and deduces some properties. For more deductions on the properties of~$f^!$ see \cite{verdier-twisted-inverse-image-functor}.
+\subsection{Outline of the proof}
+Using this notion of compactifiability he defines a functor~$f_!$ (or~$\RRR f_!$, depending on the notation, but it is \emph{not} a derived functor) which is related to~$\RRR f_*$. Then using a result by Verdier \cite{verdier-bourbaki-300} we get a right adjoint~$f^!$ for~$\RRR f_*$. Then he proves that~$f_!$ and~$f^!$ are adjoint to eachother (in the context of pro-objects), and deduces some properties. For more deductions on the properties of~$f^!$ see \cite{verdier-base-change-twisted-inverse-image}.
 
 A similar approach is by the way taken to define~$f_!$ and~$f^!$ in the context of \'etale cohomology \cite[expos\'e XVII]{sga43}.
 
