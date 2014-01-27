@@ -96,7 +96,7 @@ We will consider~$f\colon X\to Y$ a morphism of projective schemes over a field~
       \end{tikzcd}
     \end{equation}
 
-  \item[$\LLL f^*\dashv\RRR f_*$] {\ }
+  \item[$\LLL f^*$ and $\RRR f_*$ adjunction] {\ }
     
     $f$ projective, $\mathcal{F}^\bullet\in\derived^\bounded(\Coh/X)$, $\mathcal{G}^\bullet\in\derived^\bounded(\Coh/Y)$
     \begin{equation}
@@ -148,7 +148,49 @@ We will consider~$f\colon X\to Y$ a morphism of projective schemes over a field~
       \end{tikzcd}
     \end{equation}
 \end{description}
-But as we saw in the description of the general six functor formalism\expand
+
+But as we saw in the description of the general six functor formalism we have another functor at our disposal. Or rather, in the context we are working in right now (smooth projective varieties over a scheme) we work with the dualising sheaf characterising the~$f^!$. If~$f\colon X\to Y$ is a morphism between such schemes we define explicitly
+\begin{equation}
+  \omega_f\coloneqq\omega_X\otimes f^*(\omega_Y^\vee)
+\end{equation}
+and
+\begin{equation}
+  \dim(f)\coloneqq\dim X-\dim Y.
+\end{equation}
+This means that~$f^!$ is given by
+\begin{equation}
+  f^!\colon\derived^\bounded(\Coh/Y)\to\derived^\bounded(\Coh/X):\mathcal{F}^\bullet\mapsto\LLL f^*(\mathcal{E}^\bullet)\otimes^\LLL\omega_f[\dim(f)].
+\end{equation}
+Then we get some new compatibilities, which are just a remanifestation of Grothendieck duality.
+\begin{description}
+  \item[Grothendieck duality] $\mathcal{F}^\bullet\in\derived^\bounded(X)$, $\mathcal{G}^\bullet\in\derived^\bounded(Y)$
+    \begin{equation}
+      \RRR f_*\left( \RRRHHom\left( \mathcal{F}^\bullet,\LLL f^*(\mathcal{G}^\bullet)\otimes^\LLL\omega_f[\dim(f)] \right) \right)\cong\RRRHHom\left( \RRR f_*(\mathcal{F}^\bullet),\mathcal{G}^\bullet \right);
+    \end{equation}
+  \item[$\RRR f_*$ and $f^!$ adjunction] $\mathcal{F}^\bullet\in\derived^\bounded(\Coh/X)$, $\mathcal{G}^\bullet\in\derived^\bounded(\Coh/Y)$
+    \begin{equation}
+      \begin{tikzcd}
+        \Hom_{\derived^\bounded(\Coh/Y)}(\RRR f_*(\mathcal{F}^\bullet),\mathcal{G}^\bullet) \arrow{r}{\sim} & \Hom_{\derived^\bounded(\Coh/X)}(\mathcal{F}^\bullet,f^!(\mathcal{G}^\bullet)).
+      \end{tikzcd}
+    \end{equation}
+\end{description}
+
+The crux of all this is the following representability result.
+\begin{theorem}
+  \fixthis
+  \label{theorem:bondal-orlov}
+\end{theorem}
+Because we can get strong results on Fourier--Mukai transforms (regardless of whether they are actually representing a functor as in the theorem) we have obtained an interesting ``calculus of derived functors''. This is an important area of current research, from many different perspectives.
+
+Some of the results in \cite{huybrechts-fourier-mukai-transforms} which appeal immediately to Grothendieck duality are:
+\begin{enumerate}
+  \item an explicit formula for the left and right adjoint \cite[proposition 5.9]{huybrechts-fourier-mukai-transforms};
+  \item braid group actions for spherical objects \cite[lemma 8.21]{huybrechts-fourier-mukai-transforms};
+  \item the study of flips and flops \cite[\S 11.1]{huybrechts-fourier-mukai-transforms};
+  \item semi-orthogonal decompositions of derived categories \cite[\S 11.2]{huybrechts-fourier-mukai-transforms} \expand{refer to this later};
+  \item \ldots
+\end{enumerate}
+
 
 \subsection{The moduli of curves}
 The paper that introduced \emph{stacks} to the world \cite{deligne-mumford-irreducibility-moduli-of-curves} also applies Grothendieck duality right from the start. The goal is to study the \emph{moduli space~$\mathcal{M}_g$ of curves of genus~$g$}, and show that it is irreducible, regardless of the choice of base field.
@@ -181,16 +223,22 @@ From this point on the proof does not use Grothendieck duality anymore, so I wil
 
 
 \subsection{Other applications}
-Each of the following applications more than deserves a proper treatment, but unfortunately this is not possible here. It is here to show how diverse applications of Grothendieck duality can get.
+Each of the following applications more than deserves a proper treatment. Unfortunately this is not possible here, due to lack of time, space and familiarity with the subject. They are here to show how diverse applications of Grothendieck duality can get.
 
 \paragraph{Local duality}
 The study of local rings and singularities leads to working with Cohen--Macaulay rings and modules, and understanding these in as concrete terms as possible. It is related to representation theory as well.
 
-\paragraph{Fourier--Mukai transforms}
-By using the formalism of the six functors one can work with Fourier--Mukai transforms, which are an analogue of the usual Fourier transforms, but now for derived categories of sheaves on smooth projective varieties. A really nice introduction to this subject is \cite{huybrechts-fourier-mukai}.
+\paragraph{Singularity categories}
+This is another approach to studying singularities, now in a more global setting. It is similar to the previous application in some respects, but more alike studying Fourier--Mukai transforms and derived categories in others.
+
+\paragraph{Noncommutative algebra}
+The notion of dualising complex has a counterpart for noncommutative rings.
+
+\paragraph{Noncommutative algebraic geometry}
+The notion of Serre and Grothendieck duality leads to studying abstract Serre functors in triangulated or dg~categories. This is also related to Calabi--Yau categories.
 
 \paragraph{Arithmetic geometry}
-The relative formalism also applies to arithmetic geometry, for example in studying Eisenstein ideals \cite{mazur-modular-curves-eisenstein-ideal}.
+The relative formalism also applies to arithmetic geometry, for example in studying Eisenstein ideals \cite{mazur-modular-curves-eisenstein-ideal}. I know absolutely nothing about it.
 
 
 \section{Hartshorne's proof: dualising and residual complexes}
