@@ -357,7 +357,7 @@ The whole setup of the book should be considered in this point of view.
     \end{enumerate}
     These complexes are quasi-isomorphic to eachother, but the residual complex is a bunch of injective hulls taken together, which can be taken to live in a non-derived category and still allow for computations. For more information on the definition see \cref{subsection:residual-complexes}.
 
-    Now a theory for embeddable morphisms and residual complexes is developed, using functors~$f^\yy$ and~$f^\zz$ for finite and smooth morphisms\footnote{This is really weird notation.}. Their definitions depend on (pointwise) dualising complexes, but they are truly functors on the non-derived level. This chapter is the technical part of the book, which lots of compatibility checks.
+    Now a theory for embeddable morphisms and residual complexes is developed, using functors~$f^\yy$ and~$f^\zz$ for finite and smooth morphisms\footnote{You are right, this is really weird notation.}. Their definitions depend on (pointwise) dualising complexes, but they are truly functors on the non-derived level. This chapter is the technical part of the book, which lots of compatibility checks.
 
   \item[chapter 7] In this chapter Grothendieck duality in its general form is finally proved. We have obtained many preliminary results, and this allows us to summarise the final proof \cite[theorem VII.3.3]{hartshorne-residues-and-duality} as follows:
     \begin{enumerate}
@@ -507,9 +507,38 @@ Remark that this approach is completely \emph{orthogonal} to the approach outlin
 
 \section{Neeman's proof: Brown's representability theorem}
 \label{section:neeman}
-\subsection{Existence of adjoint functors}
+The previous two approaches have in common that at some point one takes a factorisation of a morphism into two specific types of morphisms, proceeds to obtain Grothendieck duality for each type separately, and then glues these together by checking compatibility and independence of the choice of factorisation. What if we could get rid of this?
 
-\subsection{Application: Grothendieck duality}
+This is done in Neeman's approach \cite{neeman-grothendieck-duality-bousfield-brown}: we are looking for a right adjoint to a functor between triangulated categories. By using an abstract result it is possible to obtain the existence of this functor immediately! The reason why this (easy, but formal) approach took so long is that one has to use ideas (or tools) from topology and apply them to study triangulated categories.
+
+\subsection{Existence of adjoint functors}
+The general result that we wish to apply is \emph{Brown representability}. The shape it takes in our case is the following:
+\begin{theorem}[Brown representability]
+  \label{theorem:brown-representability}
+  Let~$\mathcal{T}$ be a compactly generated triangulated category. Let~$H\colon\mathcal{T}^{\mathrm{op}}\to\Ab$ be a homological functor, i.e.\ it is contravariant and takes triangles to long exact sequences. Suppose furthermore that
+  \begin{equation}
+    H\left( \bigsqcup_{\lambda\in\Lambda}t_\lambda \right)\to\prod_{\lambda\in\Lambda}H(t_\lambda)
+  \end{equation}
+  is an isomorphism for all small coproducts. Then~$H$ is representable.
+\end{theorem}
+This representability means we can write~$H$ as~$\Hom_{\mathcal{T}}(-,t)$ for some~$t\in\mathcal{T}$. Given this result, the adjoint functor theorem for compactly generated triangulated categories becomes really easy:
+\begin{theorem}
+  Let~$\mathcal{S}$ be a compactly generated triangulated category, $\mathcal{T}$ be a triangulated category, let~$F\colon\mathcal{S}\to\mathcal{T}$ be a triangulated functor, suppose that~$F$ respects coproducts, i.e.\ the natural maps
+  \begin{equation}
+    F(s_\lambda)\to F\left( \bigsqcup_{\lambda\in\Lambda}s_\lambda \right)
+  \end{equation}
+  turn~$F(\bigsqcup_{\lambda\in\Lambda}s_\lambda)$ into a coproduct. Then~$F$ admits a right adjoint~$G\colon\mathcal{T}\to\mathcal{S}$.
+
+  \begin{proof}
+    We consider the homological functor~$\Hom_{\mathcal{T}}(F(-),t)$, for each~$t\in\mathcal{T}$. This functor is representable by Brown representability, hence we find an object~$G(t)\in\mathcal{T}$ such that
+    \begin{equation}
+      \Hom_{\mathcal{T}}(F(-),t)\cong\Hom_{\mathcal{S}}(-,G(t)).
+    \end{equation}
+  \end{proof}
+\end{theorem}
+To apply this theorem, we need to know that~$\derived(\Qcoh/X)$ is compactly generated. This is the case if~$X$ is quasicompact and separated. Remark that we have removed the bounded below conditions that were so pervasive before. This is \emph{crucial} in this approach to Grothendieck duality! So then we apply this argument to separated morphisms between quasicompact and separated schemes, to obtain Grothendieck duality almost for free by categorical nonsense.
+
+Hence this approach is again completely orthogonal to the original approach by Hartshorne: one looks for a functor~$f^!$ and then deduces properties of this functor and the related notion of dualising complexes.
 
 \section{Murfet's proof: The mock homotopy category of projectives}
 \label{section:murfet}
