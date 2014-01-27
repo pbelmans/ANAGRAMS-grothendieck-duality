@@ -189,19 +189,27 @@ Then we get some new compatibilities, which are just a remanifestation of Grothe
     \end{equation}
 \end{description}
 
-The crux of all this is the following representability result.
+The crux of all this is the following representability result. Recall that a \emph{Fourier--Mukai functor} with kernel~$\mathcal{P}^\bullet\in\derived^\bounded(\Coh/X\times Y)$ is given by
+\begin{equation}
+  \Phi_{\mathcal{P}^\bullet}\colon\derived^\bounded(X)\to\derived^\bounded(Y):\mathcal{F}^\bullet\mapsto\LLL p_*\left( \RRR q^*(\mathcal{F}^\bullet)\otimes^\LLL\mathcal{P}^\bullet \right)
+\end{equation}
+where~$\LLL p_*=p_*$ as~$p,q$ are the projections on~$Y$ and~$X$ respectively. Hence this is a specific type of functor, given by geometric information. Then we have the following result, which says that lots of interesting functors are actually Fourier--Mukai transforms!
 \begin{theorem}
-  \fixthis
   \label{theorem:bondal-orlov}
+  Let~$X$ and~$Y$ be smooth projective varieties. Let
+  \begin{equation}
+    F\colon\derived^\bounded(\Coh/X)\to\derived^\bounded(\Coh/Y)
+  \end{equation}
+  be a fully faithful exact functor. Then there exists a~$\mathcal{P}^\bullet\in\derived^\bounded(\Coh/X\times Y)$ such that~$F\cong\Phi_{\mathcal{P}^\bullet}$.
 \end{theorem}
-Because we can get strong results on Fourier--Mukai transforms (regardless of whether they are actually representing a functor as in the theorem) we have obtained an interesting ``calculus of derived functors''. This is an important area of current research, from many different perspectives.
+Because we can get strong results on Fourier--Mukai transforms (regardless of whether they are actually representing a functor as in the theorem or not) we have obtained an interesting ``calculus of derived functors''. This is an important area of current research, from many different perspectives.
 
 Some of the results in \cite{huybrechts-fourier-mukai-transforms} which appeal immediately to Grothendieck duality are:
 \begin{enumerate}
   \item an explicit formula for the left and right adjoint \cite[proposition 5.9]{huybrechts-fourier-mukai-transforms};
   \item braid group actions for spherical objects \cite[lemma 8.21]{huybrechts-fourier-mukai-transforms};
   \item the study of flips and flops \cite[\S 11.1]{huybrechts-fourier-mukai-transforms};
-  \item semi-orthogonal decompositions of derived categories \cite[\S 11.2]{huybrechts-fourier-mukai-transforms} \expand{refer to this later};
+  \item semi-orthogonal decompositions of derived categories \cite[\S 11.2]{huybrechts-fourier-mukai-transforms};
   \item \ldots
 \end{enumerate}
 
@@ -338,7 +346,7 @@ The whole setup of the book should be considered in this point of view.
     \end{quote}
     But the statement of Grothendieck duality doesn't mention dualising complexes explicitly. Hence it is not required to develop this machinery if one is looking for~$f^!$, but it does give an explicit flavour to it. In this chapter the machinery and properties of dualising complexes are discussed. The goal is to understand how dualising complexes relate to local duality, how this behaves with respect to singularities and how we can interpret the dualising complexes. Some of these properties are discussed in \cref{subsection:dualising-complexes}.
 
-  \item[chapter 6] Unfortunately, dualising complexes live in a derived category, and this is a non-local object\addreference. To solve this problem \emph{residual complexes} are introduced. These are a manifestation of dualising complexes in the non-derived category of chain complexes. A nice motivation for having a theory for both dualising and residual complexes is given on \cite[pages 106--107]{conrad-grothendieck-duality-and-base-change}. In the case of a curve~$C$ these two manifestations are
+  \item[chapter 6] Unfortunately, dualising complexes live in a derived category, and this is a non-local object \cite[page 193]{hartshorne-residues-and-duality}. To solve this problem \emph{residual complexes} are introduced. These are a manifestation of dualising complexes in the non-derived category of chain complexes. A nice motivation for having a theory for both dualising and residual complexes is given on \cite[pages 106--107]{conrad-grothendieck-duality-and-base-change}. In the case of a curve~$C$ these two manifestations are
     \begin{enumerate}
       \item the dualising complex $\Omega_{C/k}^1[1]$ (familiar from Riemann--Roch!);
       \item the residual complex
@@ -433,9 +441,9 @@ As the proof of Grothendieck duality by constructing an explicit formula for~$f^
 
 \subsection{Residual complexes}
 \label{subsection:residual-complexes}
-The problem is that we cannot glue dualising complexes together, as the derived category is not a local object \addreference. Hence we need to do some work to use our dualising complexes from the previous paragraph and obtain~$f^!$.
+The problem is that we cannot glue dualising complexes together, as the derived category is not a local object \cite[page 193]{hartshorne-residues-and-duality}. Hence we need to do some work to use our dualising complexes from the previous paragraph and obtain~$f^!$.
 
-The idea is to take a dualising complex~$\mathcal{R}^\bullet\in\derived_\coh^+(X)$ and turn it into an actual complex (i.e.\ in some~$\Ch(X)$) which will be called the \emph{residual complex}\expand{why this terminology?}.
+The idea is to take a dualising complex~$\mathcal{R}^\bullet\in\derived_\coh^+(X)$ and turn it into an actual complex (i.e.\ in some~$\Ch(X)$) which will be called the \emph{residual complex}.
 
 As we can glue actual complexes together, we can obtain a~$f^!$ by gluing residual complexes together. Of course, we need to know that it doesn't matter whether we use dualising complexes or residual complexes. I.e.\ we will look for a functor~$\cousin\colon\derived_\coh^+(X)\to\Ch_\coh^+(\Qcoh_\inj/X)$ such that~$\quotient\circ\cousin(\mathcal{R}^\bullet)\cong\mathcal{R}^\bullet$, where~$\quotient$ is the quotient functor in the construction of the derived category, and~$\Ch_\coh^+(\Qcoh_\inj/X)$ is a model for~$\derived_\coh^+(X)$.
 
@@ -443,7 +451,7 @@ The definition of a residual complex seems odd at first sight.
 \begin{definition}
   Let~$X$ be a locally noetherian prescheme. A \emph{residual complex}~$\mathcal{K}^\bullet$ on~$X$ is a bounded below complex of quasicoherent injective~$\mathcal{O}_X$\dash modules with coherent cohomology, together with an isomorphism
   \begin{equation}
-    \bigoplus_{p\in\mathbb{Z}}\cong\bigoplus_{x\in X}\mathrm{J}(x)
+    \bigoplus_{p\in\mathbb{Z}}\mathcal{K}^p\cong\bigoplus_{x\in X}\mathrm{J}(x)
   \end{equation}
   where~$\mathrm{J}(x)$ is the quasicoherent injective~$\mathcal{O}_X$\dash module given by the constant sheaf with values in an injective hull of~$k(x)$ over~$\mathcal{O}_{X,x}$ on~$\mathrm{cl}(\{x\})$, and zero elsewhere.
 \end{definition}
@@ -492,6 +500,11 @@ Using this notion of compactifiability he defines a functor~$f_!$ (or~$\RRR f_!$
 
 A similar approach is by the way taken to define~$f_!$ and~$f^!$ in the context of \'etale cohomology \cite[expos\'e XVII]{sga43}.
 
+Remark that this approach is completely \emph{orthogonal} to the approach outlined in the previous section:
+\begin{quote}
+  We prove the existence of~$f^!$ and \emph{afterwards} try to interpret dualising complexes.
+\end{quote}
+
 \section{Neeman's proof: Brown's representability theorem}
 \label{section:neeman}
 \subsection{Existence of adjoint functors}
@@ -513,6 +526,8 @@ A similar approach is by the way taken to define~$f_!$ and~$f^!$ in the context 
 Based on a generalisation of the notion of dualising complexes to noncommutative algebra \cite{van-den-bergh-dualizing-complexes} by Michel van den Bergh it is possible to introduce the notion of a rigid dualising complex \cite{yekutieli-zhang-rigid-dualizing-complexes} by Amnon Yekutieli and James Zhang. The notion of \emph{rigidity} is encountered in other areas of algebraic geometry as well: the idea is to add more structure to an object, to kill its automorphisms. Examples of these are level structures on elliptic curves, marked points on curves, fixing a special isomorphism (instead of just requiring that there is one), \ldots\ They also argue that the cumbersome proofs in \cite{hartshorne-residues-and-duality} are due to a lack of rigidity.
 
 After introducing the notion of a rigid dualising complex the theory goes along similar lines: we treat finite and smooth morphisms separately and apply the same type of reduction to studying residues over~$\mathbb{P}_k^1$ \cite{yekutieli-zhang-rigid-dualizing-complexes-on-schemes}. This article seems to be forever in preparation, only a preprint is available.
+
+There is also a noncommutative analogue of this approach.
 
 \subsection{Pseudo-coherent complexes}
 \label{subsection:lipman}
