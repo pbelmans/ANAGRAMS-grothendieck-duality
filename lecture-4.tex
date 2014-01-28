@@ -60,20 +60,20 @@ In formalising the properties that are similar in each of these contexts we see 
   \item we are using the monoidal structure of the category of sheaves.
 \end{itemize}
 In the general situation of abstract Verdier duality we can identify the following functors, for~$f\colon X\to Y$ a morphism in some category, and~$\mathcal{C}(X)$ some category of sheaves associated to~$X$.
-
 \begin{center}
   \begin{tabular}{ccc}
     \toprule
     notation & name & signature \\\midrule
     $f^*$ & inverse image & $f^*\colon\mathcal{C}(Y)\to\mathcal{C}(X)$ \\
     $f_*$ & direct image & $f_*\colon\mathcal{C}(X)\to\mathcal{C}(Y)$ \\
-    $f_!$ & exceptional (or proper, or twisted) direct image & $f_!\colon\mathcal{C}(X)\to\mathcal{C}(Y)$ \\
-    $f^!$ & exceptional (or proper, or twisted) inverse image & $f^!\colon\mathcal{C}(Y)\to\mathcal{C}(X)$ \\
+    $f_!$ & exceptional direct image & $f_!\colon\mathcal{C}(X)\to\mathcal{C}(Y)$ \\
+    $f^!$ & exceptional inverse image & $f^!\colon\mathcal{C}(Y)\to\mathcal{C}(X)$ \\
     $\HHom(-,-)$ & internal Hom & $\mathcal{C}(X)\times\mathcal{C}(X)\to\mathcal{C}(X)$ \\
     $-\otimes-$ & internal tensor product & $\mathcal{C}(X)\times\mathcal{C}(X)\to\mathcal{C}(X)$ \\
     \bottomrule
   \end{tabular}
 \end{center}
+Depending on the context the adjective exceptional is sometimes replaced by the adjectives proper or twisted.
 
 We have relationships between these functors. These are the adjunctions
 \begin{enumerate}
@@ -86,6 +86,13 @@ In the situation of Grothendieck duality we moreover have the adjunction (with s
   f_*\dashv f^!
 \end{equation}
 if~$f\colon X\to Y$ is a proper map between the correct type of schemes. Or rather, we have~$f_*=f_!$ in this situation. But in general these are different, so we really have six functors and not just five. In the case of \'etale cohomology these six (or four) functors are also interesting to interpret, for which one is referred to \cite{milne-etale-cohomology}.
+
+Hence we have several possibilities to go further:
+\begin{enumerate}
+  \item develop Grothendieck duality and the six functors as a formal property of monoidal categories (won't be done here);
+  \item develop these five or six functors into an interesting calculus.
+\end{enumerate}
+This second option is exactly what we're going to do in the next section.
 
 \subsection{Fourier--Mukai transforms}
 Using this formalism of five (or six) functors we can get an interesting ``calculus of derived functors''. Some of these properties have been stated in the previous subsection, but we will now repeat them. The goal is to show that on the level of derived categories one gets lots of compatibilities which can be useful for computations, especially after we have discussed Orlov's existence result.
@@ -175,7 +182,7 @@ This means that~$f^!$ is given by
 \begin{equation}
   f^!\colon\derived^\bounded(\Coh/Y)\to\derived^\bounded(\Coh/X):\mathcal{F}^\bullet\mapsto\LLL f^*(\mathcal{E}^\bullet)\otimes^\LLL\omega_f[\dim(f)].
 \end{equation}
-Then we get some new compatibilities, which are just a remanifestation of Grothendieck duality.
+Then we get some new compatibilities between our functors on derived categories, which are just a remanifestation of Grothendieck duality.
 \begin{description}
   \item[Grothendieck duality] $\mathcal{F}^\bullet\in\derived^\bounded(X)$, $\mathcal{G}^\bullet\in\derived^\bounded(Y)$
     \begin{equation}
@@ -265,7 +272,7 @@ The relative formalism also applies to arithmetic geometry, for example in study
 
 \section{Hartshorne's proof: dualising and residual complexes}
 \label{section:hartshorne}
-\subsection{Context}
+\subsection{Introduction}
 \label{subsection:context}
 The first proof of Grothendieck duality was given by Robin Hartshorne in 1966 \cite{hartshorne-residues-and-duality}, based on notes provided by Alexander Grothendieck in 1963. As the statement and proof require the use of derived categories, Jean--Louis Verdier's ongoing work was included, and it was (as far as I can tell) the first published treatise of derived categories.
 
@@ -315,7 +322,7 @@ In total, one understands that if the proof and a companion to the proof take ab
 \subsection{Outline of the proof}
 Summarising 500 pages of proof is a rather non-trivial task to do, but I will try to outline my view on the proof and its structure. Hopefully this helps in tackling the proof, and identifying which parts could be of interest to the reader. I will do this by summarising the different chapters, later on some interesting points will be highlighted in separate paragraphs.
 
-As mentioned before (but maybe not explicitly enough): this approach to Grothendieck duality can be summarised by the following slogan.
+As mentioned before (but maybe not explicitly enough): this (geometric) approach to Grothendieck duality can be summarised by the following slogan.
 \begin{quote}
   We define~$f^!$ by looking for a dualising complex and \emph{defining} the functor in terms of this complex.
 \end{quote}
@@ -464,8 +471,9 @@ This ``equivalence'' of residual and dualising complexes is one of the subtle po
 As the equivalence is true under reasonable hypotheses, one can then define~$f^!$ along similar means using Nagata compactifications. This is where the main technical part of the proof is found \cite[\S VI.2--VI.5]{hartshorne-residues-and-duality}. It requires checking lots and lots of commutative diagrams, and this is one of the reasons for the existence of \cite{conrad-grothendieck-duality-and-base-change}.
 
 
-\section{Deligne's proof: the right adjoint}
+\section{Deligne's proof: go straight for the right adjoint}
 \label{section:deligne}
+\subsection{Introduction}
 If one wishes to settle for a Grothendieck duality theory, without dualising and residual complexes, it is possible to prove the existence of the right adjoint~$f^!$ by other means \cite{deligne-appendix-f-upper-shriek,verdier-base-change-twisted-inverse-image}. One can then show that the remaining aspects of Grothendieck duality follow from the existence of this adjoint.
 
 The idea for this approach comes from Verdier duality, which is a generalised Poincar\'e duality for topological spaces. It is possible to obtain the results in an almost formal way, if one has a good theory of ``cohomology with proper support''.
@@ -507,6 +515,7 @@ Remark that this approach is completely \emph{orthogonal} to the approach outlin
 
 \section{Neeman's proof: Brown's representability theorem}
 \label{section:neeman}
+\subsection{Introduction}
 The previous two approaches have in common that at some point one takes a factorisation of a morphism into two specific types of morphisms, proceeds to obtain Grothendieck duality for each type separately, and then glues these together by checking compatibility and independence of the choice of factorisation. What if we could get rid of this?
 
 This is done in Neeman's approach \cite{neeman-grothendieck-duality-bousfield-brown}: we are looking for a right adjoint to a functor between triangulated categories. By using an abstract result it is possible to obtain the existence of this functor immediately! The reason why this (easy, but formal) approach took so long is that one has to use ideas (or tools) from topology and apply them to study triangulated categories.
@@ -517,7 +526,7 @@ The general result that we wish to apply is \emph{Brown representability}. The s
   \label{theorem:brown-representability}
   Let~$\mathcal{T}$ be a compactly generated triangulated category. Let~$H\colon\mathcal{T}^{\mathrm{op}}\to\Ab$ be a homological functor, i.e.\ it is contravariant and takes triangles to long exact sequences. Suppose furthermore that
   \begin{equation}
-    H\left( \bigsqcup_{\lambda\in\Lambda}t_\lambda \right)\to\prod_{\lambda\in\Lambda}H(t_\lambda)
+    H\left( \coprod_{\lambda\in\Lambda}t_\lambda \right)\to\prod_{\lambda\in\Lambda}H(t_\lambda)
   \end{equation}
   is an isomorphism for all small coproducts. Then~$H$ is representable.
 \end{theorem}
@@ -525,9 +534,9 @@ This representability means we can write~$H$ as~$\Hom_{\mathcal{T}}(-,t)$ for so
 \begin{theorem}
   Let~$\mathcal{S}$ be a compactly generated triangulated category, $\mathcal{T}$ be a triangulated category, let~$F\colon\mathcal{S}\to\mathcal{T}$ be a triangulated functor, suppose that~$F$ respects coproducts, i.e.\ the natural maps
   \begin{equation}
-    F(s_\lambda)\to F\left( \bigsqcup_{\lambda\in\Lambda}s_\lambda \right)
+    F(s_\lambda)\to F\left( \coprod_{\lambda\in\Lambda}s_\lambda \right)
   \end{equation}
-  turn~$F(\bigsqcup_{\lambda\in\Lambda}s_\lambda)$ into a coproduct. Then~$F$ admits a right adjoint~$G\colon\mathcal{T}\to\mathcal{S}$.
+  turn~$F(\coprod_{\lambda\in\Lambda}s_\lambda)$ into a coproduct. Then~$F$ admits a right adjoint~$G\colon\mathcal{T}\to\mathcal{S}$.
 
   \begin{proof}
     We consider the homological functor~$\Hom_{\mathcal{T}}(F(-),t)$, for each~$t\in\mathcal{T}$. This functor is representable by Brown representability, hence we find an object~$G(t)\in\mathcal{T}$ such that
@@ -540,13 +549,71 @@ To apply this theorem, we need to know that~$\derived(\Qcoh/X)$ is compactly gen
 
 Hence this approach is again completely orthogonal to the original approach by Hartshorne: one looks for a functor~$f^!$ and then deduces properties of this functor and the related notion of dualising complexes.
 
-\section{Murfet's proof: The mock homotopy category of projectives}
+\section{Murfet's proof: the mock homotopy category of projectives}
 \label{section:murfet}
-\subsection{Definitions}
-\label{subsection:definitions}
+\subsection{Introduction}
+So far we have had a geometric approach and two categorical ones. By using the mock homotopy category of projectives Murfet tries to reconcile the two a little (albeit it still firmly rooted in an abstract language). It is based on several interesting observations.
 
-\subsection{Proof}
-\label{subsection:proof}
+This approach promises interesting generalisations and new insights, e.g.\ it is possible to prove Grothendieck duality for sufficiently nice Artin stacks, or look for noncommutative interpretations of Grothendieck duality.
+
+\subsection{Sketch of the ideas}
+\paragraph{On the injective side}
+In \cite[\S 6]{krause-stable-derived-category} Henning Krause realises Grothendieck duality at a stage before derived categories by appealing to Neeman's application of Brown representability and the following facts:
+\begin{enumerate}
+  \item for~$X$ a noetherian separated scheme we can write
+    \begin{equation}
+      \derived(\Qcoh/X)\cong\KKK(\Inj/X)/\KKK_{\mathrm{ac}}(\Inj/X);
+    \end{equation}
+  \item for~$X$ a noetherian separated scheme we have
+    \begin{equation}
+      \derived^\bounded(\Coh/X)\cong\KKK(\Inj/X)^{\mathrm{c}}
+    \end{equation}
+    (i.e.\ the compact objects constitute the derived category of interest).
+\end{enumerate}
+If one has seen model categories before: this is in the spirit of the injective model structure, we consider the subcategory of fibrant--cofibrant objects as a model for the derived category, and in this explicit form we can do computations. So~$f^!$ now lives on the level of~$\KKK(\Inj/X)$ and~$\KKK(\Inj/Y)$.
+
+\paragraph{On the projective side}
+In \cite{jorgensen-homotopy-category-projectives} Peter J\o rgensen realises Grothendieck duality at a stage before derived categories by appealing to Neeman's application of Brown representability and the following facts:
+\begin{enumerate}
+  \item for~$X$ a noetherian \emph{affine} scheme we can write
+    \begin{equation}
+      \derived(\Qcoh/X)\cong\KKK(\Proj/X)/\KKK_{\mathrm{ac}}(\Proj/X);
+    \end{equation}
+  \item for~$X$ a noetherian \emph{affine} scheme we have
+    \begin{equation}
+      \derived^\bounded(\Coh/X)^{\mathrm{op}}\cong\KKK(\Proj/X)^{\mathrm{c}}
+    \end{equation}
+    i.e.\ the compact objects constitute the derived category of interest).
+\end{enumerate}
+The awfully strict condition in this case immediately brings us to the next observation.
+
+\paragraph{Flat versus projective}
+\begin{enumerate}
+  \item there are not enough projective objects on a non-affine scheme;
+  \item the homotopy category of projective objects in the affine case has the following model:
+    \begin{equation}
+      \KKK(\Proj/X)\cong\KKK(\Flat/X)/\KKK_{\mathrm{pac}}
+    \end{equation}
+    where the index pac means the ``pure acyclic flat complexes'', i.e.\ the ones that are acylic complexes of flat sheaves that remain acyclic after tensoring with a sheaf (the purity can be characterised as having flat kernels for all the differentials).
+\end{enumerate}
+In the case of a non-affine scheme~$X$ we could \emph{mimick} this definition, and set
+\begin{equation}
+  \KKK_{\mathrm{m}}(\Proj/X)\coloneqq\KKK(\Flat/X)/\KKK_{\mathrm{pac}}(\Flat/X).
+\end{equation}
+This \emph{mock homotopy category of projectives} has all the good properties, similar to the ones of~$\KKK(\Inj/X)$, agrees with the homotopy category of projectives in the affine case and has interesting information in the non-affine case. For more information on the motivation, see \cite[chapter 1]{murfet-phd}.
+
+Hence we can now state Grothendieck duality as follows.
+\begin{theorem}[Grothendieck duality]
+  Let~$X$ be a noetherian separated scheme. Let~$\mathcal{I}$ be a bounded-below complexe of injective quasicoherent sheaves. Then we have a diagram
+  \begin{equation}
+    \begin{tikzcd}
+      \derived^\bounded(\Coh/X)^{\mathrm{op}} \arrow{r}{\RRRHHom(-,\mathcal{I})} \arrow[hook]{d} & \derived^\bounded(\Coh/X) \arrow[hook]{d} \\
+      \KKK_{\mathrm{mock}}(\Proj/X) \arrow{r}{\mathcal{I}\otimes-} & \KKK(\Inj/X)
+    \end{tikzcd}
+  \end{equation}
+  where the vertical inclusions are the inclusions of the compact objects. This diagram is well-defined, commutes and has equivalences horizontally if and only if~$\mathcal{I}$ is a (pointwise) dualising complex.
+\end{theorem}
+Hence we have restated Grothendieck duality in terms of homotopy categories and compact objects.
 
 \section{Other proofs}
 \label{section:other}
@@ -560,7 +627,7 @@ There is also a noncommutative analogue of this approach.
 
 \subsection{Pseudo-coherent complexes}
 \label{subsection:lipman}
-I have nothing to say about this yet, one is invited to read \cite{lipman-notes-on-grothendieck-duality}. I hope to get back to this approach at some point.
+One is invited to read \cite{lipman-notes-on-grothendieck-duality}. As far as I can tell it is mostly a technical improvement, to put techniques from \cite{sga6} to good use, and less of a whole radically new approach. The notes themselves are really nice, and they give a good background to derived categories. I hope to get back to this approach at some point and understand the main points.
 
 \subsection{More?}
 Maybe there are more proofs available. But as far as I can tell, these are the main approaches. In the 80ties some work has been done, but these seem to be refinements, not alternative proofs. Feel free to contact me if you have anything to tell.
