@@ -2,7 +2,7 @@
 \label{section:hartshorne}
 \subsection{Introduction}
 \label{subsection:context}
-The first proof of Grothendieck duality was given by Robin Hartshorne in 1966 \cite{hartshorne-residues-and-duality}, based on notes provided by Alexander Grothendieck in 1963. As the statement and proof require the use of derived categories, Jean--Louis Verdier's ongoing work was included, and it was (as far as I can tell) the first published treatise of derived categories.
+The first proof of Grothendieck duality was given by Robin Hartshorne in 1966 \cite{hartshorne-residues-and-duality}, based on notes provided by Alexander Grothendieck in 1963. As the statement and proof require the use of derived categories, Jean--Louis Verdier's ongoing (at the time) work was included in the first two chapters of the book, and it was (as far as I can tell) the first published treatise of derived categories.
 
 \paragraph{Issues with the proof}
 This approach is the most geometric of them all, but also the most complicated. To quote Amnon Neeman \cite{neeman-grothendieck-duality-bousfield-brown}:
@@ -16,6 +16,8 @@ Moreover, the proof from \cite{hartshorne-residues-and-duality} is incomplete, a
   Now these examples are only three of many more compatibilities which will come immediately to the reader's mind. I could make a big list, and in principle could prove each one on the list. [\ldots] And since the chore of inventing these diagrams and checking their commutativity is almost mechanical, the reader would not want to read them, nor I write them. [\ldots]
 \end{quote}
 Hence the reader is left with checking lots and lots of commutative diagrams, some of them depending on very subtle sign conventions in homological algebra!
+
+Besides these intentional omissions there are some mistakes in the proofs. Nothing that can't be fixed though.
 
 \paragraph{Trace maps and base change}
 There is an important omission from the proof: the compatibility of the trace map for smooth morphisms with arbitrary base change. If~$f\colon X\to Y$ is a proper, surjective, smooth map of schemes whose fibers are equidimensional of dimension~$n$, then we had the \emph{trace map} \cite[\S VII.4]{hartshorne-residues-and-duality}
@@ -43,7 +45,7 @@ The desired compatibility then asserts that
 is a commutative diagram. A nice discussion of the state of this base change compatibility can be found in \cite[\S 1.1]{conrad-grothendieck-duality-and-base-change}. To summarise: the proof is left to the reader in \cite[\S VII.4]{hartshorne-residues-and-duality}, and its proof is highly non-trivial, which brings us by \cite{conrad-grothendieck-duality-and-base-change}.
 
 \paragraph{Companion to the proof}
-This book is written as a complement to the original proof, providing information on the omissions and fixing the numerous mistakes in the original proof. As the theory of derived categories was in its infancy, many things were still unclear, and this caused errors. Some of these are trivial to fix, others are severe and require a completely different proof. And to top things of: some (minor) mistakes have been found in Brian Conrad's book, but these don't require difficult fixes and a detailed erratum is available.
+The book \cite{conrad-grothendieck-duality-and-base-change} is written as a complement to the original proof, providing information on the omissions and fixing the numerous mistakes in the original proof. As the theory of derived categories was in its infancy, many things were still unclear, and this caused errors. Some of these are trivial to fix, others are severe and require a completely different proof. And to top things of: some (minor) mistakes have been found in Brian Conrad's book, but these don't require difficult fixes and a detailed erratum is available.
 
 In total, one understands that if the proof and a companion to the proof take about 500 pages, it's hardly an easy proof.
 
@@ -67,13 +69,13 @@ The whole setup of the book should be considered in this point of view.
     
     By checking compatibility of these two definitions (which are suggested by the Ideal theorem, as given in the previous lecture) one obtains a theory of~$f^!$ for these nice morphisms \cite[theorem III.8.7]{hartshorne-residues-and-duality} (but not all the required properties for~$f^!$). This is then used to obtain Grothendieck duality for \emph{projective} morphisms \cite[\S III.9, III.10]{hartshorne-residues-and-duality}.
 
-    Remark that \cite{altman-kleiman-grothendieck-duality} looks like it proves Grothendieck duality in this projective case. But actually it only proves a statement similar to Serre duality (in the original sense of \cite{serre-faisceaux-algebriques-coherents}), no derived categories are mentioned: the proof uses spectral sequences and some results on depth to obtain a statement for singular varieties over a field. The book itself remains interesting (for historical reasons) as it is the earliest easy-to-read text on the algebraic aspects of algebraic geometry I have seen so far.
+    %Remark that \cite{altman-kleiman-grothendieck-duality} looks like it proves Grothendieck duality in this projective case. But actually it only proves a statement similar to Serre duality (in the original sense of \cite{serre-faisceaux-algebriques-coherents}), no derived categories are mentioned: the proof uses spectral sequences and some results on depth to obtain a statement for singular varieties over a field. The book itself remains interesting (for historical reasons) as it is the earliest easy-to-read text on the algebraic aspects of algebraic geometry I have seen so far.
 
     A similar idea of factoring morphisms into tractable ones occurs in \cref{section:deligne}.
 
   \item[chapter 4] As discussed in the section on applications of Grothendieck duality there is an interesting notion of local duality, related to local cohomology. Before tackling global Grothendieck duality one has to understand what happens in the local case, as this is what is used to characterise the objects defined in the next chapters.
 
-    Historically, local duality is treated in \cite{sga2} and \cite{hartshorne-local-cohomology}. Remark that this second book are the notes of a seminar by Hartshorne on local duality, and are originally from 1961, the same period as SGA2 (which was done in 1961--1962).
+    Historically, local duality is treated in \cite{sga2} and \cite{hartshorne-local-cohomology}. Remark that this second book are the notes (by Hartshorne) of a seminar (by Grothendieck) on local duality, and are originally from 1961, the same period as SGA2 (which was done in 1961--1962).
 
   \item[chapter 5] Recall that this approach to Grothendieck duality can be summarised by the following slogan.
     \begin{quote}
@@ -96,13 +98,13 @@ The whole setup of the book should be considered in this point of view.
 
   \item[chapter 7] In this chapter Grothendieck duality in its general form is finally proved. We have obtained many preliminary results, and this allows us to summarise the final proof \cite[theorem VII.3.3]{hartshorne-residues-and-duality} as follows:
     \begin{enumerate}
-      \item Grothendieck duality for~$\RRRHHom$ is local, hence we reduce~$Y$ to the spectrum of a local ring (so the base is affine).
+      \item Grothendieck duality for~$\RRRHHom$ is local (and it implies the other statements), hence we reduce~$Y$ to the spectrum of a local ring (so the base is affine).
       \item By some machinery of derived categories we can replace the complex by a single quasicoherent sheaf on~$X$.
       \item We can replace the quasicoherent sheaf on~$X$ by a coherent one using a direct limit argument.
       \item As~$Y$ is affine the local statement for~$\RRRHHom$ becomes a global statement for~$\RRRHom$.
       \item We check compatibility of the global statement with composition of two morphisms (this is not a part of the conceptual flow of the proof in my opinion). This is where residual complexes are required. One of the compatibilities requires a coherence condition, which explains the reduction in the third step.
       \item Using noetherian induction on~$X$ we can assume that the theorem is proven for every~$g\colon Z\to Y$ where~$i\colon Z\to X$ is a closed immersion with~$Z\neq X$ and~$g=f\circ i$.
-      \item As~$X$ is proper over~$Y$ we apply Chow's lemma to find an~$X'$ which is projective over~$Y$ and a projective morphism~$g\colon X\to X'$ which is an isomorphism over some non-empty open subset~$U$. By the noetherian induction we can assume the theorem proven for the complement, which allows us to reduce the statement to the projective morphism in the factorisation of Chow's lemma.
+      \item As~$X$ is proper over~$Y$ we apply Chow's lemma to find an~$X'$ which is projective over~$Y$ and a morphism~$g\colon X\to X'$ which is an isomorphism over some non-empty open subset~$U$. By the noetherian induction we can assume the theorem proven for the complement, which allows us to reduce the statement to the projective morphism in the factorisation of Chow's lemma.
       \item Now we can apply the results we had for projective morphisms, and conclude.
     \end{enumerate}
     The remainder of the chapter is dedicated to spelling out the trace map and making the duality result more explicit for proper smooth morphisms.
@@ -150,7 +152,7 @@ As is fashionable in algebraic geometry, we have turned our problem into a defin
   \item one can check whether~$\mathcal{R}^\bullet$ is dualising at all the stalks of closed points of~$X$ \cite[corollary V.2.3]{hartshorne-residues-and-duality};
   \item dualising complexes are preserved by~$f^\flat$ and~$f^\sharp$ \cite[proposition V.2.4 and theorem V.8.3]{hartshorne-residues-and-duality}, hence for embeddable~$f$ we get that~$f^!$ preserves dualising complexes, and this means that we can compute~$f^!$ by the following isomorphism
     \begin{equation}
-      f^!(\mathcal{F}^\bullet)\cong\ddual_X\circ\LLL f^*\circ\ddual_Y(\mathcal{F}^\bullet)
+      f^!(\mathcal{F}^\bullet)\cong\ddual_X\circ\ \LLL f^*\circ\ddual_Y(\mathcal{F}^\bullet)
     \end{equation}
     with
     \begin{equation}
@@ -168,7 +170,7 @@ Regarding the question of its \emph{existence}, one has the following necessary 
 Hence, under which conditions can we prove the existence of a dualising complex?
 \begin{enumerate}
   \item $X$ Gorenstein and of finite Krull dimension.
-  \item $X$ of finite type over~$Y$ with~$Y$ admitting a dualising comlex (which has $X$ of finite type over a field~$k$ as a special case, hence we get Serre duality for arbitrary singularities).
+  \item $X$ of finite type over~$Y$ with~$Y$ admitting a dualising complex (which has~$X$ of finite type over a field~$k$ as a special case, hence we get Serre duality for arbitrary singularities).
 \end{enumerate}
 \paragraph{Necessary conditions}
 Hence, what properties of~$X$ does the existence of a dualising complex imply?
@@ -250,7 +252,7 @@ Remark that this approach is completely \emph{orthogonal} to the approach outlin
 \subsection{Introduction}
 The previous two approaches have in common that at some point one takes a factorisation of a morphism into two specific types of morphisms, proceeds to obtain Grothendieck duality for each type separately, and then glues these together by checking compatibility and independence of the choice of factorisation. What if we could get rid of this?
 
-This is done in Neeman's approach \cite{neeman-grothendieck-duality-bousfield-brown}: we are looking for a right adjoint to a functor between triangulated categories. By using an abstract result it is possible to obtain the existence of this functor immediately! The reason why this (easy, but formal) approach took so long is that one has to use ideas (or tools) from topology and apply them to study triangulated categories.
+This is done in Neeman's approach \cite{neeman-grothendieck-duality-bousfield-brown}: we are looking for a right adjoint to a functor between triangulated categories. We don't have to consider the underlying morphism inducing this functor. By using an abstract result it is possible to obtain the existence of this functor immediately! The reason why this (easy, but formal) approach took so long is that one has to use ideas (or tools) from topology and apply them to study triangulated categories.
 
 \subsection{Existence of adjoint functors}
 The general result that we wish to apply is \emph{Brown representability}. The shape it takes in our case is the following:
@@ -324,7 +326,7 @@ The awfully strict condition in this case immediately brings us to the next obse
   \item there are not enough projective objects on a non-affine scheme;
   \item the homotopy category of projective objects in the affine case has the following model:
     \begin{equation}
-      \KKK(\Proj/X)\cong\KKK(\Flat/X)/\KKK_{\mathrm{pac}}
+      \KKK(\Proj/X)\cong\KKK(\Flat/X)/\KKK_{\mathrm{pac}}(\Flat/X)
     \end{equation}
     where the index pac means the ``pure acyclic flat complexes'', i.e.\ the ones that are acylic complexes of flat sheaves that remain acyclic after tensoring with a sheaf (the purity can be characterised as having flat kernels for all the differentials).
 \end{enumerate}
@@ -351,7 +353,7 @@ Hence we have restated Grothendieck duality in terms of homotopy categories and 
 \label{section:other}
 \subsection{Rigid dualising complexes}
 \label{subsection:yekutieli-zhang}
-Based on a generalisation of the notion of dualising complexes to noncommutative algebra \cite{van-den-bergh-dualizing-complexes} by Michel van den Bergh it is possible to introduce the notion of a rigid dualising complex \cite{yekutieli-zhang-rigid-dualizing-complexes} by Amnon Yekutieli and James Zhang. The notion of \emph{rigidity} is encountered in other areas of algebraic geometry as well: the idea is to add more structure to an object, to kill its automorphisms. Examples of these are level structures on elliptic curves, marked points on curves, fixing a special isomorphism (instead of just requiring that there is one), \ldots\ They also argue that the cumbersome proofs in \cite{hartshorne-residues-and-duality} are due to a lack of rigidity.
+Based on a generalisation of the notion of dualising complexes to noncommutative algebra \cite{van-den-bergh-dualizing-complexes} by Michel van den Bergh it is possible to introduce the notion of a rigid dualising complex \cite{yekutieli-zhang-rigid-dualizing-complexes}, as was done by Amnon Yekutieli and James Zhang. The notion of \emph{rigidity} is encountered in other areas of algebraic geometry as well: the idea is to add more structure to an object, to kill its automorphisms. Examples of these are level structures on elliptic curves, marked points on curves, fixing a special isomorphism (instead of just requiring that there is one), \ldots\ They also argue that the cumbersome proofs in \cite{hartshorne-residues-and-duality} are due to a lack of rigidity.
 
 After introducing the notion of a rigid dualising complex the theory goes along similar lines: we treat finite and smooth morphisms separately and apply the same type of reduction to studying residues over~$\mathbb{P}_k^1$ \cite{yekutieli-zhang-rigid-dualizing-complexes-on-schemes}. This article seems to be forever in preparation, only a preprint is available.
 
@@ -359,7 +361,7 @@ There is also a noncommutative analogue of this approach.
 
 \subsection{Pseudo-coherent complexes}
 \label{subsection:lipman}
-One is invited to read \cite{lipman-notes-on-grothendieck-duality}. As far as I can tell it is mostly a technical improvement, to put techniques from \cite{sga6} to good use, and less of a whole radically new approach. The notes themselves are really nice, and they give a good background to derived categories. I hope to get back to this approach at some point and understand the main points.
+One is invited to read \cite{lipman-notes-on-grothendieck-duality}. As far as I can tell it is mostly a technical improvement, to put techniques from \cite{sga6} to good use, and less of a radically new approach. The notes themselves are really nice, and they give a good background to derived categories. I hope to get back to this approach at some point and understand the main difference(s) with other approaches.
 
 \subsection{More?}
 Maybe there are more proofs available. But as far as I can tell, these are the main approaches. In the 80ties some work has been done, but these seem to be refinements, not alternative proofs. Feel free to contact me if you have anything to tell.

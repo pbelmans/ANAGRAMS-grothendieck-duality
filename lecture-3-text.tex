@@ -137,7 +137,7 @@ So we now that there is some virtue in looking at the relative context, and that
 There are two ways of taking the dual of an abelian group:
 \begin{enumerate}
   \item the \emph{Pontryagin dual} of a finite abelian group, which is given by the functor~$\Hom_{\Ab}(-,\mathbb{Q}/\mathbb{Z})$;
-  \item the dual of a finitely generated free group, which is given by the functor~$\Hom_{\Ab}(-,\mathbb{Q})$.
+  \item the dual of a finitely generated free group, which is given by the functor~$\Hom_{\Ab}(-,\mathbb{Z})$.
 \end{enumerate}
 Each applied twice to the correct situation gives a abelian group isomorphic to the one you started with. We can consider these two dualising functors at the same time, by considering the complex
 \begin{equation}
@@ -327,28 +327,32 @@ Due to time constraints, both in preparing these notes and actually lecturing ab
 
 \subsection{The yoga of six functors}
 \label{subsection:six-functors-yoga}
+\paragraph{Coherent duality}
 The notion of Grothendieck duality that we have seen so far is in the following situation:
 \begin{enumerate}
   \item (quasi)coherent sheaves;
   \item Zariski topology for schemes;
 \end{enumerate}
+\paragraph{\'Etale cohomology}
 But one can consider other contexts too. In the study of \'etale cohomology we have:
 \begin{enumerate}
   \item torsion sheaves;
-  \item \'etale topology for schemes;
+  \item \'etale topology for schemes.
 \end{enumerate}
-and in the case of manifolds and locally compact spaces we have Poincar\'e--Verdier duality:
+\paragraph{Poincar\'e--Verdier duality}
+In the case of manifolds and locally compact spaces we have Poincar\'e--Verdier duality:
 \begin{enumerate}
   \item sheaves of abelian groups;
   \item locally compact spaces.
 \end{enumerate}
 
+\paragraph{Formalism}
 In formalising the properties that are similar in each of these contexts we see that
 \begin{itemize}
-  \item we are considering ``image functors of sheaves'';
-  \item we are using the monoidal structure of the category of sheaves.
+  \item we are considering \emph{image functors} of sheaves;
+  \item we are using the \emph{closed monoidal structure} of the category of sheaves.
 \end{itemize}
-In the general situation of abstract Verdier duality we can identify the following functors, for~$f\colon X\to Y$ a morphism in some category, and~$\mathcal{C}(X)$ some category of sheaves associated to~$X$.
+In the general situation of a ``six functors formalism'' we can identify the following functors \cite{cisinsk-deglise-triangulated-categories-of-mixed-motives}, for~$f\colon X\to Y$ a morphism in some category, and~$\mathcal{C}(X)$ some category of sheaves associated to~$X$.
 \begin{center}
   \begin{tabular}{ccc}
     \toprule
@@ -362,26 +366,29 @@ In the general situation of abstract Verdier duality we can identify the followi
     \bottomrule
   \end{tabular}
 \end{center}
-Depending on the context the adjective exceptional is sometimes replaced by the adjectives proper or twisted.
+Depending on the context the adjective exceptional is sometimes replaced by the adjectives proper or twisted. The existence of some of the functors is not required to be universal in~$f$, e.g.\ the exceptional direct and inverse image are only required to exist for separated maps of finite type between schemes.
 
-We have relationships between these functors. These are the adjunctions
+We have relationships between these functors. These are (being a bit sloppy and not mentioning all of them):
 \begin{enumerate}
-  \item $f^*\dashv f_*$;
-  \item $f_!\dashv f^!$;
-  \item $-\otimes C\dashv \HHom(C,-)$.
+  \item the adjunctions: $f^*\dashv f_*$, $f_!\dashv f^!$ and $-\otimes C\dashv \HHom(C,-)$;
+  \item the existence of a natural transformation~$\alpha_f\colon f_!\Rightarrow f_*$;
+  \item base change isomorphisms intertwining inverse and exceptional direct image, and direct and exceptional direct image;
 \end{enumerate}
-In the situation of Grothendieck duality we moreover have the adjunction (with some abuse of notation, dropping~$\RRR$)
-\begin{equation}
-  f_*\dashv f^!
-\end{equation}
-if~$f\colon X\to Y$ is a proper map between the correct type of schemes. Or rather, we have~$f_*=f_!$ in this situation. But in general these are different, so we really have six functors and not just five. In the case of \'etale cohomology these six (or four) functors are also interesting to interpret, for which one is referred to \cite{milne-etale-cohomology}.
-
-Hence we have several possibilities to go further:
+In the situation of coherent duality we moreover have:
+\begin{enumerate}
+  \item the adjunction (with some abuse of notation, dropping~$\RRR$)
+    \begin{equation}
+      f_*\dashv f^!
+    \end{equation}
+    if~$f\colon X\to Y$ is a proper map between the correct type of schemes\footnote{Rather, we have~$f_*=f_!$ in this situation. But in general these are different, so we really have six functors and not just five.};
+  \item compatibilities between dualising functors and the image functors (i.e.\ compatibilities between the closed monoidal structure and the relative struture).
+\end{enumerate}
+Hence we have several possibilities to go continue our study of Grothendieck duality:
 \begin{enumerate}
   \item develop Grothendieck duality and the six functors as a formal property of monoidal categories (won't be done here);
   \item develop these five or six functors into an interesting calculus.
 \end{enumerate}
-This second option is exactly what we're going to do in the next section.
+This second option is exactly what we're going to do in the next section. The compatibilities not mentioned explicitly will return there.
 
 \subsection{Fourier--Mukai transforms}
 Using this formalism of five (or six) functors we can get an interesting ``calculus of derived functors''. Some of these properties have been stated in the previous subsection, but we will now repeat them. The goal is to show that on the level of derived categories one gets lots of compatibilities which can be useful for computations, especially after we have discussed Orlov's existence result.
@@ -393,7 +400,7 @@ We will consider~$f\colon X\to Y$ a morphism of projective schemes over a field~
     $f$ proper, $\mathcal{F}^\bullet\in\derived^\bounded(\Coh/X)$ and~$\mathcal{G}^\bullet\in\derived^\bounded(\Coh/Y)$
     \begin{equation}
       \begin{tikzcd}
-        \RRR f_*(\mathcal{F}^\bullet)\otimes^\LLL\mathcal{G}^\bullet \arrow{r}{\sim} & \RRR f_*\left( \mathcal{F}^\bullet\otimes^\LLL f^*(\mathcal{E}^\bullet) \right)
+        \RRR f_*(\mathcal{F}^\bullet)\otimes^\LLL\mathcal{G}^\bullet \arrow{r}{\sim} & \RRR f_*\left( \mathcal{F}^\bullet\otimes^\LLL \LLL f^*(\mathcal{E}^\bullet) \right)
       \end{tikzcd}
     \end{equation}
 
@@ -402,7 +409,7 @@ We will consider~$f\colon X\to Y$ a morphism of projective schemes over a field~
     $\mathcal{F}^\bullet,\mathcal{G}^\bullet\in\derived^\bounded(\Coh/Y)$
     \begin{equation}
       \begin{tikzcd}
-        \LLL f^*(\mathcal{F}^\bullet)\otimes^\LLL f^*(\mathcal{G}^\bullet) \arrow{r}{\sim} & \LLL f^*(\mathcal{F}^\bullet\otimes^\LLL\mathcal{G}^\bullet);
+        \LLL f^*(\mathcal{F}^\bullet)\otimes^\LLL \LLL f^*(\mathcal{G}^\bullet) \arrow{r}{\sim} & \LLL f^*(\mathcal{F}^\bullet\otimes^\LLL\mathcal{G}^\bullet);
       \end{tikzcd}
     \end{equation}
 
@@ -420,9 +427,9 @@ We will consider~$f\colon X\to Y$ a morphism of projective schemes over a field~
     $X$ smooth and projective, $\mathcal{F}^\bullet,\mathcal{G}^\bullet,\mathcal{H}^\bullet\in\derived^\bounded(\Coh/X)$
     \begin{equation}
       \begin{aligned}
-        \RRRHHom(\mathcal{F}^\bullet,\mathcal{G}^\bullet)\otimes^\LLL\mathcal{G}^\bullet\cong\RRRHHom(\mathcal{F}^\bullet,\mathcal{G}^\bullet\otimes^\LLL\mathcal{H}^\bullet), \\
-        \RRRHHom(\mathcal{F}^\bullet,\RRRHHom(\mathcal{G}^\bullet,\mathcal{H}^\bullet))\cong\RRRHHom(\mathcal{F}^\bullet\otimes^\LLL\mathcal{G}^\bullet,\mathcal{H}^\bullet), \\
-        \RRRHHom(\mathcal{F}^\bullet,\mathcal{G}^\bullet\otimes^\LLL\mathcal{H}^\bullet)\cong\RRRHHom(\RRRHHom(\mathcal{G}^\bullet,\mathcal{F}^\bullet),\mathcal{H}^\bullet);
+        \RRRHHom(\mathcal{F}^\bullet,\mathcal{G}^\bullet)\otimes^\LLL\mathcal{G}^\bullet&\cong\RRRHHom(\mathcal{F}^\bullet,\mathcal{G}^\bullet\otimes^\LLL\mathcal{H}^\bullet), \\
+        \RRRHHom(\mathcal{F}^\bullet,\RRRHHom(\mathcal{G}^\bullet,\mathcal{H}^\bullet))&\cong\RRRHHom(\mathcal{F}^\bullet\otimes^\LLL\mathcal{G}^\bullet,\mathcal{H}^\bullet), \\
+        \RRRHHom(\mathcal{F}^\bullet,\mathcal{G}^\bullet\otimes^\LLL\mathcal{H}^\bullet)&\cong\RRRHHom(\RRRHHom(\mathcal{G}^\bullet,\mathcal{F}^\bullet),\mathcal{H}^\bullet);
       \end{aligned}
     \end{equation}
 
@@ -459,7 +466,9 @@ We will consider~$f\colon X\to Y$ a morphism of projective schemes over a field~
     \end{equation}
 \end{description}
 
-But as we saw in the description of the general six functor formalism we have another functor at our disposal. Or rather, in the context we are working in right now (smooth projective varieties over a scheme) we work with the dualising sheaf characterising the~$f^!$. If~$f\colon X\to Y$ is a morphism between such schemes we define explicitly
+But as we saw in the description of the general six functor formalism we have another functor at our disposal: $f^!$.
+
+Or rather, in the context we are working in right now (smooth projective varieties over a scheme) we work with the dualising sheaf characterising the~$f^!$, which makes things more explicit. So if~$f\colon X\to Y$ is a morphism between such schemes we define explicitly
 \begin{equation}
   \omega_f\coloneqq\omega_X\otimes f^*(\omega_Y^\vee)
 \end{equation}
@@ -480,7 +489,7 @@ Then we get some new compatibilities between our functors on derived categories,
   \item[$\RRR f_*$ and $f^!$ adjunction] $\mathcal{F}^\bullet\in\derived^\bounded(\Coh/X)$, $\mathcal{G}^\bullet\in\derived^\bounded(\Coh/Y)$
     \begin{equation}
       \begin{tikzcd}
-        \Hom_{\derived^\bounded(\Coh/Y)}(\RRR f_*(\mathcal{F}^\bullet),\mathcal{G}^\bullet) \arrow{r}{\sim} & \Hom_{\derived^\bounded(\Coh/X)}(\mathcal{F}^\bullet,f^!(\mathcal{G}^\bullet)).
+        \Hom_{\derived^\bounded(\Coh/Y)}\left( \RRR f_*(\mathcal{F}^\bullet),\mathcal{G}^\bullet \right) \arrow{r}{\sim} & \Hom_{\derived^\bounded(\Coh/X)}\left( \mathcal{F}^\bullet,f^!(\mathcal{G}^\bullet) \right).
       \end{tikzcd}
     \end{equation}
 \end{description}
@@ -522,7 +531,9 @@ As they say themselves, the ``key definition of the whole paper'' is:
     \item $\dim\HH^1(\mathcal{O}_{C_s})=g$.
   \end{enumerate}
 \end{definition}
-So two aspects of Grothendieck duality come to mind: the relative situation, and the (mild) singularities. We get a canonical invertible sheaf~$\omega_{C/S}$ on~$C$, which will act as a \emph{family} of sufficiently nice curves to connect any two points in the moduli space, thus proving irreducibility. One then proves the following properties of the dualising sheaf:
+So two aspects of Grothendieck duality come to mind: the relative situation, and the (mild) singularities. We get a canonical invertible sheaf~$\omega_{C/S}$ on~$C$, where~$C$ will act as a \emph{family} of sufficiently nice curves to connect any two points in the moduli space, thus proving irreducibility.
+
+One then proves the following properties of the dualising sheaf:
 \begin{enumerate}
   \item $\omega_{C/S}^{\otimes n}$ is relatively very ample for~$n\geq 3$;
   \item $\pi_*(\omega_{C/S}^{\otimes n})$ is locally free of rank~$(2n-1)(g-1)$.

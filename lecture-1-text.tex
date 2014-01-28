@@ -331,7 +331,7 @@ Hence an element of~$\mathrm{J}(D)$ is a~$k$\dash linear form on~$R$ (our huge r
 \end{lemma}
 Moreover, whereas it is a horribly big~$k$\dash vectorspace, it is well-behaved as a~$k(C)$\dash vectorspace.
 \begin{lemma}
-  \label{lemma:dim(J)<=1}
+  \label{lemma:dim(J)leq1}
   We have~$\dim_{k(C)}J\leq 1$.
   \begin{proof}
     Take~$\alpha,\beta$ linearly independent over~$k(C)$. We can find a divisor~$D$ such that~$\alpha,\beta\in\mathrm{J}(D)$, and denote~$d=\deg(D)$.
@@ -464,7 +464,7 @@ Recall that we wish to prove that~$\theta$ induces an isomorphism from~$\HH^0(C,
 \begin{proof}[Proof of Serre duality for curves]
   To see that~$\theta$ is \emph{injective}, take~$\omega\in\HH^0(C,\Omega_C^1(-D))$ such that~$\theta(\omega)=0$. Then by \cref{lemma:theta-J(D)} we have that~$\omega\in\Omega_C^1(-D')$ for every divisor~$D'$, which implies~$\omega=0$, as all possible configurations of poles and zeroes should be valid at the same time.
 
-  To see that~$\theta$ is \emph{surjective}, observe that by \cref{enumerate:pairing-properties-3} of \cref{lemma:pairing-properties} we have that~$\theta$ is~$k(C)$\dash linear, from~$M$ to~$J$. By definition we have~$\dim_{k(C)}M=1$, by \cref{lemma:dim(J)<=1} we have~$\dim_{k(C)}J\leq 1$. An injection of finite-dimensional vectorspaces into a smaller vectorspace is necessarily surjective.
+  To see that~$\theta$ is \emph{surjective}, observe that by \cref{enumerate:pairing-properties-3} of \cref{lemma:pairing-properties} we have that~$\theta$ is~$k(C)$\dash linear, from~$M$ to~$J$. By definition we have~$\dim_{k(C)}M=1$, by \cref{lemma:dim(J)leq1} we have~$\dim_{k(C)}J\leq 1$. An injection of finite-dimensional vectorspaces into a smaller vectorspace is necessarily surjective.
 
   Hence if~$\alpha$ is an element of~$\mathrm{J}(D)$ we get a meromorphic differential~$\omega$ such that~$\theta(\omega)\alpha$, and \cref{lemma:theta-J(D)} shows that~$\omega\in\Omega(-D)$.
 \end{proof}
