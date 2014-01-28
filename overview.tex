@@ -1,0 +1,85 @@
+\documentclass[oneside,openany,a4paper]{memoir}
+\usepackage{pdfpages}
+\usepackage{titletoc}
+
+\input{packages}
+\input{configuration}
+\input{macros}
+
+\renewcommand\chaptername{Lecture}
+\setlength\headheight{24pt}
+
+\title{ANAGRAMS: Grothendieck duality}
+\author{Pieter Belmans}
+
+\begin{document}
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{2}
+\tableofcontents*
+
+\chapter{Riemann--Roch theorem and Serre duality}
+\begin{refsection}
+  \input{lecture-1-abstract}
+
+  \startcontents[chapters]
+  \section*{Contents}
+  \printcontents[chapters]{}{1}{\setcounter{tocdepth}{2}}
+  \clearpage
+
+  \input{lecture-1-text}
+  \clearpage
+  
+  \printbibliography[heading=subbibliography]
+\end{refsection}
+
+
+\begin{refsection}
+  \chapter{More on Riemann--Roch and Serre duality, with applications}
+
+  \input{lecture-2-abstract}
+
+  \startcontents[chapters]
+  \section*{Contents}
+  \printcontents[chapters]{}{1}{\setcounter{tocdepth}{2}}
+  \clearpage
+
+  \input{lecture-2-text}
+  \clearpage
+
+  \printbibliography[heading=subbibliography]
+\end{refsection}
+
+
+\begin{refsection}
+  \chapter{Derived categories and Grothendieck duality}
+
+  \input{lecture-3-abstract}
+
+  \startcontents[chapters]
+  \section*{Contents}
+  \printcontents[chapters]{}{1}{\setcounter{tocdepth}{2}}
+  \clearpage
+
+  \input{lecture-3-text}
+  \clearpage
+
+  \printbibliography[heading=subbibliography]
+\end{refsection}
+
+
+\begin{refsection}
+  \chapter{Sketches of some of the proofs}
+
+  \input{lecture-4-abstract}
+
+  \startcontents[chapters]
+  \section*{Contents}
+  \printcontents[chapters]{}{1}{\setcounter{tocdepth}{2}}
+  \clearpage
+
+  \input{lecture-4-text}
+  \clearpage
+
+  \printbibliography[heading=subbibliography]
+\end{refsection}
+\end{document}

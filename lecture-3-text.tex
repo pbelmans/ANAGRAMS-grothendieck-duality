@@ -1,0 +1,561 @@
+\setcounter{section}{-1}
+\section{Reminder on derived categories}
+\label{section:derived-categories}
+\subsection{Derived functors}
+The main idea behind derived categories is to make working with derived functors more natural. Recall that given a left (or right) exact functor between abelian categories one can determine its derived functors, which form a family of functors. These functors measure the extent to which the original functor is not exact, and they can give interesting algebraic or geometric information (depending on the original choice of functor).
+
+\begin{example}
+  So far we have used just one derived functor, which was sheaf cohomology. The left-exact functor under consideration is~$\Gamma(X,-)$, its derived functors~$\HH^i(X,-)$.
+\end{example}
+
+There are other examples.
+\begin{example}
+  \label{example:global-sections-pushforward}
+  Global sections are a special case of pushforward: if~$f\colon X\to\Spec k$ is the structural morphism then~$f_*(-)=\Gamma(X,-)$. We obtain a sheaf on~$\Spec k$, which is nothing but a vectorspace, the only non-empty open set has~$\Gamma(f^{-1}(\Spec k),-)$ as its sections. We can conclude that~$f_*$ will not be right-exact in general as it is a generalisation of global sections.
+\end{example}
+\begin{example}
+  Another well-known left exact functor is~$\Hom_A(M,-)$, which is an endofunctor on the abelian category~$A\mhyphen\mathrm{Mod}$ for~$A$ a commutative ring and~$M$ an~$A$\dash module), whose right-derived functors are the Ext-functors. These have a down-to-earth interpretation as extensions, by the Yoneda Ext-construction.
+\end{example}
+\begin{example}
+  Adjoint to~$\Hom_A(M,-)$ we have~$-\otimes_AM$, whose left-derived functors are the Tor-functors.
+\end{example}
+
+\subsection{Derived categories}
+The goal is to capture all of these in one single \emph{total derived functor}. So instead of working with the family~$(\RR^nF)_{n\in\mathbb{N}}$ one wants to construct a functor~$\RRR F$ replacing the whole family.
+
+To calculate (co)homology one uses injective (or projective, or flat, or flabby, or~\dots\ depending on the context) resolutions. So instead of using a single object, it is natural to consider a whole (co)chain complex of objects. That is why, instead of using an abelian category~$\mathcal{A}$ (take for example~$\mathcal{A}=\Coh/X$ the abelian category of coherent sheaves on a scheme), one uses~$\Ch(\mathcal{A})$: the abelian category of (co)chain complexes over~$\mathcal{A}$.
+
+Because the calculation of (co)homology is invariant up to homotopy equivalence, we construct the category~$\KKK(\mathcal{A})$ by identifying morphisms in~$\Ch(\mathcal{A})$ which are homotopy equivalent. This is an intermediate step which can be skipped, but it helps in proving the main properties of the resulting object.
+
+The final step is the most technical one, and consists of inverting the quasi-isomorphisms to obtain the \emph{derived category}. Recall that a quasi-isomorphism is a morphism which induces isomorphisms in the (co)homology, i.e.\ if~$f\colon A^\bullet\to B^\bullet$ is a morphism such that~$\HH^n(A^\bullet)\cong\HH^n(B^\bullet)$ for all~$n$ then we would like~$A^\bullet$ and~$B^\bullet$ to be isomorphic in our desired derived category. This way, an object becomes isomorphic to its resolution. The way to obtain this is analogous to the localisation of a ring: we formally add inverses. That this construction works as intended follows from the Gabriel--Zisman theorem.
+
+To summarise, the construction goes through the following steps
+\begin{enumerate}
+  \item pick an abelian category~$\mathcal{A}$ ($\Coh/X$, $\Qcoh/X$ or just~$A\mhyphen\mathrm{Mod}$ if you like);
+  \item consider the abelian category of (co)chain complexes over~$\mathcal{A}$;
+  \item construct the category of (co)chain complexes~$\KKK(\mathcal{A})$ over~$\mathcal{A}$ by identifying the homotopy equivalences in~$\Ch(\mathcal{A})$;
+  \item construct the derived category~$\derived(\mathcal{A})$ of~$\mathcal{A}$ by inverting the quasi-isomorphisms in~$\KKK(\mathcal{A})$.
+\end{enumerate}
+Instead of considering all (co)chain complexes, we can also consider complexes which satisfy a certain boundedness assumption. We could ask for (the cohomology of) the complexes to be
+\begin{enumerate}
+  \item bounded on both sides (denoted~$\derived^\bounded(\mathcal{A})$),
+  \item bounded below or above (denoted~$\derived^+(\mathcal{A})$ resp.\ $\derived^-(\mathcal{A})$),
+  \item concentrated in positive or negative degrees (denoted~$\derived^{\geq 0}(\mathcal{A})$ resp.\ $\derived^{\leq 0}(\mathcal{A})$).
+\end{enumerate}
+
+One interesting property of the derived category is that the Hom\dash functor for~$\mathcal{A}$ turns into a device that knows all~$\Ext^i$.
+\begin{example}
+  We have a canonical inclusion of~$\mathcal{A}$ into~$\derived(\mathcal{A})$, by considering an object as a cochain complex in degree~$0$. Now we can shift objects: the object~$A[i]$ in~$\derived(\mathcal{A})$ is the cochain complex such that~$A$ lives in degree~$i$. Then we obtain the formula
+  \begin{equation}
+    \label{equation:Hom-Ext}
+    \Hom_{\derived(\mathcal{A})}(A,B[i])\cong\Ext_{\mathcal{A}}^i(A,B).
+  \end{equation}
+  To see why this is true: the object~$B[i]$ is isomorphic to a shift of an injective resolution in~$\derived(\mathcal{A})$, hence the~$\Hom$ in~$\derived(\mathcal{A})$ is nothing but a way of computing the derived functors of~$\Hom$.
+
+  Sometimes we'll denote~$\Hom_{\derived(\mathcal{A})}(A^\bullet,B^\bullet)$ by~$\RRRHom^\bullet(A^\bullet,B^\bullet)$ to save a little on the notation.
+\end{example}
+
+
+\section{Grothendieck duality}
+\label{section:grothendieck-duality}
+\subsection{Motivation}
+\label{subsection:motivation}
+There are several ways of motivating Grothendieck duality, and the desire to generalise Serre duality\footnote{If unfamiliar with Serre duality, one is either invited to read the notes to the first lecture, or glance at the summary of Serre duality later on.}. Of course, the restriction on the classical Serre duality are rather severe: we want a smooth (or mildly singular) projective variety over a field, and a vector bundle. Can we do similar things:
+\begin{enumerate}
+  \item for more general schemes? 
+  \item over more general base schemes?
+  \item for more general sheaves?
+\end{enumerate}
+The answer will be yes, otherwise we wouldn't be discussing Grothendieck duality.
+
+\paragraph{Adjoint functors}
+A more down-to-earth (or less categorical) motivation for the form that Grothendieck duality often takes is given in \cite[chapter 6]{triangulated-categories}. Recall from the first lecture the statement of Serre duality, preceded by the required definition of a dualising sheaf, as given in \cite{hartshorne-algebraic-geometry}.
+\begin{definition}
+  Let~$X/k$ be a proper~$n$\dash dimensional variety. A \emph{dualising sheaf} for~$X$ is a coherent sheaf~$\omega_X^\circ$ together with a \emph{trace morphism}~$\tr\colon\HH^n(X,\omega_X^\circ)\to k$, such that for all~$\mathcal{F}\in\Coh/X$ the natural pairing
+  \begin{equation}
+    \Hom(\mathcal{F},\omega_X^\circ)\times\HH^n(X,\mathcal{F})\to\HH^n(X,\omega_X^\circ)
+  \end{equation}
+  composed with~$\tr$ gives an isomorphism
+  \begin{equation}
+    \Hom(\mathcal{F},\omega_X^\circ)\cong\HH^n(X,\mathcal{F})^\vee.
+  \end{equation}
+\end{definition}
+Then the statement, where~$X$ admits a dualising sheaf, reads:
+\begin{theorem}[Serre duality]
+  Let~$X/k$ be a projective~$n$\dash dimensional variety. Let~$\omega_X^\circ$ be its dualising sheaf. Then for all~$i\geq 0$ and~$\mathcal{F}\in\Coh/X$ we have functorial maps
+  \begin{equation}
+    \theta^i\colon\Ext^i(\mathcal{F},\omega_X^\circ)\to\HH^{n-i}(X,\mathcal{F})^\vee
+  \end{equation}
+  such that~$\theta^0$ corresponds to~$\tr$. Moreover, if~$X$ is Cohen--Macaulay\footnote{A technical condition that says that ``mild singularities'' are allowed. It means that each local ring has Krull dimension equal to the depth (we always have that depth is bounded above by Krull dimension), where depth corresponds to the length of a maximal regular sequence for the local ring itself. One can just read non-singular, which is the case we will need in later applications.} the~$\theta^i$ are isomorphisms for all~$i\geq 0$ and~$\mathcal{F}\in\Coh/X$.
+\end{theorem}
+We also obtained a corollary, which explains the name ``duality'': it relates~$\HH^i$ to~$\HH^{n-i}$, and does so by using a duality of vector spaces.
+\begin{corollary}
+  Let~$X$ be projective Cohen--Macaulay of (equi-)dimension~$n$ over~$k$. Let~$\mathcal{F}$ be a locally free sheaf on~$X$. Then we have isomorphisms
+  \begin{equation}
+    \HH^i(X,\mathcal{F})\cong\HH^{n-i}(X,\mathcal{F}^\vee\otimes\omega_X^\circ)^\vee.
+  \end{equation}
+\end{corollary}
+This is just one of the many ways of writing the isomorphism. Another would be
+\begin{equation}
+  \Hom_k\left( \HH^i(X,\mathcal{F}),k \right)\cong\HH^{n-i}\left( X,\HHom(\mathcal{F},\omega_X^\circ) \right).
+\end{equation}
+We are almost where we want to be. The last step to take is ``go relative''. Which of course in this case is not that spectacular. So let's look at the structural morphism~$f\colon X\to\Spec k$. We are working for a vector bundle~$\mathcal{F}$ on~$X$, so we could also look at a vector bundle on~$\Spec k$, which is nothing but a finite-dimensional vectorspace~$V$. Generalising the previous equation, and applying the tensor-Hom adjunction we obtain
+\begin{equation}
+  \Hom_k\left( \HH^i(X,\mathcal{F}),V \right)\cong\HH^{n-i}\left( X,\HHom(\mathcal{F},V\otimes_k\omega_X^\circ) \right)\cong\Ext^{n-i}\left( \mathcal{F},V\otimes_k\omega_X^\circ \right).
+\end{equation}
+With a little imagination this looks like an adjunction:
+\begin{enumerate}
+  \item the cohomology groups~$\HH^i(X,\mathcal{F})$ can be taken together\footnote{The functor~$f_*$ in this case is nothing but global sections, as~$f_*(\mathcal{F})$ evaluated on~$\Spec k$ is~$\Gamma(f^{-1}(\Spec k),\mathcal{F})$, see \cref{example:global-sections-pushforward}.} to~$\mathbf{R}f_*(\mathcal{F})$;
+  \item by the properties of the derived category we can take~$\Ext$'s together into a~$\Hom$ in the derived category, see \eqref{equation:Hom-Ext}.
+\end{enumerate}
+Hence we can write Serre duality as
+\begin{equation}
+  \Hom_{\mathbf{D}^{\mathrm{b}}(\Spec k)}\left( \mathbf{R}f_*(\mathcal{F}),V \right)\cong\Hom_{\mathbf{D}^{\mathrm{b}}(X)}\left( \mathcal{F},f^!(V) \right)
+\end{equation}
+where~$\mathbf{D}^{\mathrm{b}}(\Spec k)$ is the bounded derived category of finite-dimensional~$k$\dash vector spaces and~$\mathbf{D}^{\mathrm{b}}(X)$ is the bounded derived category of coherent sheaves on~$X$ (assume~$X$ is smooth).
+
+Hence Serre duality asserts the existence of a dual
+\begin{equation}
+  f^!\colon\mathbf{D}^{\mathrm{b}}(\Spec k)\to\mathbf{D}^{\mathrm{b}}(X)
+\end{equation}
+which in this case is explicitly given by~$-\otimes_k\omega_X^\circ$. But in this statement we could easily replace~$f\colon X\to\Spec k$ by a more general~$f\colon X\to Y$, and the existence of a right adjoint~$f^!$ would still make sense!
+
+A word on the notation~$f^!$:
+\begin{enumerate}
+  \item It is often pronounced ``$f$ upper shriek'', and it's named ``exceptional inverse image'';
+  \item It \emph{only} lives on the level of derived categories, unlike~$f_*$ and~$f^*$, which get derived into~$\RRR f_*$ and~$\LLL f^*$, so in line with \cite[\S 3.1, \'expos\'e XVIII]{sga43} which says (in a slightly different context, but still valid)
+    \begin{quote}
+      N.B.\ La notation~$\RRR f^!$ est abusive en ce que~$\RRR f^!$ n'est en g\'en\'eral pas le d\'eriv\'e d'un foncteur~$f^!$.
+    \end{quote}
+    For this reason I will just denote it by~$f^!$, as is already done for instance in \cite{hartshorne-residues-and-duality}.
+\end{enumerate}
+
+
+\paragraph{Dualising complexes}
+So we now that there is some virtue in looking at the relative context, and that we will obtain an adjoint pair encoding Grothendieck duality. Another thing we could do is look at the dualising sheaf. Then we can motivate Grothendieck duality by considering another rather trivial situation: $\Spec\mathbb{Z}$, as was done in \cite[\S V.1]{hartshorne-residues-and-duality}.
+
+There are two ways of taking the dual of an abelian group:
+\begin{enumerate}
+  \item the \emph{Pontryagin dual} of a finite abelian group, which is given by the functor~$\Hom_{\Ab}(-,\mathbb{Q}/\mathbb{Z})$;
+  \item the dual of a finitely generated free group, which is given by the functor~$\Hom_{\Ab}(-,\mathbb{Q})$.
+\end{enumerate}
+Each applied twice to the correct situation gives a abelian group isomorphic to the one you started with. We can consider these two dualising functors at the same time, by considering the complex
+\begin{equation}
+  \dotso\to0\to\mathbb{Q}\to\mathbb{Q}/\mathbb{Z}\to0\to\dotso
+\end{equation}
+in~$\derived_{\mathrm{fg}}^\bounded(\Ab)$, the derived category of bounded complexes inside~$\derived^+(\Ab)$ whose cohomology is finitely generated. This 2-term complex is an injective resolution of~$\mathbb{Z}$, as both groups are divisible! So it is isomorphic to~$\mathbb{Z}$ in~$\derived_{\mathrm{fg}}^\bounded(\Ab)$, and to perform computations in the derived category we can interchange them freely.
+
+This yields the following proposition \cite[proposition:V.1-1]{hartshorne-residues-and-duality}.
+\begin{proposition}
+  \label{proposition:duality-abelian-groups}
+  The functor
+  \begin{equation}
+    \dual\colon\derived_{\mathrm{fg}}^\bounded\to\derived_{\mathrm{fg}}^\bounded:M^\bullet\to\RRRHom^\bullet(M^\bullet,\mathbb{Z})
+  \end{equation}
+  is a contravariant endofunctor, and there is a natural equivalence
+  \begin{equation}
+    \eta\colon\identity_{\derived_{\mathrm{fg}}^\bounded(\Ab)}\Rightarrow\dual\circ\dual.
+  \end{equation}
+\end{proposition}
+Hence on the ``small'' category~$\derived_{\mathrm{fg}}^\bounded(\Ab)$ sitting inside the bigger~$\derived^+(\Ab)$ this duality functor is truly a duality. The small category corresponds to the bounded derived category of coherent sheaves, as by the usual mantra ``coherent = finitely generated.''
+
+\begin{proof}[Proof of proposition \ref{proposition:duality-abelian-groups}]
+  We have
+  \begin{equation}
+    \HH^i(\dual(M^\bullet))=\HH^i(\RRRHom^\bullet(M^\bullet,\mathbb{Z}))=\Ext^i(M^\bullet,\mathbb{Z})
+  \end{equation}
+  hence if~$M^\bullet$ has finitely generated and bounded cohomology, so has~$\dual(M^\bullet)$. We obtain that~$\dual$ is a well-defined endofunctor.
+
+  The natural equivalence is defined in \cite[lemma V.1.2]{hartshorne-residues-and-duality} in an obvious way. To check that it is a natural equivalence: take a free resolution of~$M^\bullet$. This means finding a surjection of a free abelian group onto~$M^\bullet$ and repeating this process for the kernel of this map, and so on.
+  
+  By \cite[lemma I.7.1]{hartshorne-residues-and-duality} it suffices to check it for~$M^\bullet=\mathbb{Z}^r$ for some~$r\geq 1$ as we only care about finitely generated cohomology. But things are additive, hence we can take~$r=1$. Now it suffices to observe that
+  \begin{equation}
+    \Ext^i(\mathbb{Z},\mathbb{Z})=
+    \begin{cases}
+      \mathbb{Z} & i=0 \\
+      0 & i\neq 0
+    \end{cases}
+  \end{equation}
+  which gives the desired natural equivalence.
+\end{proof}
+
+
+\subsection{The ideal theorem}
+The first thing we can consider as a form of Grothendieck duality is \cite[Ideal theorem on page 6]{hartshorne-residues-and-duality}. This summarises what one tries to prove to be able to speak of a ``Grothendieck duality result''. After the statement we will collect some contexts in which we can prove this.
+\begin{theorem}[Ideal theorem] {\ }
+  \label{theorem:classical}
+  \begin{enumerate}
+    \item\label{enumerate:classical-a} For every morphism $f\colon X\to Y$ of finite type\footnote{Recall that a morphism of finite type means that there exists an open affine covering of the codomain, such that the inverse images of these open sets admit a finite open affine covering, such that each of these rings is finitely generated over the open affine in the codomain.} of preschemes\footnote{I have left this historic terminology in: what nowadays are called schemes were called preschemes in the early days of scheme theory. At first the philosophy was that we'd be mostly interested in separated schemes, which were called schemes, and not necessarily separated schemes were preschemes. In case you didn't know this little fact from the history of scheme theory, you know understand references to preschemes.} there is a functor
+      \begin{equation}
+        \label{equation:f-upper-shriek}
+        f^!\colon\derived(Y)\to\derived(X)
+      \end{equation}
+      such that
+      \begin{enumerate}
+        \item\label{enumerate:classical-a-1} if $g\colon Y\to Z$ is a second morphism of finite type, then $(g\circ f)^!=f^!\circ g^!$;
+        \item\label{enumerate:classical-a-2} if $f$ is a smooth morphism, then
+          \begin{equation}
+            f^!(\mathcal{G})=f^*(\mathcal{G})\otimes\omega,
+          \end{equation}
+          where $\omega=\Omega_{X/Y}^n$ is the sheaf of highest order differentials;
+        \item\label{enumerate:classical-a-3} if $f$ is a finite\footnote{Recall that a morphism is finite if there exists an open affine covering of the codomain such that the inverse image of each open affine is again affine, and moreover finite as a module over the original ring.} morphism, then
+          \begin{equation}
+            f^!(\mathcal{G})=\HHom_{\mathcal{O}_Y}(f_*\mathcal{O}_X,\mathcal{G}).
+          \end{equation}
+      \end{enumerate}
+    \item\label{enumerate:classical-b} For every proper\footnote{Recall that a proper morphism between schemes is like a proper map of topological spaces, where inverse images of compact sets are again compact. As being compact in a non-Hausdorff context doesn't make much sense, algebraic geometers use a different definition of proper: the map~$f\colon X\to Y$ between schemes is said to be \emph{proper} if it is universally closed (i.e.\ for all~$Y\to Z$ is~$X\times_YZ\to Z$ closed on the level of underlying topological spaces) and separated (i.e.~$\Delta_f\colon X\to X\times_YX$ is closed, which is an analogue of being Hausdorff).} morphism $f\colon X\to Y$ of preschemes, there is a \emph{trace morphism}
+      \begin{equation}
+        \Tr_f\colon\RRR f_*\circ f^!\Rightarrow\identity
+      \end{equation}
+      of functors from $\derived(Y)$ to $\derived(X)$ such that
+      \begin{enumerate}
+        \item\label{enumerate:classical-b-1} if $g\colon Y\to Z$ is a second proper morphism, then $\Tr_{g\circ f}=\Tr_g\circ\Tr_f$;
+        \item\label{enumerate:classical-b-2} if $X=\mathbb{P}_Y^n$, then $\Tr_f$ is the map deduced from the canonical isomorphism $\mathbf{R}^nf_*(\omega)\cong\mathcal{O}_Y$;
+        \item\label{enumerate:classical-b-3} if $f$ is a finite morphism, then $\Tr_f$ is obtained from the natural map ``evaluation at one''
+          \begin{equation}
+            \HHom_{\mathcal{O}_Y}(f_*\mathcal{O}_X,\mathcal{G})\to\mathcal{G}.
+          \end{equation}
+      \end{enumerate}
+    \item\label{enumerate:classical-c} If $f\colon X\to Y$ is a proper morphism, then the \emph{duality morphism}
+      \begin{equation}
+        \label{equation:duality-morphism}
+        \Theta_f\colon\RRRHom_X(\mathcal{F},f^!(\mathcal{G}))\to\RRRHom_Y(\mathbf{R}f_*\mathcal{F},\mathcal{G})
+      \end{equation}
+      obtained by composing the natural map\footnote{Obtained as the Yoneda pairing, see \cite[page 5]{hartshorne-residues-and-duality}.} above with $\Tr_f$, is an isomorphism for $\mathcal{F}\in\derived(X)$ and $\mathcal{G}\in\derived(Y)$.
+  \end{enumerate}
+\end{theorem}
+So the ideal theorem has 3 main themes:
+\begin{enumerate}
+  \item the existence of the adjoint~$f^!$;
+  \item the trace morphism for proper morphisms;
+  \item the duality for proper morphisms.
+\end{enumerate}
+The first theme describes the functor~$f^!$ in the cases where we know what it should be. The second theme describes what the counit adjunction should look like, while the third theme asserts that it actually is an adjunction. Remark that
+\begin{enumerate}
+  \item We haven't specified~$\derived(X)$.
+  \item The role of~$\derived(X)$ will change depending on
+    \begin{enumerate}
+      \item the type of schemes we are considering;
+      \item the type of maps we are considering;
+      \item the theme we are considering.
+    \end{enumerate}
+\end{enumerate}
+
+The question is: in which situations can we prove this ideal theorem? The answer (as per \cite{hartshorne-residues-and-duality}, nowadays it is more general, this will be discussed in the next lecture) is:
+\begin{enumerate}
+  \item noetherian schemes of finite Krull dimensions and morphisms which factor through a suitable projective space \cite[\S III.8, \S III.10, \S III.11]{hartshorne-residues-and-duality}: all statements are applied for $\derived_\qc^+(-)$ except the last in which case $\mathcal{F}$ lives in $\derived_\qc^-(X)$;
+  \item noetherian schemes which admit dualizing complexes (see \cite[\S V.10]{hartshorne-residues-and-duality}, it implies finite Krull dimension) and morphisms whose fibres are of bounded dimension \cite[\S VII.3]{hartshorne-residues-and-duality}: all statements are applied to $\derived_\coh^+(-)$ except the last in which case $\mathcal{F}$ lives in $\derived_\qc^-(X)$;
+  \item noetherian schemes of finite Krull dimension and smooth morphisms \cite[\S VII.4]{hartshorne-residues-and-duality}: the results in \ref{enumerate:classical-a} are applied to $\derived_\qc^+(-)$, in \ref{enumerate:classical-b} to $\derived_\qc^\bounded(-)$ and in \ref{enumerate:classical-c} to $\mathcal{F}$ in $\derived_\qc^-(X)$ and $\mathcal{G}$ in $\derived_\qc^\bounded(Y)$;
+  \item noetherian schemes and arbitrary morphisms \cite[appendix]{hartshorne-residues-and-duality}, but only statements \ref{enumerate:classical-a-1}, \ref{enumerate:classical-b-1} and \ref{enumerate:classical-c}: the results are applied to $\derived(\Qcoh(-))$.
+\end{enumerate}
+In \cref{table:situations,table:situations-derived-categories} we have fitted this information in a nice overview.
+
+\begin{table}[p]
+  \centering
+  \begin{tabular}{cccc}
+    \toprule
+    situation & $X$ and $Y$                           & $f$                             \\\midrule
+    1         & noetherian, finite Krull dimension    & factor through $\mathbb{P}_Y^n$ \\
+    2         & noetherian with dualizing complex  \\
+    3         & noetherian, finite Krull dimension    & smooth\\
+    4         & noetherian \\
+    \bottomrule
+  \end{tabular}
+  \caption{Description of the 4 situations for Grothendieck duality in \cite{hartshorne-residues-and-duality}}
+  \label{table:situations}
+\end{table}
+
+\begin{table}[p]
+  \centering
+  \begin{tabular}{rccc}
+    \toprule
+    property           & situation & $\derived(X)$       & $\derived(Y)$ \\\midrule
+    existence of $f^!$ & 1         &                     & $\derived_\qc^+(Y)$ \\
+                       & 2         &                     & $\derived_\coh^+(Y)$ \\
+                       & 3         &                     & $\derived_\qc^\bounded(Y)$ \\
+                       & 4         &                     & $\derived^+(\Qcoh/Y)$ \\\addlinespace[.5em]
+    trace morphism     & 1         &                     & $\derived_\qc^+(Y)$ \\
+                       & 2         &                     & $\derived_\coh^+(Y)$ \\
+                       & 3         &                     & $\derived_\qc^\bounded(Y)$ \\
+                       & 4         &                     & $\derived^+(\Qcoh/Y)$ \\\addlinespace[.5em]
+    duality            & 1         & $\derived_\qc^-(X)$ & $\derived_\qc^+(Y)$ \\
+                       & 2         & $\derived_\qc^-(X)$ & $\derived_\coh^+(Y)$ \\
+                       & 3         & $\derived_\qc^-(X)$ & $\derived_\qc^\bounded(Y)$ \\
+                       & 4         & $\derived(\Qcoh/X)$ & $\derived^+(\Qcoh/Y)$ \\
+    \bottomrule
+  \end{tabular}
+  \caption{Overview of the configuration of the derived categories for each of the three parts of a Grothendieck duality context}
+  \label{table:situations-derived-categories}
+\end{table}
+
+\begin{remark}
+  The \emph{duality morphism} \eqref{equation:duality-morphism} also has a relative version \cite[3.4.4]{conrad-grothendieck-duality-and-base-change}, which reads
+  \begin{equation}
+    \underline{\Theta}_f\colon\RRR f_*\RRRHHom_X^\bullet(\mathcal{F}^\bullet,f^!(\mathcal{G}^\bullet))\to\RRRHHom_Y^\bullet(\RRR f_*(\mathcal{F}^\bullet),G^\bullet).
+  \end{equation}
+  Taking global sections yields the result mentioned in the ideal theorem.
+\end{remark}
+
+\subsection{What about dualising complexes?}
+The ideal theorem as stated here does not mention dualising objects. But in the case of Serre duality we really phrased things in terms of our ``magic object''~$\omega_X^\circ$ which made the theory work. In the approach to Grothendieck duality of Hartshorne these dualising objects still play an important role (in the next lecture we will see approaches in which the role of this explicit object is greatly diminished), and trying to get a hold on them is the main difficulty. The problem in handling dualising complexes is that they are objects in the derived category, and there is the usual mantra that triangulated categories do not allow gluing, so a straightforward local approach doesn't work.
+
+In the proof of Grothendieck duality one tries to keep track of what the dualising object looks like. Recall that in the case of Riemann--Roch this dualising object was~$\Omega_C^1$, and in the context of Serre duality we used~$\Omega_{\mathbb{P}_k^n/k}^n$ for projective space, and a~$\sheafExt$ construction for the general case of a projective variety.
+
+In the situation of Grothendieck duality where we have used derived categories everywhere one can ask what~$\omega_X^\circ$ looks like. The answer is given in \cref{table:comparison-X-dualising-sheaf}, based on \cite[\S V.9]{hartshorne-residues-and-duality}.
+
+\begin{table}[p]
+  \centering
+  \begin{tabular}{cc}
+    \toprule
+    how nice is $X$? & how nice is $\omega_X^\circ$? \\\midrule
+    $X$ smooth & $\omega_X^\circ=\bigwedge^{\dim X}\Omega_X[\dim X]$ \\
+    $X$ Gorenstein & $\omega_X^\circ$ shift of a line bundle by $\dim X$ \\
+    $X$ Cohen--Macaulay & $\omega_X^\circ$ shift of a sheaf by $\dim X$ \\
+    $X$ arbitrary & $\omega_X^\circ$ is a complex \\
+    \bottomrule
+  \end{tabular}
+  \caption{Comparison of singularness of $X$ and the look of $\omega_X^\circ$}
+  \label{table:comparison-X-dualising-sheaf}
+\end{table}
+
+We observe that the philosophy is ``the nicer~$X$, the nicer~$\omega_X^\circ$''.
+
+
+\section{Applications of Grothendieck duality}
+\label{section:applications-grothendieck-duality}
+Due to time constraints, both in preparing these notes and actually lecturing about them, the following list of applications is not as worked out as I want it to be.
+
+\subsection{The yoga of six functors}
+\label{subsection:six-functors-yoga}
+The notion of Grothendieck duality that we have seen so far is in the following situation:
+\begin{enumerate}
+  \item (quasi)coherent sheaves;
+  \item Zariski topology for schemes;
+\end{enumerate}
+But one can consider other contexts too. In the study of \'etale cohomology we have:
+\begin{enumerate}
+  \item torsion sheaves;
+  \item \'etale topology for schemes;
+\end{enumerate}
+and in the case of manifolds and locally compact spaces we have Poincar\'e--Verdier duality:
+\begin{enumerate}
+  \item sheaves of abelian groups;
+  \item locally compact spaces.
+\end{enumerate}
+
+In formalising the properties that are similar in each of these contexts we see that
+\begin{itemize}
+  \item we are considering ``image functors of sheaves'';
+  \item we are using the monoidal structure of the category of sheaves.
+\end{itemize}
+In the general situation of abstract Verdier duality we can identify the following functors, for~$f\colon X\to Y$ a morphism in some category, and~$\mathcal{C}(X)$ some category of sheaves associated to~$X$.
+\begin{center}
+  \begin{tabular}{ccc}
+    \toprule
+    notation & name & signature \\\midrule
+    $f^*$ & inverse image & $f^*\colon\mathcal{C}(Y)\to\mathcal{C}(X)$ \\
+    $f_*$ & direct image & $f_*\colon\mathcal{C}(X)\to\mathcal{C}(Y)$ \\
+    $f_!$ & exceptional direct image & $f_!\colon\mathcal{C}(X)\to\mathcal{C}(Y)$ \\
+    $f^!$ & exceptional inverse image & $f^!\colon\mathcal{C}(Y)\to\mathcal{C}(X)$ \\
+    $\HHom(-,-)$ & internal Hom & $\mathcal{C}(X)\times\mathcal{C}(X)\to\mathcal{C}(X)$ \\
+    $-\otimes-$ & internal tensor product & $\mathcal{C}(X)\times\mathcal{C}(X)\to\mathcal{C}(X)$ \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+Depending on the context the adjective exceptional is sometimes replaced by the adjectives proper or twisted.
+
+We have relationships between these functors. These are the adjunctions
+\begin{enumerate}
+  \item $f^*\dashv f_*$;
+  \item $f_!\dashv f^!$;
+  \item $-\otimes C\dashv \HHom(C,-)$.
+\end{enumerate}
+In the situation of Grothendieck duality we moreover have the adjunction (with some abuse of notation, dropping~$\RRR$)
+\begin{equation}
+  f_*\dashv f^!
+\end{equation}
+if~$f\colon X\to Y$ is a proper map between the correct type of schemes. Or rather, we have~$f_*=f_!$ in this situation. But in general these are different, so we really have six functors and not just five. In the case of \'etale cohomology these six (or four) functors are also interesting to interpret, for which one is referred to \cite{milne-etale-cohomology}.
+
+Hence we have several possibilities to go further:
+\begin{enumerate}
+  \item develop Grothendieck duality and the six functors as a formal property of monoidal categories (won't be done here);
+  \item develop these five or six functors into an interesting calculus.
+\end{enumerate}
+This second option is exactly what we're going to do in the next section.
+
+\subsection{Fourier--Mukai transforms}
+Using this formalism of five (or six) functors we can get an interesting ``calculus of derived functors''. Some of these properties have been stated in the previous subsection, but we will now repeat them. The goal is to show that on the level of derived categories one gets lots of compatibilities which can be useful for computations, especially after we have discussed Orlov's existence result.
+
+We will consider~$f\colon X\to Y$ a morphism of projective schemes over a field~$k$ which is the context of \cite{huybrechts-fourier-mukai-transforms}. The following are formal, in the sense that they are generalisations of the underived formulas.
+\begin{description}
+  \item[projection formula] {\ }
+    
+    $f$ proper, $\mathcal{F}^\bullet\in\derived^\bounded(\Coh/X)$ and~$\mathcal{G}^\bullet\in\derived^\bounded(\Coh/Y)$
+    \begin{equation}
+      \begin{tikzcd}
+        \RRR f_*(\mathcal{F}^\bullet)\otimes^\LLL\mathcal{G}^\bullet \arrow{r}{\sim} & \RRR f_*\left( \mathcal{F}^\bullet\otimes^\LLL f^*(\mathcal{E}^\bullet) \right)
+      \end{tikzcd}
+    \end{equation}
+
+  \item[$\LLL f^*$ and~$\otimes^\LLL$ commute] {\ }
+    
+    $\mathcal{F}^\bullet,\mathcal{G}^\bullet\in\derived^\bounded(\Coh/Y)$
+    \begin{equation}
+      \begin{tikzcd}
+        \LLL f^*(\mathcal{F}^\bullet)\otimes^\LLL f^*(\mathcal{G}^\bullet) \arrow{r}{\sim} & \LLL f^*(\mathcal{F}^\bullet\otimes^\LLL\mathcal{G}^\bullet);
+      \end{tikzcd}
+    \end{equation}
+
+  \item[$\LLL f^*$ and $\RRR f_*$ adjunction] {\ }
+    
+    $f$ projective, $\mathcal{F}^\bullet\in\derived^\bounded(\Coh/X)$, $\mathcal{G}^\bullet\in\derived^\bounded(\Coh/Y)$
+    \begin{equation}
+      \begin{tikzcd}
+        \Hom_{\derived^\bounded(\Coh/X)}\left( \LLL f^*(\mathcal{G}^\bullet),\mathcal{F}^\bullet \right) \arrow{r}{\sim} & \Hom_{\derived^\bounded(\Coh/X)}\left( \mathcal{G}^\bullet,\RRR f_*(\mathcal{F}^\bullet) \right);
+      \end{tikzcd}
+    \end{equation}
+
+  \item[$\otimes^\LLL$ and $\RRRHHom$ adjunction] {\ }
+    
+    $X$ smooth and projective, $\mathcal{F}^\bullet,\mathcal{G}^\bullet,\mathcal{H}^\bullet\in\derived^\bounded(\Coh/X)$
+    \begin{equation}
+      \begin{aligned}
+        \RRRHHom(\mathcal{F}^\bullet,\mathcal{G}^\bullet)\otimes^\LLL\mathcal{G}^\bullet\cong\RRRHHom(\mathcal{F}^\bullet,\mathcal{G}^\bullet\otimes^\LLL\mathcal{H}^\bullet), \\
+        \RRRHHom(\mathcal{F}^\bullet,\RRRHHom(\mathcal{G}^\bullet,\mathcal{H}^\bullet))\cong\RRRHHom(\mathcal{F}^\bullet\otimes^\LLL\mathcal{G}^\bullet,\mathcal{H}^\bullet), \\
+        \RRRHHom(\mathcal{F}^\bullet,\mathcal{G}^\bullet\otimes^\LLL\mathcal{H}^\bullet)\cong\RRRHHom(\RRRHHom(\mathcal{G}^\bullet,\mathcal{F}^\bullet),\mathcal{H}^\bullet);
+      \end{aligned}
+    \end{equation}
+
+  \item[global sections and $\RRRHHom$] {\ }
+    
+    $\mathcal{F}^\bullet\in\derived^\bounded(\Coh/X)$
+    \begin{equation}
+      \RRR\Gamma\circ\RRRHHom_X(\mathcal{F}^\bullet,-)=\RRRHom(\mathcal{F}^\bullet,-);
+    \end{equation}
+
+  \item[$\LLL f^*$ and $\RRRHHom$ commute] {\ }
+    
+    $\mathcal{F}^\bullet,\mathcal{G}^\bullet\in\derived^\bounded(Y)$
+    \begin{equation}
+      \begin{tikzcd}
+        \LLL f^*\left( \RRRHHom_Y(\mathcal{F}^\bullet,\mathcal{G}^\bullet) \right) \arrow{r}{\sim} & \RRRHHom_X\left( \LLL f^*(\mathcal{F}^\bullet),\LLL f^*(\mathcal{G}^\bullet) \right);
+      \end{tikzcd}
+    \end{equation}
+
+  \item[flat base change] {\ }
+
+    for
+    \begin{equation}
+      \begin{tikzcd}
+        Y' \arrow[swap]{d}{g} \arrow{r}{v} & Y \arrow{d}{f} \\
+        X' \arrow[swap]{r}{u} & X
+      \end{tikzcd}
+    \end{equation}
+    with~$f$ proper and~$u$ flat, $\mathcal{F}^\bullet\in\derived(\Qcoh/Y)$
+    \begin{equation}
+      \begin{tikzcd}
+        u^*\circ\RRR f_*(\mathcal{F}^\bullet) \arrow{r}{\sim} & \RRR g_*\circ v^*(\mathcal{F}^\bullet).
+      \end{tikzcd}
+    \end{equation}
+\end{description}
+
+But as we saw in the description of the general six functor formalism we have another functor at our disposal. Or rather, in the context we are working in right now (smooth projective varieties over a scheme) we work with the dualising sheaf characterising the~$f^!$. If~$f\colon X\to Y$ is a morphism between such schemes we define explicitly
+\begin{equation}
+  \omega_f\coloneqq\omega_X\otimes f^*(\omega_Y^\vee)
+\end{equation}
+and
+\begin{equation}
+  \dim(f)\coloneqq\dim X-\dim Y.
+\end{equation}
+This means that~$f^!$ is given by
+\begin{equation}
+  f^!\colon\derived^\bounded(\Coh/Y)\to\derived^\bounded(\Coh/X):\mathcal{F}^\bullet\mapsto\LLL f^*(\mathcal{E}^\bullet)\otimes^\LLL\omega_f[\dim(f)].
+\end{equation}
+Then we get some new compatibilities between our functors on derived categories, which are just a remanifestation of Grothendieck duality.
+\begin{description}
+  \item[Grothendieck duality] $\mathcal{F}^\bullet\in\derived^\bounded(X)$, $\mathcal{G}^\bullet\in\derived^\bounded(Y)$
+    \begin{equation}
+      \RRR f_*\left( \RRRHHom\left( \mathcal{F}^\bullet,\LLL f^*(\mathcal{G}^\bullet)\otimes^\LLL\omega_f[\dim(f)] \right) \right)\cong\RRRHHom\left( \RRR f_*(\mathcal{F}^\bullet),\mathcal{G}^\bullet \right);
+    \end{equation}
+  \item[$\RRR f_*$ and $f^!$ adjunction] $\mathcal{F}^\bullet\in\derived^\bounded(\Coh/X)$, $\mathcal{G}^\bullet\in\derived^\bounded(\Coh/Y)$
+    \begin{equation}
+      \begin{tikzcd}
+        \Hom_{\derived^\bounded(\Coh/Y)}(\RRR f_*(\mathcal{F}^\bullet),\mathcal{G}^\bullet) \arrow{r}{\sim} & \Hom_{\derived^\bounded(\Coh/X)}(\mathcal{F}^\bullet,f^!(\mathcal{G}^\bullet)).
+      \end{tikzcd}
+    \end{equation}
+\end{description}
+
+The crux of all this is the following representability result. Recall that a \emph{Fourier--Mukai functor} with kernel~$\mathcal{P}^\bullet\in\derived^\bounded(\Coh/X\times Y)$ is given by
+\begin{equation}
+  \Phi_{\mathcal{P}^\bullet}\colon\derived^\bounded(X)\to\derived^\bounded(Y):\mathcal{F}^\bullet\mapsto\LLL p_*\left( \RRR q^*(\mathcal{F}^\bullet)\otimes^\LLL\mathcal{P}^\bullet \right)
+\end{equation}
+where~$\LLL p_*=p_*$ as~$p,q$ are the projections on~$Y$ and~$X$ respectively. Hence this is a specific type of functor, given by geometric information. Then we have the following result, which says that lots of interesting functors are actually Fourier--Mukai transforms!
+\begin{theorem}
+  \label{theorem:bondal-orlov}
+  Let~$X$ and~$Y$ be smooth projective varieties. Let
+  \begin{equation}
+    F\colon\derived^\bounded(\Coh/X)\to\derived^\bounded(\Coh/Y)
+  \end{equation}
+  be a fully faithful exact functor. Then there exists a~$\mathcal{P}^\bullet\in\derived^\bounded(\Coh/X\times Y)$ such that~$F\cong\Phi_{\mathcal{P}^\bullet}$.
+\end{theorem}
+Because we can get strong results on Fourier--Mukai transforms (regardless of whether they are actually representing a functor as in the theorem or not) we have obtained an interesting ``calculus of derived functors''. This is an important area of current research, from many different perspectives.
+
+Some of the results in \cite{huybrechts-fourier-mukai-transforms} which appeal immediately to Grothendieck duality are:
+\begin{enumerate}
+  \item an explicit formula for the left and right adjoint \cite[proposition 5.9]{huybrechts-fourier-mukai-transforms};
+  \item braid group actions for spherical objects \cite[lemma 8.21]{huybrechts-fourier-mukai-transforms};
+  \item the study of flips and flops \cite[\S 11.1]{huybrechts-fourier-mukai-transforms};
+  \item semi-orthogonal decompositions of derived categories \cite[\S 11.2]{huybrechts-fourier-mukai-transforms};
+  \item \ldots
+\end{enumerate}
+
+
+\subsection{The moduli of curves}
+The paper that introduced \emph{stacks} to the world \cite{deligne-mumford-irreducibility-moduli-of-curves} also applies Grothendieck duality right from the start. The goal is to study the \emph{moduli space~$\mathcal{M}_g$ of curves of genus~$g$}, and show that it is irreducible, regardless of the choice of base field.
+
+As they say themselves, the ``key definition of the whole paper'' is:
+\begin{definition}
+  Let~$S$ be any scheme. Let~$g\geq 2$. A \emph{stable curve of genus~$g$} over~$S$ is a proper flat morphism~$\pi\colon C\to S$ whose geometric fibres are reduced, connected, $1$\dash dimensional schemes~$C_s$ such that
+  \begin{enumerate}
+    \item $C_s$ has only ordinary double points;
+    \item if~$E$ is a non-singular rational component of~$C_s$, then~$E$ meets the other components of~$C_s$ in more than~$2$ points;
+    \item $\dim\HH^1(\mathcal{O}_{C_s})=g$.
+  \end{enumerate}
+\end{definition}
+So two aspects of Grothendieck duality come to mind: the relative situation, and the (mild) singularities. We get a canonical invertible sheaf~$\omega_{C/S}$ on~$C$, which will act as a \emph{family} of sufficiently nice curves to connect any two points in the moduli space, thus proving irreducibility. One then proves the following properties of the dualising sheaf:
+\begin{enumerate}
+  \item $\omega_{C/S}^{\otimes n}$ is relatively very ample for~$n\geq 3$;
+  \item $\pi_*(\omega_{C/S}^{\otimes n})$ is locally free of rank~$(2n-1)(g-1)$.
+\end{enumerate}
+The proof of these properties uses the fact that we ``almost'' get a smooth curve of genus~$g$, and we study the different irreducible components, together with the explicit manifestation of Grothendieck duality for curves with at most ordinary double points.
+
+Hence we can conclude that, taking~$n=3$, we can realise a stable curve~$C\to S$ as a family of curves inside~$\mathbb{P}^{5g-6}$ such that the Hilbert polynomial of each point is~$(6n-1)(g-1)$.
+
+This yields the construction of a subscheme~$\mathrm{H}_g\subseteq\mathrm{Hilb}_{\mathbb{P}^{5g-6}}^{(6n-1)(g-1)}$ of \emph{tricanonically embedded stable curves}, i.e.\ the functor described by
+\begin{equation}
+  \Hom_{\mathrm{Sch}}(S,\mathrm{H}_g)\cong\left\{ \left( \text{$\pi\colon C\to S$ stable; $\Proj\left( \pi_*(\omega_{C/S}^{\otimes 3}) \right)\cong\mathbb{P}_S^{5g-6}$} \right) \right\}/{\cong}
+\end{equation}
+for a scheme~$S$. By taking the quotient of the (open locus of smooth curves of the) scheme~$\mathrm{H}_g$ by the~$\mathrm{PGL}_{5g-6}$\dash action we obtain a model for the moduli space of (smooth) curves, and hence we can try to compute things.
+
+From this point on the proof does not use Grothendieck duality anymore, so I will end the summary here.
+
+
+\subsection{Other applications}
+Each of the following applications more than deserves a proper treatment. Unfortunately this is not possible here, due to lack of time, space and familiarity with the subject. They are here to show how diverse applications of Grothendieck duality can get. Any error in this list is due to my limited knowledge on the subject.
+
+\paragraph{Local duality}
+The study of local rings and singularities leads to working with Cohen--Macaulay rings and modules, and understanding these in as concrete terms as possible. It is related to representation theory as well.
+
+\paragraph{Singularity categories}
+This is another approach to studying singularities, now in a more global setting. It is similar to the previous application in some respects, but more alike studying Fourier--Mukai transforms and derived categories in others.
+
+\paragraph{Noncommutative algebra}
+The notion of dualising complex has a counterpart for noncommutative rings.
+
+\paragraph{Noncommutative algebraic geometry}
+The notion of Serre and Grothendieck duality leads to studying abstract Serre functors in triangulated or dg~categories. This is also related to Calabi--Yau categories.
+
+\paragraph{Arithmetic geometry}
+The relative formalism also applies to arithmetic geometry, for example in studying Eisenstein ideals \cite{mazur-modular-curves-eisenstein-ideal}. I know absolutely nothing about it.
+
+
